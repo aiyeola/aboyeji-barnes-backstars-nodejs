@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
     const Room = sequelize.define('Room', {
         name: DataTypes.STRING,
         type: DataTypes.STRING,
-        accomodationId: DataTypes.INTEGER,
+        accommodationId: DataTypes.INTEGER,
         status: DataTypes.BOOLEAN,
         price: DataTypes.FLOAT
     }, {});
