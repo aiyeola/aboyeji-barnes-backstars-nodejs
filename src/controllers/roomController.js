@@ -1,16 +1,16 @@
 /* eslint-disable*/
 import Response from '../utils/response';
-import accommdationService from ''
+import accommodationService from '../services/accommodationService'
 
 /** Class that handles rooms */
 class Rooms {
     static async getAllRooms(req, res, next) {
-        const accommdationId = req.params.accommdationid;
+        const accommodationId = req.query.accommodationid;
         try {
             // get accommodation rooms from database
-            const data = await accommdationService.getAllRooms(accommdationId);
+            const data = await accommodationService.getAllRooms(accommodationId);
 
-            const message = `Rooms for accomodation with the id ${ accommdationId }`;
+            const message = `Rooms for accommodation with the id ${ accommodationId }`;
 
             return Response.customResponse(
                 res,
