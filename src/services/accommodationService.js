@@ -16,7 +16,7 @@ class accommodationService {
 
             return createdRoom
         } catch (error) {
-            throw err
+            throw error
         }
     }
 
@@ -26,12 +26,21 @@ class accommodationService {
     */
     static async getAllRooms(id) {
         try {
-            const data = await Room.findAll({
-                where: {
-                    accommodationId: id
-                }
-            })
+
+            const data = await Room.findAll({ where: { accommodationId: id } })
+
             return data
+        } catch (error) {
+            throw error
+        }
+    }
+    static async getRoom(params) {
+        try {
+            const room = await Room.findOne({
+                where: params
+            })
+            return room;
+
         } catch (error) {
             throw error
         }
