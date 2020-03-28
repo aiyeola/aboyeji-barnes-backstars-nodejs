@@ -69,3 +69,4 @@ Make company global travel and accommodation easy and convenient for the strong 
 ## Contributors
 
 - [Victor Aiyeola](https://github.com/aiyeola)
+- [Akinola Raphael](https://github.com/Ethical-Ralph)
