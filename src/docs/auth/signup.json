@@ -1,0 +1,41 @@
+{
+	"post": {
+		"tags": [
+			"User"
+		],
+		"summary": "sign up a user",
+		"description": "Endpoint for creating a user",
+		"consumes": [
+			"application/json"
+		],
+		"produces": [
+			"application/json"
+		],
+		"parameters": {
+			"name": "Create Account",
+			"in": "body",
+			"description": "request payload",
+			"schema": {
+				"type": "object",
+				"properties": {
+					"email": {
+						"type": "string",
+						"example": "barnesjane@gmail.com"
+					},
+					"firstName": {
+						"type": "string",
+						"example": "Barnes"
+					},
+					"lastName": {
+						"type": "string",
+						"example": "Jane"
+					},
+					"password": {
+						"type": "string",
+						"example": "pa55w0rd"
+					}
+				}
+			}
+		}
+	}
+}
