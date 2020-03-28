@@ -30,4 +30,4 @@
 | Update comment | **PATCH**  | Comments| `/api/v1/requests/comments/{id}`| User update comment by Id
 | Delete comment | **DELETE**  | Comments| `/api/v1/requests/comments/{id}`| User delete comment by Id
 
-This is just a schema of what it will look like, and actually, these are not all the endpoints!
+This is just a schema of what it will look like, and actually, these are not all the endpoints
