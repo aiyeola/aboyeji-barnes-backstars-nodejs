@@ -56,7 +56,7 @@ Make company global travel and accommodation easy and convenient for the strong 
 
 ## API Documentation
 
-- [Swagger Documentation on Heroku](https://aboyeji-barnes-backstars-nodejs-staging.herokuapp.com/api/docs/)
+- [Swagger Documentation on Heroku](https://aboyeji-barnes-backstars.herokuapp.com/api/docs/)
 
 ## Technologies Used
 
