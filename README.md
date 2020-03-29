@@ -1,4 +1,4 @@
-[![aboyeji-clan](https://circleci.com/gh/aboyeji-clan/aboyeji-barnes-backstars-nodejs.svg?style=shield)](https://github.com/aiyeola/aboyeji-barnes-backstars-nodejs)
+[![aboyeji clan](https://circleci.com/gh/aboyeji-clan/aboyeji-barnes-backstars-nodejs.svg?style=shield)](https://github.com/aiyeola/aboyeji-barnes-backstars-nodejs)
 # Barnes Backstars - Making company travel and accommodation easy and convenient
 
 ## Vision
