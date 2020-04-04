@@ -74,3 +74,4 @@ Make company global travel and accommodation easy and convenient for the strong 
 - [Omomurewa George-Ashiru](https://github.com/murewaashiru)
 - [Akinola Raphael](https://github.com/Ethical-Ralph)
 - [Fisayo Aikomo](https://github.com/fisayo-DMG)
+- [Adela Adeoye](https://github.com/adelaadeoye)
