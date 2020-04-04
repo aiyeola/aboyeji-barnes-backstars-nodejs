@@ -1,0 +1,4 @@
+ NPM_CONFIG_LOGLEVEL=error
+       NODE_ENV=production
+       NODE_MODULES_CACHE=true
+       NODE_VERBOSE=false
