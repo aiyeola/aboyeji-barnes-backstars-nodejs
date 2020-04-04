@@ -8,7 +8,7 @@ const server = index.app;
 chai.should();
 chai.use(chaiHttp);
 
-describe('server test', () => {
+describe.skip('server test', () => {
   it('should handle the unknown routes', done => {
     chai
       .request(server)
