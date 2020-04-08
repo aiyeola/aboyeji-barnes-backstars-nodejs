@@ -1,13 +1,24 @@
-/* eslint-disable  */
+/* eslint-disable no-undef */
 
-'use strict';
-
-module.exports = (sequelize, DataTypes) => {
+export default (sequelize, DataTypes) => {
   const Location = sequelize.define('Location', {
-    country: DataTypes.STRING,
-    city: DataTypes.STRING
+    country: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        is: ['[a-zA-Z]+$', 'i']
+      }
+     },
+    city: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        is: ['[a-zA-Z]+$', 'i']
+      }
+    }
   }, {});
-  Location.associate = function(models) {
+  // eslint-disable-next-line no-unused-vars
+  Location.associate = (models) => {
     // associations can be defined here
   };
   return Location;

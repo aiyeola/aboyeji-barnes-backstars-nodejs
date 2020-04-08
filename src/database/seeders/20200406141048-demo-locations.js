@@ -1,11 +1,9 @@
-/* eslint-disable  */
-
-"use strict";
-
+/* eslint-disable no-unused-vars */
+/* eslint-disable arrow-body-style */
 const createdAt = new Date();
 const updatedAt = new Date();
 
-module.exports = {
+export default {
   up: (queryInterface, Sequelize) => {
     /*
       Add altering commands here.
@@ -17,12 +15,36 @@ module.exports = {
         isBetaMember: false
       }], {});
     */
-    return queryInterface.bulkInsert("Locations", [
-      { country: "Nigeria", city: "Ibadan", createdAt, updatedAt },
-      { country: "Italy", city: "Sicily", createdAt, updatedAt },
-      { country: "Sweden", city: "Stockholm", createdAt, updatedAt },
-      { country: "England", city: "Manchester", createdAt, updatedAt },
-    ], {});
+    return queryInterface.bulkInsert(
+      'Locations',
+      [
+        {
+          country: 'Nigeria',
+          city: 'Ibadan',
+          createdAt,
+          updatedAt,
+        },
+        {
+          country: 'Italy',
+          city: 'Sicily',
+          createdAt,
+          updatedAt,
+        },
+        {
+          country: 'Sweden',
+          city: 'Stockholm',
+          createdAt,
+          updatedAt,
+        },
+        {
+          country: 'England',
+          city: 'Manchester',
+          createdAt,
+          updatedAt,
+        },
+      ],
+      {}
+    );
   },
 
   down: (queryInterface, Sequelize) => {
