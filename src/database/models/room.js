@@ -1,4 +1,4 @@
-'use strict';
+/* eslint-disable no-unused-vars */
 module.exports = (sequelize, DataTypes) => {
     const Room = sequelize.define('Room', {
         name: DataTypes.STRING,
@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
         status: DataTypes.BOOLEAN,
         price: DataTypes.FLOAT
     }, {});
-    Room.associate = function (models) {
+    Room.associate = (models) => {
         // associations can be defined here
     };
     return Room;
