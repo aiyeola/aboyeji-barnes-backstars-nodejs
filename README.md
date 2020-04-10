@@ -1,3 +1,5 @@
+[![Build Status](https://circleci.com/gh/aiyeola/aboyeji-barnes-backstars-nodejs.svg?style=shield)](https://github.com/aiyeola/aboyeji-barnes-backstars-nodejs)
+
 # Barnes Backstars - Making company travel and accommodation easy and convenient
 
 ## Vision
@@ -69,4 +71,7 @@ Make company global travel and accommodation easy and convenient for the strong 
 ## Contributors
 
 - [Victor Aiyeola](https://github.com/aiyeola)
+- [Omomurewa George-Ashiru](https://github.com/murewaashiru)
 - [Akinola Raphael](https://github.com/Ethical-Ralph)
+- [Fisayo Aikomo](https://github.com/fisayo-DMG)
+- [Adela Adeoye](https://github.com/adelaadeoye)

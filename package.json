@@ -10,7 +10,8 @@
     "db-seed:test": "sequelize db:seed:all",
     "db-migrate": "sequelize db:migrate --env production",
     "db-migrate:dev": "sequelize db:migrate --env development",
-    "db-migrate:test": "sequelize db:migrate:undo:all --env test && sequelize db:migrate --env test"
+    "db-migrate:test": "sequelize db:migrate:undo:all --env test && sequelize db:migrate --env test",
+    "test":"mocha --require @babel/register ./src/test/*.js --timeout 60000 --exit"
   },
   "license": "MIT",
   "dependencies": {

@@ -31,7 +31,7 @@ export default {
     .min(1)
     .error(
       new Error(
-        `Password should contain a minimum of 8 characters (upper and lowercase letters, numbers and at least one special character)`
+        'Password should contain a minimum of 8 characters (upper and lowercase letters, numbers and at least one special character)'
       )
     )
 };
