@@ -11,12 +11,13 @@
     "db-migrate": "sequelize db:migrate --env production",
     "db-migrate:dev": "sequelize db:migrate --env development",
     "db-migrate:test": "sequelize db:migrate:undo:all --env test && sequelize db:migrate --env test",
-    "test":"mocha --require @babel/register ./src/test/*.js --timeout 60000 --exit"
+    "test": "mocha --require @babel/register ./src/test/*.js --timeout 60000 --exit"
   },
   "license": "MIT",
   "dependencies": {
     "@babel/polyfill": "^7.8.7",
     "@hapi/joi": "^17.1.1",
+    "@passport-next/passport-mocked": "passport-next/passport-mocked",
     "babel-watch": "^7.0.0",
     "bcrypt": "^4.0.1",
     "body-parser": "^1.19.0",
@@ -27,6 +28,10 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
+    "passport": "^0.4.1",
+    "passport-facebook": "^3.0.0",
+    "passport-google-oauth": "^2.0.0",
+    "passport-local": "^1.0.0",
     "pg": "^7.18.2",
     "pg-hstore": "^2.3.3",
     "redis": "^3.0.2",
@@ -47,7 +52,15 @@
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-plugin-import": "^2.20.1",
+    "husky": "^4.2.5",
     "mocha": "^7.1.1",
-    "nodemon": "^2.0.2"
+    "nodemon": "^2.0.2",
+    "prettier": "^2.0.4",
+    "pretty-quick": "^2.0.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
   }
 }

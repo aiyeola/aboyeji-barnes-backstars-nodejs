@@ -12,16 +12,11 @@ class Rooms {
 
             const message = `Rooms for accommodation with the id ${ accommodationId }`;
 
-            return Response.customResponse(
-                res,
-                200,
-                message,
-                data
-            );
-        } catch (error) {
-            return next(error);
-        }
+      return Response.customResponse(res, 200, message, data);
+    } catch (error) {
+      return next(error);
     }
+  }
 }
 
 export default Rooms;
