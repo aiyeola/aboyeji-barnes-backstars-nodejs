@@ -1,7 +1,7 @@
 /* eslint-disable */
 module.exports = {
     up: (queryInterface, Sequelize) => {
-        return queryInterface.createTable('Room', {
+        return queryInterface.createTable('Rooms', {
             id: {
                 allowNull: false,
                 autoIncrement: true,
