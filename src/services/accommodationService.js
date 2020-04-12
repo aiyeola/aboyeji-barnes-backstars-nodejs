@@ -10,12 +10,13 @@ class accommodationService {
    */
   static async createRoom(room) {
     try {
-      //creates room
-      const createdRoom = await Room.create(room);
+           //creates room
+            const createdRoom = await Room.create(room)
 
-      return createdRoom;
-    } catch (error) {
-      throw err;
+            return createdRoom
+        } catch (error) {
+            throw error
+        }
     }
   }
 
@@ -34,7 +35,18 @@ class accommodationService {
     } catch (error) {
       throw error;
     }
-  }
+
+    static async getRoom(params) {
+        try {
+            const room = await Room.findOne({
+                where: params
+            })
+            return room;
+
+        } catch (error) {
+            throw error;
+        }
+    }
 }
 
 export default accommodationService;
