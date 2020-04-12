@@ -5,7 +5,7 @@ import database from '../database/models';
 const { UserProfile, Users } = database;
 
 class UserProfileService {
- static async updateOrCreate(userId, profileData = null) {
+  static async updateOrCreate(userId, profileData = null) {
     try {
       // Find a profile by userId
       const profileFound = UserProfile.findOne({ where: { userId } });

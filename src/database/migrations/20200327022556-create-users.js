@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable */
 export default {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('Users', {

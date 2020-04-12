@@ -1,4 +1,4 @@
-'use strict';
+/* eslint-disable */
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('Rooms', {
@@ -14,7 +14,7 @@ module.exports = {
       type: {
         type: Sequelize.STRING
       },
-      accomodationId: {
+      accommodationId: {
         type: Sequelize.INTEGER
       },
       status: {
