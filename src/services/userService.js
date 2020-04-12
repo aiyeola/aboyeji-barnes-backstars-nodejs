@@ -17,7 +17,7 @@ class UserService {
 
       // Create user profile
       await UserProfile.updateOrCreate(createdUser.id);
-      
+
       return createdUser;
     } catch (error) {
       throw error;
