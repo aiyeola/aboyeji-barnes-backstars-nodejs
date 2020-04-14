@@ -1,34 +1,27 @@
 /* eslint-disable */
-export default {
+module.exports = {
     up: (queryInterface, Sequelize) => {
-        return queryInterface.createTable('Users', {
+        return queryInterface.createTable('Rooms', {
             id: {
                 allowNull: false,
                 autoIncrement: true,
                 primaryKey: true,
                 type: Sequelize.INTEGER
             },
-            firstName: {
+            name: {
                 type: Sequelize.STRING
             },
-            lastName: {
+            type: {
                 type: Sequelize.STRING
             },
-            userEmail: {
-                type: Sequelize.STRING
+            accommodationId: {
+                type: Sequelize.INTEGER
             },
-            userPassword: {
-                type: Sequelize.STRING
-            },
-            userRoles: {
-                type: Sequelize.STRING
-            },
-            accountVerified: {
-                type: Sequelize.BOOLEAN,
-                defaultValue: false
-            },
-            emailAllowed: {
+            status: {
                 type: Sequelize.BOOLEAN
+            },
+            price: {
+                type: Sequelize.FLOAT
             },
             createdAt: {
                 allowNull: false,
@@ -41,6 +34,6 @@ export default {
         });
     },
     down: (queryInterface, Sequelize) => {
-        return queryInterface.dropTable('Users');
+        return queryInterface.dropTable('Rooms');
     }
 };
