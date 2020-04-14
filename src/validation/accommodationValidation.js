@@ -1,8 +1,25 @@
-/* eslint-disable */
+/* eslint-disable no-unused-vars */
+/* eslint-disable require-jsdoc */
 import Joi from '@hapi/joi';
+import Schema from './schema';
 import validator from '../utils/validator';
 
 class accommodationValidator {
+  static validateAccommodation(req, res, next) {
+    const schema = Joi.object().keys({
+      name: Schema.text,
+      status: Schema.name,
+      imageUrl: Schema.array,
+      amenities: Schema.array,
+      services: Schema.array,
+      mapLocations: Schema.json,
+      locationId: Schema.number,
+      description: Schema.text,
+      owner: Schema.number
+    });
+    validator(schema, req.body, res, next);
+  }
+
   static validateRoomData(req, res, next) {
     const schema = Joi.object().keys(
       {

@@ -1,3 +1,5 @@
+/* eslint-disable no-useless-escape */
+/* eslint-disable newline-per-chained-call */
 /* eslint-disable implicit-arrow-linebreak */
 import Joi from '@hapi/joi';
 
@@ -9,19 +11,14 @@ export default {
     })
     .trim()
     .required(),
-  name: Joi.string()
-    .alphanum()
-    .min(3)
-    .max(30)
-    .required(),
-  number: Joi.number()
-    .min(1)
-    .required(),
-  nameOptional: Joi.string()
-    .alphanum()
-    .min(3)
-    .max(30)
-    .optional(),
+  name: Joi.string().alphanum().min(3).max(30).required(),
+  text: Joi.string().required(),
+  number: Joi.number().min(1).required(),
+  nameOptional: Joi.string().alphanum().min(3).max(30).optional(),
+  description: Joi.string().alphanum().min(10).max(200).required(),
+  url: Joi.string().uri().required(),
+  array: Joi.array().required(),
+  json: Joi.object().required(),
   password: Joi.string()
     .regex(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!_`,/@#\-"=:;~<>'\$%\^&\*\?\|\+\(\)\[\]\{}\.])(?=.{8,})/
