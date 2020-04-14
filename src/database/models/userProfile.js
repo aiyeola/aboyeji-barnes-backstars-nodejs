@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 export default (sequelize, DataTypes) => {
-  const userProfile = sequelize.define(
+  const UserProfile = sequelize.define(
     'UserProfile',
     {
       userId: DataTypes.INTEGER,
@@ -16,8 +16,8 @@ export default (sequelize, DataTypes) => {
     },
     {}
   );
-  userProfile.associate = (models) => {
+  UserProfile.associate = (models) => {
     // associations can be defined here
   };
-  return userProfile;
+  return UserProfile;
 };
