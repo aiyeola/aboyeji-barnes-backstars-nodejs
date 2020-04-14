@@ -1,6 +1,8 @@
 /* eslint-disable */
 import Response from '../utils/response';
 import accommodationService from '../services/accommodationService';
+import database from '../database/models';
+const { Feedbacks } = database;
 
 class accommodationController {
   static async createAccommodation(req, res, next) {
@@ -97,8 +99,19 @@ class accommodationController {
 
   static async getFeedback(req, res, next) {
     const id = parseInt(req.params.id);
-    console.log(`Feedback on accommodation ${id}`);
-    return res.status(200).send(`Feedback on accommodation ${id}`);
+
+    try {
+      const data = await Feedbacks.findAll({ where: { accommodationId: id } });
+      console.log(`Feedbacks on accommodation ${id}`);
+      return Response.customResponse(
+        res,
+        '200',
+        `Feedbacks on accommodation ${id}`,
+        data
+      );
+    } catch (error) {
+      throw error;
+    }
   }
 }
 

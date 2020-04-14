@@ -8,7 +8,7 @@ class accommodationValidator {
   static validateAccommodation(req, res, next) {
     const schema = Joi.object().keys({
       name: Schema.text,
-      status: Schema.name,
+      status: Schema.status,
       imageUrl: Schema.array,
       amenities: Schema.array,
       services: Schema.array,
