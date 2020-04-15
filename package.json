@@ -7,11 +7,12 @@
     "build": "rm -rf ./src/build && babel ./src/. --out-dir ./src/build --copy-files",
     "start": "yarn run build && node ./src/build/index.js",
     "start:dev": "nodemon --exec babel-node src/index.js",
-    "db-seed:test": "sequelize db:seed:all",
+    "db-seed:test": "sequelize db:seed:all --env test",
     "db-migrate": "sequelize db:migrate --env production",
     "db-migrate:dev": "sequelize db:migrate --env development",
     "db-migrate:test": "sequelize db:migrate:undo:all --env test && sequelize db:migrate --env test",
-    "test":"mocha --require @babel/register ./src/test/*.js --timeout 60000 --exit"
+    "pretest": "cross-env NODE_ENV=test yarn run db-migrate:test && yarn run db-seed:test",
+    "test": "cross-env NODE_ENV=test mocha --require @babel/register ./src/test/*.js --timeout 60000 --exit"
   },
   "license": "MIT",
   "dependencies": {
@@ -22,6 +23,7 @@
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
+    "cross-env": "^7.0.2",
     "dotenv": "^8.2.0",
     "errorhandler": "^1.5.1",
     "express": "^4.17.1",
