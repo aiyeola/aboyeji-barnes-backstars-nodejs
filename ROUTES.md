@@ -29,5 +29,8 @@
 | Requests Comments | **GET**  | Comments| `/api/v1/request/{id}/comment`| User get all comments they added to requests
 | Update comment | **PATCH**  | Comments| `/api/v1/requests/comments/{id}`| User update comment by Id
 | Delete comment | **DELETE**  | Comments| `/api/v1/requests/comments/{id}`| User delete comment by Id
+| Get locations | **GET**  | Locations| `/api/v1/locations` | Get all locations
+| Search for location | **GET**  | Locations| `/api/v1/locations` | Serach for locations
+| Location by ID | **GET**  | Locations| `/api/v1/locations/:id` | Get location by ID
 
 This is just a schema of what it will look like, and actually, these are not all the endpoints
