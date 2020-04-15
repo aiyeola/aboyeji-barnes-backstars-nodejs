@@ -11,19 +11,18 @@ module.exports = {
   development: {
     username: process.env.DATABASE_USERNAME,
     password: process.env.DATABASE_PASSWORD,
-    database: process.env.DATABASE_NAME,
+    database: process.env.DATABASE_DEV,
     host: '127.0.0.1',
     dialect: 'postgres',
     operatorsAliases: 0
   },
   test: {
-    use_env_variable: 'DATABASE_URL_TEST',
+    username: process.env.DATABASE_USERNAME,
+    password: process.env.DATABASE_PASSWORD,
+    database: process.env.DATABASE_TEST,
+    host: '127.0.0.1',
+    logging: false,
     dialect: 'postgres',
     operatorsAliases: 0
   }
 };
-// development: {
-//   use_env_variable: 'DEV_DATABASE_URL',
-//   dialect: 'postgres',
-//   operatorsAliases: 0
-// },
