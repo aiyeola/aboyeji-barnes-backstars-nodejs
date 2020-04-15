@@ -37,7 +37,7 @@ class Location {
     }
     try {
       // Get all locations from database
-      const locations = await locationService.getAllLocations(query);
+      const locations = await locationService.getLocations(query);
 
       const message = 'Locations found';
       return Response.customResponse(res, 200, message, locations);
