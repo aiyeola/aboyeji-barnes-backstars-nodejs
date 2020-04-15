@@ -17,6 +17,7 @@ Make company global travel and accommodation easy and convenient for the strong 
 - Run `cp .env.example .env` to create the .env variables and fill them
 - Run `yarn db-migrate:dev` to create db migrations
 - Run `yarn run start:dev` to start development server
+- Run `yarn run test` to run all tests
 
 ### User Credentials seeded to the Database
 
@@ -64,7 +65,7 @@ Make company global travel and accommodation easy and convenient for the strong 
 
 - NodeJS / Express
 - PostgreSQL Database with Sequelize as ORM
-- Redis
+- Redis for Session Management
 - Swagger for API Documentation
 - Heroku For Hosting
 
