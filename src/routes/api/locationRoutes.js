@@ -5,12 +5,12 @@ import method from '../../utils/method';
 const router = express.Router();
 
 router
-  .route('/locations')
+  .route('/')
   .get(Location.getLocations)
   .all(method);
 
 router
-  .route('/locations/:locationId')
+  .route('/:locationId')
   .get(Location.getLocationById)
   .all(method);
 
