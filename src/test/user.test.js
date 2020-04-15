@@ -24,16 +24,16 @@ const regData = {
   userEmail: 'jonathanaurugai@gmail.com',
   firstName: 'Jonathan',
   lastName: 'Aurugai',
-  userPassword: 'Root1234@',
+  userPassword: 'Root1234@'
 };
 const regDataWithWrongEmail = {
   userEmail: 'jonathanaurugaigmail.com',
   firstName: 'Jonathan',
   lastName: 'Aurugai',
-  userPassword: 'Root',
+  userPassword: 'Root'
 };
 
-describe.skip('Create an account', () => {
+describe('Create an account', () => {
   it('and send an email with verification link');
   it('with valid properties ', (done) => {
     chai
@@ -61,11 +61,11 @@ describe.skip('Create an account', () => {
   });
 });
 
-describe('User Login', () => {
+describe.skip('User Login', () => {
   it('with correct credentials', (done) => {
     const user = {
       userEmail: 'jonathanaurugai@gmail.com',
-      userPassword: 'Root1234@',
+      userPassword: 'Root1234@'
     };
     chai
       .request(server)
