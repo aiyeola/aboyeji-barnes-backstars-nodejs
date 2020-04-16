@@ -22,7 +22,8 @@
 | Accommodation by ID  | **GET**    | Accommodations | `/api/v1/accommodations/{id}`           | Get accommodation by ID                      |
 | Add accommodation    | **POST**   | Accommodations | `/api/v1/accommodations`                | Create accommodation                         |
 | Rate accommodation   | **POST**   | Accommodations | `/api/v1/accommodations/{id}/ratings`   | Rate an accommodation                        |
-| Review accommodation | **GET**    | Accommodations | `/api/v1/accommodations/{id}/feedback`  | Add feedback to accommodation                |
+| Review accommodation | **POST**   | Accommodations | `/api/v1/accommodations/{id}/feedback`  | Add feedback to accommodation                |
+| Review accommodation | **GET**    | Accommodations | `/api/v1/accommodations/{id}/feedback`  | Get feedback to accommodation                |
 | Like/Unlike          | **PATCH**  | Accommodations | `/api/v1/accommodations/{id}/like`      | User to like/unlike accommodation            |
 | Add Room             | **POST**   | Accommodations | `/api/v1/accommodations/createrooms`    | Travel Admin to add rooms to accommodation   |
 | Add comment          | **POST**   | Comments       | `/api/v1/request/{id}/comment`          | User can comment on Requests by Id           |

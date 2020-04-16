@@ -18,6 +18,7 @@ export default {
   nameOptional: Joi.string().alphanum().min(3).max(30).optional(),
   url: Joi.string().uri().required(),
   array: Joi.array().required(),
+  boolean: Joi.boolean().required(),
   json: Joi.object().required(),
   password: Joi.string()
     .regex(
