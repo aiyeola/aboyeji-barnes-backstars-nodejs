@@ -22,13 +22,15 @@
 | Accommodation by ID  | **GET**    | Accommodations | `/api/v1/accommodations/{id}`           | Get accommodation by ID                      |
 | Add accommodation    | **POST**   | Accommodations | `/api/v1/accommodations`                | Create accommodation                         |
 | Rate accommodation   | **POST**   | Accommodations | `/api/v1/accommodations/{id}/ratings`   | Rate an accommodation                        |
-| Review accommodation | **POST**   | Accommodations | `/api/v1/accommodations/{id}/feedback`  | Add feedback to accommodation                |
-| Review accommodation | **GET**    | Accommodations | `/api/v1/accommodations/{id}/feedback`  | Get feedback to accommodation                |
+| Review accommodation | **GET**    | Accommodations | `/api/v1/accommodations/{id}/feedback`  | Add feedback to accommodation                |
 | Like/Unlike          | **PATCH**  | Accommodations | `/api/v1/accommodations/{id}/like`      | User to like/unlike accommodation            |
-| Add Room             | **POST**   | Accommodations | `/api/v1/accommodations/createrooms`    | Travel Admin to add rooms to accommodation   |
+| Add Room             | **POST**   | Accommodations | `/api/v1/accommodations/rooms`          | Travel Admin to add rooms to accommodation   |
 | Add comment          | **POST**   | Comments       | `/api/v1/request/{id}/comment`          | User can comment on Requests by Id           |
 | Requests Comments    | **GET**    | Comments       | `/api/v1/request/{id}/comment`          | User get all comments they added to requests |
 | Update comment       | **PATCH**  | Comments       | `/api/v1/requests/comments/{id}`        | User update comment by Id                    |
 | Delete comment       | **DELETE** | Comments       | `/api/v1/requests/comments/{id}`        | User delete comment by Id                    |
+| Get locations        | **GET**    | Locations      | `/api/v1/locations`                     | Get all locations                            |
+| Search for location  | **GET**    | Locations      | `/api/v1/locations`                     | Serach for locations                         |
+| Location by ID       | **GET**    | Locations      | `/api/v1/locations/:id`                 | Get location by ID                           |
 
 This is just a schema of what it will look like, and actually, these are not all the endpoints
