@@ -24,7 +24,7 @@ class Users {
         userEmail: data.userEmail,
         userRoles: data.userRoles,
         accountVerified: data.accountVerified,
-        emailAllowed: data.emailAllowed,
+        emailAllowed: data.emailAllowed
       });
       data.dataValues.userToken = token;
       delete data.dataValues.userPassword;
@@ -46,7 +46,7 @@ class Users {
     try {
       const { userEmail, userPassword } = req.body;
 
-      const userExists = await UserService.findUser(userEmail);
+      const userExists = await UserService.findUser({ userEmail });
 
       if (!userExists) {
         return Response.authenticationError(
@@ -98,12 +98,12 @@ class Users {
     const { firstName, lastName, email: userEmail } = req.user;
     const userRoles = 'Requester';
     let data;
-    data = await UserService.findUser(userEmail);
+    data = await UserService.findUser({ userEmail });
     if (!data) {
       data = await UserService.createUser({
         firstName,
         lastName,
-        userEmail,
+        userEmail
       });
     }
     const token = await SessionManager.createSession({
@@ -112,7 +112,7 @@ class Users {
       lastName: data.lastName,
       userEmail: data.userEmail,
       userRoles: data.userRoles,
-      emailAllowed: data.emailAllowed,
+      emailAllowed: data.emailAllowed
     });
     // api response should be buffered into a string and sent to the frontEnd URL
     // const apiResponse = {
