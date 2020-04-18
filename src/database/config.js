@@ -18,6 +18,11 @@ module.exports = {
     operatorsAliases: 0
   },
   test: {
+    use_env_variable: 'DATABASE_URL_TEST',
+    dialect: 'postgres',
+    operatorsAliases: 0
+  },
+  localTest: {
     username: process.env.DATABASE_USERNAME,
     password: process.env.DATABASE_PASSWORD,
     database: process.env.DATABASE_TEST,

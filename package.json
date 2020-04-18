@@ -7,12 +7,17 @@
     "build": "rm -rf ./src/build && babel ./src/. --out-dir ./src/build --copy-files",
     "start": "yarn run build && node ./src/build/index.js",
     "start:dev": "nodemon --exec babel-node src/index.js",
+    "docker:start": "yarn run db-migrate:dev && yarn run start:dev",
     "db-seed:test": "sequelize db:seed:all --env test",
+    "db-seed:localTest": "sequelize db:seed:all --env localTest",
     "db-migrate": "sequelize db:migrate --env production",
     "db-migrate:dev": "sequelize db:migrate --env development",
     "db-migrate:test": "sequelize db:migrate:undo:all --env test && sequelize db:migrate --env test",
+    "db-migrate:localTest": "sequelize db:migrate:undo:all --env localTest && sequelize db:migrate --env localTest",
     "pretest": "cross-env NODE_ENV=test yarn run db-migrate:test && yarn run db-seed:test",
-    "test": "cross-env NODE_ENV=test mocha --require @babel/register ./src/test/*.js --timeout 60000 --exit"
+    "preLocalTest": "cross-env NODE_ENV=localTest yarn run db-migrate:localTest && yarn run db-seed:localTest",
+    "test": "cross-env NODE_ENV=test mocha --require @babel/register ./src/test/*.js --timeout 60000 --exit",
+    "localTest": " yarn run preLocalTest && cross-env NODE_ENV=localTest mocha --require @babel/register ./src/test/*.js --timeout 60000 --exit"
   },
   "license": "MIT",
   "dependencies": {
