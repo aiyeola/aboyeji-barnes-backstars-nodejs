@@ -6,7 +6,7 @@ import { promisify } from 'util';
 import Response from './response';
 
 const redisClient =
-  process.env.NODE === 'production'
+  process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'test'
     ? redis.createClient(process.env.REDIS_URL)
     : redis.createClient();
 

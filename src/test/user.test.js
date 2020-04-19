@@ -77,7 +77,6 @@ describe.skip('User Login', () => {
         } else {
           expect(res).to.have.status(200);
           token = res.body.data;
-          console.log(token);
           done();
         }
       });
@@ -93,7 +92,6 @@ describe.skip('Users Logout', () => {
       .send()
       .end((_err, res) => {
         if (_err) done(_err);
-        console.log(res.body);
         expect(res.body.message).to.eq('User logged out successfully');
         expect(res.status).to.eq(200);
         done();
