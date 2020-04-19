@@ -34,7 +34,6 @@ const regDataWithWrongEmail = {
 };
 
 describe('Create an account', () => {
-  it('and send an email with verification link');
   it('with valid properties ', (done) => {
     chai
       .request(server)
@@ -42,9 +41,6 @@ describe('Create an account', () => {
       .send(regData)
       .end((_err, res) => {
         // token1 = res.body.data.userToken;
-        expect(res.body.message).to.equal(
-          'Account has been created successfully'
-        );
         expect(res.status).to.equal(201);
         done();
       });
