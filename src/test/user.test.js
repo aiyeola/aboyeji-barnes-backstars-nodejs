@@ -37,7 +37,9 @@ const regDataWithWrongEmail = {
 describe('Create an account', () => {
   it('with valid properties ', async () => {
     const res = await chai.request(server).post(signUpURL).send(regData);
-    expect(res.body.message).to.eq('Account has been created successfully');
+    expect(res.body)
+      .to.have.property('message')
+      .to.equal('Account has been created successfully');
     expect(res.status).to.equal(201);
   });
   it.skip('with wrong Email', (done) => {
