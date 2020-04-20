@@ -34,7 +34,7 @@ const regDataWithWrongEmail = {
   userPassword: 'Root'
 };
 
-describe('Create an account', () => {
+describe.skip('Create an account', () => {
   it('with valid properties ', async () => {
     const res = await chai.request(server).post(signUpURL).send(regData);
     expect(res.body.message).to.eq('Account has been created successfully');
