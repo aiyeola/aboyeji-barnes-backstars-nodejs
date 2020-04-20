@@ -26,7 +26,7 @@ router.route('/signout').post(verify, Users.logout).all(method);
 
 router.route('/facebook').get(
   passport.authenticate('facebook', {
-    scope: ['email'],
+    scope: ['email']
   })
 );
 
@@ -39,8 +39,8 @@ router.route('/google').get(
   passport.authenticate('google', {
     scope: [
       'https://www.googleapis.com/auth/userinfo.profile',
-      'https://www.googleapis.com/auth/userinfo.email',
-    ],
+      'https://www.googleapis.com/auth/userinfo.email'
+    ]
   })
 );
 
@@ -48,5 +48,7 @@ router
   .route('/google/redirect')
   .get(passport.authenticate('google'), Users.socialLogin)
   .all(method);
+
+router.route('/check-user').get(verify, Users.checkToken).all(method);
 
 export default router;

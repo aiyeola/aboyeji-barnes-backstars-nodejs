@@ -5,18 +5,28 @@ import Response from '../utils/response';
 import Password from '../utils/generatePassword';
 import SessionManager from '../utils/sessionManager';
 import UserService from '../services/userService';
+import { FRONTEND_URL } from '../config';
+
 /** Class that handles user */
 class Users {
+  /**
+   * creates a new user
+   * @param {object} req -request object
+   * @param {object} res - response object
+   * @param {object} next - next middleware
+   * @returns {object} response
+   */
   async createUser(req, res, next) {
     const rawData = req.body;
 
     try {
-      // generates hashed password
       const obj = new Password(rawData);
       const newPassword = await obj.encryptPassword();
-      // update data
+
       rawData.userPassword = newPassword;
+
       const data = await UserService.createUser(rawData);
+
       const token = await SessionManager.generateToken({
         id: data.id,
         firstName: data.firstName,
@@ -42,6 +52,13 @@ class Users {
     }
   }
 
+  /**
+   *  logs in a user
+   * @param {object} req - request object
+   * @param {object} res -response object
+   * @param {object} next - next middleware
+   * @return {object} response
+   */
   async login(req, res, next) {
     try {
       const { userEmail, userPassword } = req.body;
@@ -94,6 +111,11 @@ class Users {
     return Response.customResponse(res, 200, 'User logged out successfully');
   }
 
+  /**
+   * login a user via social account
+   * @param {object} req - response object
+   * @param {object} res -response object
+   */
   async socialLogin(req, res) {
     const { firstName, lastName, email: userEmail } = req.user;
     const userRoles = 'Requester';
@@ -114,13 +136,30 @@ class Users {
       userRoles: data.userRoles,
       emailAllowed: data.emailAllowed
     });
-    // api response should be buffered into a string and sent to the frontEnd URL
-    // const apiResponse = {
-    //   status: 200,
-    //   message: 'Successfully logged in',
-    //   data: token
-    // };
-    return Response.customResponse(res, 200, 'Successfully logged in', token);
+    const apiResponse = {
+      status: 200,
+      message: 'Successfully logged in',
+      data: token
+    };
+    const responseBuffer = Buffer.from(JSON.stringify(apiResponse));
+    return res.redirect(
+      `${FRONTEND_URL}/login?code=${responseBuffer.toString('base64')}`
+    );
+  }
+
+  /**
+   * check the user token
+   * @param {object} req - request object
+   * @param {object} res -response object
+   * @param {object} next - next middleware
+   * @returns {object} custom response
+   */
+  async checkToken(req, res, next) {
+    try {
+      return Response.customResponse(res, 200, 'current user', req.user);
+    } catch (error) {
+      return next(error);
+    }
   }
 }
 

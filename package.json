@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "author": "Aboyeji Clan",
+  "engines": {
+    "node": "12.16.x"
+  },
   "scripts": {
     "build": "rm -rf ./src/build && babel ./src/. --out-dir ./src/build --copy-files",
-    "start": "yarn run build && node ./src/build/index.js",
+    "start": "yarn run db-migrate && yarn run build && node ./src/build/index.js",
     "start:dev": "nodemon --exec babel-node src/index.js",
     "docker:start": "yarn run db-migrate:dev && yarn run start:dev",
     "db-seed:test": "sequelize db:seed:all --env test",
