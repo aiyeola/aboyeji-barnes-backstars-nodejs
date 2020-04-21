@@ -4,7 +4,8 @@
   "main": "index.js",
   "author": "Aboyeji Clan",
   "engines": {
-    "node": "12.16.x"
+    "node": "12.16.x",
+    "yarn": "1.22.0"
   },
   "scripts": {
     "build": "rm -rf ./src/build && babel ./src/. --out-dir ./src/build --copy-files",
