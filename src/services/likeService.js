@@ -4,10 +4,28 @@ import database from '../database/models';
 const { Likes } = database;
 
 class likeService {
+  /**
+   * Count the number of likes for a particular accommodation.
+   * @param {id} id - accommodation id to count.
+   * @returns {BigInt} - count of likes
+   */
+  static async count(id) {
+    try {
+      const data = await Likes.count({ where: { accommodationId: id } });
+
+      return data;
+    } catch (error) {
+      throw error;
+    }
+  }
+  /**
+   * Like an accommodation.
+   * @param {object} id - accommodation object.
+   * @returns {object} - accommodation liked
+   */
   static async like(id) {
     id.status = true;
     let data;
-    // return 'Create or update';
     try {
       if (id.status == null) {
         data = await Likes.create(id);
@@ -32,7 +50,11 @@ class likeService {
       throw error;
     }
   }
-
+  /**
+   * Unlike an accommodation.
+   * @param {object} id - accommodation object.
+   * @returns {object} - accommodation unliked
+   */
   static async unlike(id) {
     try {
       await Likes.update(
