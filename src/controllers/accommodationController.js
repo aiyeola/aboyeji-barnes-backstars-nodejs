@@ -1,9 +1,15 @@
 /* eslint-disable */
 import Response from '../utils/response';
 import accommodationService from '../services/accommodationService';
-import database from '../database/models';
 import likeService from '../services/likeService';
-const { Feedbacks, Ratings, Likes } = database;
+import database from '../database/models';
+const {
+  Feedbacks,
+  Ratings,
+  Likes,
+  AccommodationRequests,
+  Accommodations
+} = database;
 
 class accommodationController {
   static async createAccommodation(req, res, next) {
@@ -105,7 +111,7 @@ class accommodationController {
     let likedOrUnLiked;
 
     try {
-      //Check if record exist for accommodation like
+      //Check if a user has liked an accommodation
       const data = await Likes.findOne({
         where: { accommodationId: id, userId: req.body.userId }
       });
@@ -133,8 +139,36 @@ class accommodationController {
   }
 
   static async getMostTravelledDestination(req, res, next) {
-    console.log(`Most Travelled Destination`);
-    return res.status(200).send(`Most Travelled Destination`);
+    try {
+      const counts = [];
+      // Get the counts of all the places (accommodation) travelled to
+      const result = await AccommodationRequests.aggregate(
+        'accommodationId',
+        'COUNT',
+        { plain: false, group: ['accommodationId'] }
+      );
+
+      for (let i of result) {
+        counts.push(i.COUNT);
+      }
+      const max = Math.max(...counts).toString();
+      const maxAccommodationId = counts.indexOf(max);
+      const id = result[maxAccommodationId].accommodationId;
+
+      const data = await Accommodations.findOne({
+        where: { id: id }
+      });
+
+      console.log(`Most travelled destination`);
+      return Response.customResponse(
+        res,
+        '200',
+        `Most liked destination`,
+        data
+      );
+    } catch (error) {
+      throw error;
+    }
   }
 
   static async getFeedback(req, res, next) {

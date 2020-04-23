@@ -17,6 +17,9 @@ class accommodationService {
       throw error;
     }
   }
+  /**
+   * @returns {object} - existing accommmodation object
+   */
   static async getAllAccommodations() {
     try {
       const allAccommodations = await Accommodations.findAll();
@@ -26,6 +29,10 @@ class accommodationService {
     }
   }
 
+  /**
+   * @param {id} params - accommmodation integer.
+   * @returns {object} -  accommmodation object
+   */
   static async getAccommodation(params) {
     try {
       const singleAccommodation = await Accommodations.findOne({
@@ -53,7 +60,7 @@ class accommodationService {
   }
 
   /**
-   * @param {id} accommodation - accommodation id.
+   * @param {id} room - room id.
    * @returns {object} - rooms data
    */
   static async getAllRooms(id) {
@@ -68,6 +75,10 @@ class accommodationService {
       throw error;
     }
   }
+  /**
+   * @param {params} params - room fields.
+   * @returns {object} - room object
+   */
   static async getRoom(params) {
     try {
       const room = await Room.findOne({
@@ -78,7 +89,11 @@ class accommodationService {
       throw error;
     }
   }
-
+  /**
+   * @param {id} id - room id
+   * * @param {object} data - room object
+   * @returns {object} - updated roomrooms object
+   */
   static async updateRoom(id, data) {
     try {
       await Room.update(data, {
