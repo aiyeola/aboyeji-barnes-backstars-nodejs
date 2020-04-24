@@ -15,7 +15,9 @@ const verify = async (req, res, next) => {
 
     const { userEmail } = payload;
     // check db for updated user roles and emailAllowed status not from token
-    const { userRoles, emailAllowed } = await UserService.findUser(userEmail);
+    const { userRoles, emailAllowed } = await UserService.findUser({
+      userEmail
+    });
     payload.userRoles = userRoles;
     payload.emailAllowed = emailAllowed;
 

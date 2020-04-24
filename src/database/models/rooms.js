@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 module.exports = (sequelize, DataTypes) => {
-  const Room = sequelize.define(
-    'Room',
+  const Rooms = sequelize.define(
+    'Rooms',
     {
       name: DataTypes.STRING,
       type: DataTypes.STRING,
@@ -11,8 +11,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     {}
   );
-  Room.associate = (models) => {
+  Rooms.associate = (models) => {
     // associations can be defined here
   };
-  return Room;
+  return Rooms;
 };
