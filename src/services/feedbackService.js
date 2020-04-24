@@ -3,7 +3,7 @@ import database from '../database/models';
 
 const { Feedbacks } = database;
 
-class accommodationService {
+class feedbackService {
   /**
    * @param {object} feedback - feedback object.
    * @returns {object} - created feedback object
@@ -19,4 +19,4 @@ class accommodationService {
   }
 }
 
-export default accommodationService;
+export default feedbackService;

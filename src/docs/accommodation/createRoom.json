@@ -1,0 +1,39 @@
+{
+  "post": {
+    "tags": ["Accommodation"],
+    "summary": "create a room",
+    "description": "Endpoint for creating a room for an accommodation",
+    "consumes": ["application/json"],
+    "produces": ["application/json"],
+    "parameters": {
+      "name": "Create Room",
+      "in": "body",
+      "description": "request payload",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Hotel"
+          },
+          "type": {
+            "type": "string",
+            "example": "Available"
+          },
+          "accommodationId": {
+            "type": "integer",
+            "example": 1
+          },
+          "status": {
+            "type": "boolean",
+            "example": false
+          },
+          "price": {
+            "type": "float",
+            "example": 8800.0
+          }
+        }
+      }
+    }
+  }
+}

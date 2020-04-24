@@ -76,7 +76,7 @@ class accommodationController {
     const id = parseInt(req.params.id);
     try {
       const data = await accommodationService.getAccommodation(id);
-      console.log(`Accommodation ${id} details`);
+
       return Response.customResponse(
         res,
         '200',
@@ -94,6 +94,7 @@ class accommodationController {
 
     try {
       const data = await Ratings.create(rawData);
+
       return Response.customResponse(
         res,
         201,
@@ -159,7 +160,6 @@ class accommodationController {
         where: { id: id }
       });
 
-      console.log(`Most travelled destination`);
       return Response.customResponse(
         res,
         '200',
@@ -176,7 +176,7 @@ class accommodationController {
 
     try {
       const data = await Feedbacks.findAll({ where: { accommodationId: id } });
-      console.log(`Feedbacks on accommodation ${id}`);
+
       return Response.customResponse(
         res,
         '200',

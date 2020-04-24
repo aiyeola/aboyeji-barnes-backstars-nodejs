@@ -22,10 +22,11 @@
 | Accommodation by ID  | **GET**    | Accommodations | `/api/v1/accommodations/{id}`           | Get accommodation by ID                       |
 | Add accommodation    | **POST**   | Accommodations | `/api/v1/accommodations`                | Create accommodation                          |
 | Rate accommodation   | **POST**   | Accommodations | `/api/v1/accommodations/{id}/ratings`   | Rate an accommodation                         |
-| Review accommodation | **POST**   | Accommodations | `/api/v1/accommodations/{id}/feedback`  | Add feedback to accommodation                 |
-| Review accommodation | **GET**    | Accommodations | `/api/v1/accommodations/{id}/feedback`  | Get feedback to accommodation                 |
+| Review accommodation | **POST**   | Accommodations | `/api/v1/accommodations/{id}/feedback`  | Add feedback to an accommodation              |
+| Review accommodation | **GET**    | Accommodations | `/api/v1/accommodations/{id}/feedback`  | Get feedback for an accommodation             |
 | Like/Unlike          | **PATCH**  | Accommodations | `/api/v1/accommodations/{id}/like`      | User to like/unlike accommodation             |
 | Add Room             | **POST**   | Accommodations | `/api/v1/accommodations/createroom`     | Travel Admin to add rooms to an accommodation |
+| Get all rooms        | **GET**    | Accommodations | `/api/v1/accommodations/getallrooms`    | Get all rooms for an accommodation            |
 | Update Room          | **PATCH**  | Accommodations | `/api/v1/accommodations/rooms/{id}`     | Update details of a accommodation's room      |
 | Add comment          | **POST**   | Comments       | `/api/v1/request/{id}/comment`          | User can comment on Requests by Id            |
 | Requests Comments    | **GET**    | Comments       | `/api/v1/request/{id}/comment`          | User get all comments they added to requests  |

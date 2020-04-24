@@ -1,0 +1,31 @@
+{
+  "post": {
+    "tags": ["Accommodation"],
+    "summary": "add feedback on an accommodation",
+    "description": "Endpoint for adding feedback on an  accommodation",
+    "consumes": ["application/json"],
+    "produces": ["application/json"],
+    "parameters": {
+      "name": "Create Room",
+      "in": "body",
+      "description": "request payload",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "integer",
+            "example": 1
+          },
+          "feedback": {
+            "type": "integer",
+            "example": "This is a feedback"
+          },
+          "accommodationId": {
+            "type": "integer",
+            "example": 1
+          }
+        }
+      }
+    }
+  }
+}

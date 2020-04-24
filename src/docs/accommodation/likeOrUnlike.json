@@ -1,0 +1,23 @@
+{
+  "post": {
+    "tags": ["Accommodation"],
+    "summary": "like/unlike an accommodation",
+    "description": "Endpoint for rating a room for an accommodation",
+    "consumes": ["application/json"],
+    "produces": ["application/json"],
+    "parameters": {
+      "name": "Like/Unlike Accommodation",
+      "in": "body",
+      "description": "request payload",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "integer",
+            "example": 1
+          }
+        }
+      }
+    }
+  }
+}

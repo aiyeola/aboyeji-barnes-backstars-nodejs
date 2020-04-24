@@ -1,0 +1,32 @@
+{
+  "post": {
+    "tags": ["Accommodation"],
+    "summary": "Feedback on an accommodation",
+    "description": "Endpoint for getting feedback on an accommodation",
+    "consumes": ["application/json"],
+    "produces": ["application/json"],
+    "parameters": {
+      "name": "Feedbackon an Accommodation",
+      "in": "body",
+      "description": "response",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "integer",
+            "example": 1
+          },
+          "feedback": {
+            "type": "string",
+            "example": "This is a feedback"
+          },
+
+          "accommodationId": {
+            "type": "integer",
+            "example": 1
+          }
+        }
+      }
+    }
+  }
+}
