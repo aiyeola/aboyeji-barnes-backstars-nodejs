@@ -38,6 +38,7 @@ bower_components
 .lock-wscript
 
 # Compiled binary addons (https://nodejs.org/api/addons.html)
+src/build
 build/Release
 
 # Dependency directories
@@ -64,10 +65,7 @@ typings/
 
 # Yarn Integrity file
 .yarn-integrity
-
-# editor config
-.prettierrc
-
+yarn.lock
 # dotenv environment variables file
 .env
 .env.test

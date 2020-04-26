@@ -22,7 +22,7 @@ export default class bookingValidator {
     });
     validator(schema, req.body, res, next);
   }
-/**
+  /**
    * Schema to validate booking query fields
    * @param {object} req - request object.
    * @param {object} res - response object.
@@ -32,8 +32,7 @@ export default class bookingValidator {
   static async bookingQuery(req, res, next) {
     const schema = Joi.object().keys({
       requestId: Schema.number,
-      roomId: Schema.number,
-     
+      roomId: Schema.number
     });
     validator(schema, req.body, res, next);
   }

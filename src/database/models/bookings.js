@@ -1,26 +1,26 @@
-"use strict";
-module.exports = (sequelize, DataTypes,Op) => {
+'use strict';
+module.exports = (sequelize, DataTypes, Op) => {
   const Bookings = sequelize.define(
-    "Bookings",
+    'Bookings',
     {
       requestId: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: false
       },
       roomId: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: false
       },
 
       checkIn: {
         type: DataTypes.DATEONLY,
-        allowNull: false,
+        allowNull: false
       },
 
       checkOut: {
         type: DataTypes.DATEONLY,
-        allowNull: false,
-      },
+        allowNull: false
+      }
     },
     {}
   );

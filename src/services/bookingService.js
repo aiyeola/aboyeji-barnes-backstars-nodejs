@@ -1,4 +1,5 @@
 /* eslint-disable*/
+
 import database from "../database/models";
 const Sequelize = require('sequelize');
 const op = Sequelize.Op;
@@ -6,6 +7,11 @@ const operatorsAliases = {
   $and: op.and,
   $or: op.or,
 }
+
+import database from '../database/models';
+import { Op } from 'sequelize/types';
+
+
 const { Bookings } = database;
 
 /** Class representing UserService */
@@ -40,6 +46,7 @@ class BookingService {
     }
   }
 
+
   static async updateBooking(id, booking) {
     console.log("*UJDSJDJ", booking);
     try {
@@ -48,6 +55,12 @@ class BookingService {
       });
       const updatedBooking = await Bookings.findOne({
         where: { id: id },
+
+  static async updateBooking(requestId, roomId, booking) {
+    try {
+      const updatedBooking = await Bookings.update(booking, {
+        where: { [Op.and]: [{ a: requestId }, { b: roomId }] }
+
       });
       return updatedBooking;
     } catch (error) {
@@ -62,7 +75,11 @@ class BookingService {
   static async deleteBooking(id,booking) {
     try {
       const deletedBooking = await Bookings.destroy({
+
         where: { [op.and]: [{ id: id }, { roomId: booking.roomId }] },
+
+        where: { [Op.and]: [{ a: requestId }, { b: roomId }] }
+
       });
       return deletedBooking;
     } catch (error) {

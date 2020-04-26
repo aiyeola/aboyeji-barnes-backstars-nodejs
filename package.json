@@ -3,30 +3,46 @@
   "version": "1.0.0",
   "main": "index.js",
   "author": "Aboyeji Clan",
+  "engines": {
+    "node": "12.16.x",
+    "yarn": ">=1.15.2 || 1.22.x"
+  },
   "scripts": {
     "build": "rm -rf ./src/build && babel ./src/. --out-dir ./src/build --copy-files",
-    "start": "yarn run build && node ./src/build/index.js",
+    "start": "node ./src/build/index.js",
     "start:dev": "nodemon --exec babel-node src/index.js",
-    "db-seed:test": "sequelize db:seed:all",
+    "docker:start": "yarn run db-migrate:dev && yarn run start:dev",
+    "db-seed:test": "sequelize db:seed:all --env test",
+    "db-seed:localTest": "sequelize db:seed:all --env localTest",
     "db-migrate": "sequelize db:migrate --env production",
     "db-migrate:dev": "sequelize db:migrate --env development",
     "db-migrate:test": "sequelize db:migrate:undo:all --env test && sequelize db:migrate --env test",
-    "test":"mocha --require @babel/register ./src/test/*.js --timeout 60000 --exit"
+    "db-migrate:localTest": "sequelize db:migrate:undo:all --env localTest && sequelize db:migrate --env localTest",
+    "pretest": "cross-env NODE_ENV=test yarn run db-migrate:test && yarn run db-seed:test",
+    "preLocalTest": "cross-env NODE_ENV=localTest yarn run db-migrate:localTest && yarn run db-seed:localTest",
+    "test": "cross-env NODE_ENV=test mocha --require @babel/register ./src/test/*.js --timeout 60000 --exit",
+    "localTest": "yarn run preLocalTest && cross-env NODE_ENV=localTest mocha --require @babel/register ./src/test/*.js --timeout 60000 --exit"
   },
   "license": "MIT",
   "dependencies": {
     "@babel/polyfill": "^7.8.7",
     "@hapi/joi": "^17.1.1",
+    "@passport-next/passport-mocked": "passport-next/passport-mocked",
     "babel-watch": "^7.0.0",
     "bcrypt": "^4.0.1",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
+    "cross-env": "^7.0.2",
     "dotenv": "^8.2.0",
     "errorhandler": "^1.5.1",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
+    "passport": "^0.4.1",
+    "passport-facebook": "^3.0.0",
+    "passport-google-oauth": "^2.0.0",
+    "passport-local": "^1.0.0",
     "pg": "^7.18.2",
     "pg-hstore": "^2.3.3",
     "redis": "^3.0.2",
@@ -47,7 +63,15 @@
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-plugin-import": "^2.20.1",
+    "husky": "^4.2.5",
     "mocha": "^7.1.1",
-    "nodemon": "^2.0.2"
+    "nodemon": "^2.0.2",
+    "prettier": "^2.0.4",
+    "pretty-quick": "^2.0.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
   }
 }

@@ -17,7 +17,7 @@ class UserService {
 
       // Create user profile
       await UserProfile.updateOrCreate(createdUser.id);
-      
+
       return createdUser;
     } catch (error) {
       throw error;
@@ -31,7 +31,7 @@ class UserService {
    */
   static async findUser(param) {
     try {
-      const user = await Users.findOne({ where: { param } });
+      const user = await Users.findOne({ where: param });
       return user;
     } catch (error) {
       throw error;
