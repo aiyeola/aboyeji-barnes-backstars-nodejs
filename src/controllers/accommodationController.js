@@ -34,7 +34,7 @@ class accommodationController {
       const data = await accommodationService.createRoom(rawData);
       return Response.customResponse(
         res,
-        201,
+        '200',
         'Room has been created successfully',
         data
       );
@@ -50,7 +50,7 @@ class accommodationController {
       const data = await accommodationService.updateRoom(id, rawData);
       return Response.customResponse(
         res,
-        201,
+        '200',
         'Room has been updated successfully',
         data
       );
@@ -97,7 +97,7 @@ class accommodationController {
 
       return Response.customResponse(
         res,
-        201,
+        '200',
         `Accommodation ${id} has been rated successfully`,
         data
       );
@@ -180,7 +180,7 @@ class accommodationController {
       return Response.customResponse(
         res,
         '200',
-        `Feedbacks on accommodation ${id}`,
+        `Feedback on accommodation ${id}`,
         data
       );
     } catch (error) {

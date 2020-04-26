@@ -8,7 +8,6 @@ class ratingValidator {
   static validateRatingData(req, res, next) {
     const schema = Joi.object().keys({
       userId: Schema.number,
-      accommodationId: Schema.number,
       rating: Schema.number
     });
     validator(schema, req.body, res, next);
