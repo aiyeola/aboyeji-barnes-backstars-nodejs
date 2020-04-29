@@ -25,6 +25,49 @@
             "example": 1
           }
         }
+      },
+      "response": {
+        "in": "body",
+        "description": "response",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "example": "200"
+            },
+            "message": {
+              "type": "string",
+              "example": "Feedback for Accommodation 1 has been created successfully"
+            },
+            "data": {
+              "id": {
+                "type": "integer",
+                "example": 2
+              },
+              "userId": {
+                "type": "integer",
+                "example": 5
+              },
+              "feedback": {
+                "type": "string",
+                "example": "This is a feedback"
+              },
+              "accommodationId": {
+                "type": "integer",
+                "example": 1
+              },
+              "updatedAt": {
+                "type": "date",
+                "example": "2020-04-26T15:24:40.245Z"
+              },
+              "createdAt": {
+                "type": "date",
+                "example": "2020-04-26T15:24:40.245Z"
+              }
+            }
+          }
+        }
       }
     }
   }

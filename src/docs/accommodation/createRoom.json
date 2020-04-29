@@ -34,6 +34,57 @@
           }
         }
       }
+    },
+    "response": {
+      "in": "body",
+      "description": "response",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "200"
+          },
+          "message": {
+            "type": "string",
+            "example": "Room has been created successfully"
+          },
+          "data": {
+            "id": {
+              "type": "integer",
+              "example": 2
+            },
+            "name": {
+              "type": "string",
+              "example": "Hotel"
+            },
+            "type": {
+              "type": "string",
+              "example": "Available"
+            },
+            "accommodationId": {
+              "type": "integer",
+              "example": 1
+            },
+            "status": {
+              "type": "boolean",
+              "example": false
+            },
+            "price": {
+              "type": "float",
+              "example": 8800.0
+            },
+            "updatedAt": {
+              "type": "date",
+              "example": "2020-04-26T15:24:40.245Z"
+            },
+            "createdAt": {
+              "type": "date",
+              "example": "2020-04-26T15:24:40.245Z"
+            }
+          }
+        }
+      }
     }
   }
 }

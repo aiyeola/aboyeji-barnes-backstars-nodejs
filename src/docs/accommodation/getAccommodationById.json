@@ -12,61 +12,71 @@
       "schema": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string",
-            "example": 1
-          },
-          "name": {
-            "type": "string",
-            "example": "Hotel"
-          },
           "status": {
             "type": "string",
-            "example": "Available"
+            "example": "200"
           },
-          "imageUrl": {
-            "type": "array(string)",
-            "example": [
-              "https://res.cloudinary.com/dkabisw/image/upload/v1574765143/apl2muykitqk5kf6pnjg.jpg",
-              "https://res.cloudinary.com/dkabisw/image/upload/v1574961322/xr4b5emlpudqh1l9yrpa.jpg"
-            ]
-          },
-          "locationId": {
-            "type": "integer",
-            "example": 1
-          },
-          "owner": {
-            "type": "integer",
-            "example": 9
-          },
-          "amenities": {
-            "type": "array(string)",
-            "example": ["Gyn", "Sauna", "Steam bath", "Spa", "Free Wifi"]
-          },
-          "services": {
-            "type": "array(string)",
-            "example": [
-              "Free breakfast",
-              "Room Delivery",
-              "Free parking",
-              "Snart Rooms"
-            ]
-          },
-          "mapLocations": {
-            "type": "jsonb",
-            "example": { "lat": -1.9705786, "lng": 30.10442880000005 }
-          },
-          "description": {
+          "message": {
             "type": "string",
-            "example": "The space will be entirely yours. It is in a compound of similar apartments where people mind their own business. There is a gateman at the place 24 hours and you can go in and out at any point. You do not share facilities with anyone."
+            "example": "Accommodation 1 details"
           },
-          "createdAt": {
-            "type": "date",
-            "example": "2020-04-12T12:07:13.727Z"
-          },
-          "updatedAt": {
-            "type": "date",
-            "example": "2020-04-12T12:07:13.727Z"
+          "data": {
+            "id": {
+              "type": "string",
+              "example": 1
+            },
+            "name": {
+              "type": "string",
+              "example": "Hotel"
+            },
+            "status": {
+              "type": "string",
+              "example": "Available"
+            },
+            "imageUrl": {
+              "type": "array(string)",
+              "example": [
+                "https://res.cloudinary.com/dkabisw/image/upload/v1574765143/apl2muykitqk5kf6pnjg.jpg",
+                "https://res.cloudinary.com/dkabisw/image/upload/v1574961322/xr4b5emlpudqh1l9yrpa.jpg"
+              ]
+            },
+            "locationId": {
+              "type": "integer",
+              "example": 1
+            },
+            "owner": {
+              "type": "integer",
+              "example": 9
+            },
+            "amenities": {
+              "type": "array(string)",
+              "example": ["Gyn", "Sauna", "Steam bath", "Spa", "Free Wifi"]
+            },
+            "services": {
+              "type": "array(string)",
+              "example": [
+                "Free breakfast",
+                "Room Delivery",
+                "Free parking",
+                "Snart Rooms"
+              ]
+            },
+            "mapLocations": {
+              "type": "jsonb",
+              "example": { "lat": -1.9705786, "lng": 30.10442880000005 }
+            },
+            "description": {
+              "type": "string",
+              "example": "The space will be entirely yours. It is in a compound of similar apartments where people mind their own business. There is a gateman at the place 24 hours and you can go in and out at any point. You do not share facilities with anyone."
+            },
+            "createdAt": {
+              "type": "date",
+              "example": "2020-04-12T12:07:13.727Z"
+            },
+            "updatedAt": {
+              "type": "date",
+              "example": "2020-04-12T12:07:13.727Z"
+            }
           }
         }
       }
