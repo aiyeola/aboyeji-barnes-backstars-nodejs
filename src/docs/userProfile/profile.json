@@ -1,0 +1,123 @@
+{
+  "patch": {
+    "security": [
+      {
+        "Bearer": []
+      }
+    ],
+    "path": "/profile",
+    "tags": ["User Profile"],
+    "summary": "Update user profile details",
+    "description": "End point for updating a user's profile",
+    "operationId": "updateProfile",
+    "consumes": ["application/json"],
+    "produces": ["application/json"],
+    "parameters": [
+      {
+        "in": "body",
+        "name": "body",
+        "description": "Profile fields that can be updated",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "firstName": {
+              "type": "string",
+              "example": "Barnes"
+            },
+            "lastName": {
+              "type": "string",
+              "example": "Jane"
+            },
+            "gender": {
+              "type": "string",
+              "example": "FEMALE"
+            },
+            "language": {
+              "type": "string",
+              "example": "English"
+            },
+            "currency": {
+              "type": "string",
+              "example": "Naira"
+            },
+            "location": {
+              "type": "string",
+              "example": "Lagos"
+            },
+            "department": {
+              "type": "string",
+              "example": "Marketing"
+            },
+            "phoneNumber": {
+              "type": "number",
+              "example": "08114578993"
+            },
+            "birthDate": {
+              "type": "string",
+              "example": "01-03-1994"
+            },
+            "passportName": {
+              "type": "string",
+              "example": "Barnes Jane"
+            },
+            "passportNumber": {
+              "type": "string",
+              "example": "121HU3H3U32"
+            }
+          }
+        }
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "User profile updated successfully"
+      },
+      "401": {
+        "description": "Invalid or Expired token used",
+        "examples": {
+          "application/json": {
+            "status": 401,
+            "message": "Invalid or expired token",
+            "error": "Authentication Error"
+          }
+        }
+      },
+      "422": {
+        "description": "Validation error in one or more fields"
+      },
+      "500": {
+        "description": "Internal server error"
+      }
+    }
+  },
+  "get": {
+    "tags": ["User Profile"],
+    "summary": "Get user profile details",
+    "description": "End point for getting user's profile by using userId in the token",
+    "operationId": "getProfile",
+    "consumes": ["application/json"],
+    "produces": ["application/json"],
+    "parameters": [],
+    "responses": {
+      "200": {
+        "description": "User profile retrieved successfully"
+      },
+      "401": {
+        "description": "Invalid or Expired token used",
+        "examples": {
+          "application/json": {
+            "status": 401,
+            "message": "Invalid or expired token",
+            "error": "Authentication Error"
+          }
+        }
+      },
+      "422": {
+        "description": "Validation error in one or more fields"
+      },
+      "500": {
+        "description": "Internal server error"
+      }
+    }
+  }
+}

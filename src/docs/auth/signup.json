@@ -1,41 +1,82 @@
 {
-	"post": {
-		"tags": [
-			"User"
-		],
-		"summary": "sign up a user",
-		"description": "Endpoint for creating a user",
-		"consumes": [
-			"application/json"
-		],
-		"produces": [
-			"application/json"
-		],
-		"parameters": {
-			"name": "Create Account",
-			"in": "body",
-			"description": "request payload",
-			"schema": {
-				"type": "object",
-				"properties": {
-					"email": {
-						"type": "string",
-						"example": "barnesjane@gmail.com"
-					},
-					"firstName": {
-						"type": "string",
-						"example": "Barnes"
-					},
-					"lastName": {
-						"type": "string",
-						"example": "Jane"
-					},
-					"password": {
-						"type": "string",
-						"example": "pa55w0rd"
-					}
-				}
-			}
-		}
-	}
+  "post": {
+    "tags": ["User"],
+    "summary": "Sign up a user",
+    "description": "Endpoint for creating a user",
+    "operationId": "addUser",
+    "consumes": ["application/json"],
+    "produces": ["application/json"],
+    "parameters": [
+      {
+        "name": "Create Account",
+        "in": "body",
+        "description": "To create a new user provide the following",
+        "required": true,
+        "schema": {
+          "type": "object",
+          "properties": {
+            "firstName": {
+              "type": "string",
+              "example": "Barnes"
+            },
+            "lastName": {
+              "type": "string",
+              "example": "Jane"
+            },
+            "userEmail": {
+              "type": "string",
+              "example": "barnesjane@gmail.com"
+            },
+            "userPassword": {
+              "type": "string",
+              "example": "Pa55w0r#"
+            }
+          }
+        }
+      }
+    ],
+    "responses": {
+      "201": {
+        "description": "User created",
+        "examples": {
+          "application/json": {
+            "status": 201,
+            "message": "Account has been created successfully",
+            "data": {
+              "userRoles": "Requester",
+              "emailAllowed": true,
+              "id": 8,
+              "firstName": "Barnes",
+              "lastName": "Jane",
+              "userEmail": "barnesjane@gmail.com",
+              "userToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZmlyc3ROYW1lIjoiQmFybmVzIiwibGFzdE5hbWUiOiJKYW5lIiwidXNlckVtYWlsIjoiYmFybmVzamFuZUBnbWFpbC5jb20iLCJ1c2VyUm9sZXMiOiJSZXF1ZXN0ZXIiLCJhY2NvdW50VmVyaWZpZWQiOmZhbHNlLCJlbWFpbEFsbG93ZWQiOnRydWUsImlhdCI6MTU4ODQ4OTUyNCwiZXhwIjoxNTg4NTc1OTI0fQ.7pPUTwPWzE7rV7qAgb9lrCG4SfA6UhhPoMPXL5puR1k",
+              "verification": {
+                "message": "verification link sent",
+                "link": "http://localhost:3000/verify/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZmlyc3ROYW1lIjoiQmFybmVzIiwibGFzdE5hbWUiOiJKYW5lIiwidXNlckVtYWlsIjoiYmFybmVzamFuZUBnbWFpbC5jb20iLCJ1c2VyUm9sZXMiOiJSZXF1ZXN0ZXIiLCJhY2NvdW50VmVyaWZpZWQiOmZhbHNlLCJlbWFpbEFsbG93ZWQiOnRydWUsImlhdCI6MTU4ODQ4OTUyNCwiZXhwIjoxNTg4NTc1OTI0fQ.7pPUTwPWzE7rV7qAgb9lrCG4SfA6UhhPoMPXL5puR1k"
+              }
+            }
+          }
+        }
+      },
+      "422": {
+        "description": "Invalid input",
+        "examples": {
+          "application/json": {
+            "data": [
+              {
+                "status": 422,
+                "message": "\"userEmail\" is required",
+                "error": "Validation Error"
+              },
+              {
+                "status": 422,
+                "message": "Password should contain a minimum of 8 characters (upper and lowercase letters, numbers and at least one special character)",
+                "error": "Validation Error"
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
 }

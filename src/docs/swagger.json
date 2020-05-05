@@ -1,27 +1,38 @@
 {
-	"swagger": "2.0",
-	"info": {
-		"version": "1.0.0",
-		"title": "Barnes Backstars",
-		"description": "Make company global travel and accommodation easy and convenient for the strong workforce of the savvy members of staff of the Barnes Backstars, by leveraging the modern web."
-	},
-	"basePath": "api/v1/",
-	"schemes": [
-		"http",
-		"https"
-	],
-	"securityDefinitions": {
-		"Bearer": {
-			"type": "apiKey",
-			"name": "Authorization",
-			"in": "header"
-		}
-	},
-	"consumes": [
-		"application/json"
-	],
-	"produces": [
-		"application/json"
-	],
-	"paths": {}
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Barnes Backstars",
+    "description": "Make company global travel and accommodation easy and convenient for the strong workforce of the savvy members of staff of the Barnes Backstars, by leveraging the modern web."
+  },
+  "basePath": "/api/v1/",
+  "schemes": ["http", "https"],
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:4000/api/v1"
+    },
+    {
+      "url": "https://aboyeji-barnes-backstars.herokuapp.com/api/v1"
+    }
+  ],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "tags": [
+    {
+      "name": "User",
+      "description": "User Endpoints"
+    },
+    {
+      "name": "User Profile",
+      "description": "User Profile Endpoint"
+    }
+  ],
+  "paths": {}
 }
