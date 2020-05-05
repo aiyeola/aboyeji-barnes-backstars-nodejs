@@ -63,6 +63,10 @@ export default (sequelize, DataTypes) => {
   );
   Users.associate = (models) => {
     // associations can be defined here
+    Users.hasOne(models.UserProfile, {
+      foreignKey: 'userId',
+      as: 'userProfile'
+    });
   };
   return Users;
 };
