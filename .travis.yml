@@ -9,3 +9,5 @@ services:
   - redis-server
 script:
   - yarn test
+before_script:
+  - psql -c 'create database aboyeji-barnes-backstars-test;' -U postgres
