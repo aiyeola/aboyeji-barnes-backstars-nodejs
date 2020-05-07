@@ -6,7 +6,7 @@
     "description": "Make company global travel and accommodation easy and convenient for the strong workforce of the savvy members of staff of the Barnes Backstars, by leveraging the modern web."
   },
   "basePath": "/api/v1/",
-  "schemes": ["http", "https"],
+  "schemes": ["https"],
   "securityDefinitions": {
     "Bearer": {
       "type": "apiKey",
