@@ -6,6 +6,7 @@ import UserService from '../services/userService';
 import Email from '../utils/mails/email';
 import VerifyEmail from '../utils/mails/verify.email';
 import ResetPasswordEmail from '../utils/mails/resetPassword.email';
+import SupplierEmail from '../utils/mails/supplier.email';
 import { FRONTEND_URL } from '../config';
 
 /** Class that handles user */
@@ -380,6 +381,59 @@ class Users {
 
       message = 'The user already has the rights you are trying to assign';
       return Response.conflictError(res, message);
+    } catch (error) {
+      return next(error);
+    }
+  }
+
+  /**
+   * adds a supplier
+   * @param {object} req - request object
+   * @param {object} res - response object
+   * @param {object} next - next middleware
+   * @returns {object} custom response
+   */
+  async addSupplier(req, res, next) {
+    const { userEmail, firstName, lastName } = req.body;
+    try {
+      const user = await UserService.findUser({
+        userEmail
+      });
+      if (user) {
+        return Response.conflictError(res, 'User already exists');
+      }
+      const userPassword = Password.randomPassword();
+      const obj = new Password({ userPassword });
+      const password = await obj.encryptPassword();
+      const supplier = {
+        firstName,
+        lastName,
+        userEmail,
+        userPassword: password,
+        userRoles: 'Accommodation Supplier',
+        accountVerified: true
+      };
+      const data = await UserService.createUser(supplier);
+      const headers = Email.header({
+        to: userEmail,
+        subject: 'BareFoot Accommodations'
+      });
+      const loginLink = `${FRONTEND_URL}/log-in`;
+      const msg = SupplierEmail.supplierTemplate(
+        {
+          userEmail,
+          firstName,
+          password: userPassword
+        },
+        loginLink
+      );
+      await Email.sendMail(res, headers, msg);
+      return Response.customResponse(
+        res,
+        201,
+        'Account has been created successfully',
+        data
+      );
     } catch (error) {
       return next(error);
     }

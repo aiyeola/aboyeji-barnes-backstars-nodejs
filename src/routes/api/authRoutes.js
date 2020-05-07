@@ -65,11 +65,6 @@ router
 router.route('/forgot-password').post(Users.requestPasswordReset).all(method);
 
 router
-  .route('/request-password-reset')
-  .post(Users.requestPasswordReset)
-  .all(method);
-
-router
   .route('/reset-password/:userId/:token')
   .put(userValidation.resetPassword, Users.resetPassword)
   .all(method);
@@ -82,6 +77,11 @@ router
     Access.isAdmin,
     Users.updateUserRole
   )
+  .all(method);
+
+router
+  .route('/add-user')
+  .post(verify, userValidation.userByAdmin, Access.isAdmin, Users.addSupplier)
   .all(method);
 
 router

@@ -10,6 +10,7 @@ import password from './auth/password.json';
 import resetPassword from './auth/resetPassword.json';
 import role from './auth/role.json';
 import emailPref from './auth/emailPref.json';
+import supplier from './auth/supplier.json';
 import unsubscribe from './auth/unsubscribe.json';
 import profile from './userProfile/profile.json';
 
@@ -23,6 +24,7 @@ swagger.paths['/auth/verify/?token={token}'] = verify;
 swagger.paths['/auth/forgot-password'] = password;
 swagger.paths['/auth/reset-password/:userId/:token'] = resetPassword;
 swagger.paths['/auth/update-role'] = role;
+swagger.paths['/auth/add-user'] = supplier;
 swagger.paths['/auth/email-preferences'] = emailPref;
 swagger.paths['/auth/unsubscribe'] = unsubscribe;
 swagger.paths['/profile'] = profile;

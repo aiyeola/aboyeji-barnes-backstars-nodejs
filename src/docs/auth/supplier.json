@@ -1,0 +1,54 @@
+{
+  "post": {
+    "security": [
+      {
+        "Bearer": []
+      }
+    ],
+    "tags": ["User"],
+    "summary": "Add accommodation supplier",
+    "description": "Endpoint for adding accommodation supplier",
+    "consumes": ["application/json"],
+    "produces": ["application/json"],
+    "parameters": [
+      {
+        "name": "Update user role",
+        "in": "body",
+        "description": "Object of user email an role to update",
+        "required": true,
+        "schema": {
+          "type": "object",
+          "properties": {
+            "userEmail": {
+              "type": "string",
+              "example": "joeljustin@gmail.com"
+            },
+            "firstName": {
+              "type": "string",
+              "example": "Joel"
+            },
+            "lastName": {
+              "type": "string",
+              "example": "Justin"
+            }
+          }
+        }
+      }
+    ],
+    "responses": {
+      "422": {
+        "description": "Invalid input"
+      },
+      "401": {
+        "description": "Invalid or expired token",
+        "examples": {
+          "application/json": {
+            "status": 401,
+            "message": "Invalid or expired token",
+            "error": "Authentication Error"
+          }
+        }
+      }
+    }
+  }
+}

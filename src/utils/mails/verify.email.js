@@ -16,7 +16,7 @@ class VerifyEmail {
           </td>
         </tr>
         <tr>
-          <td align=" center" style="padding: 0 50px 0 50px;">
+          <td align="center" style="padding: 0 50px 0 50px;">
             <table border="0" cellpadding="0" cellspacing="0" width="100%"
               style="background-color:#ffffff; padding: 0 0 0 20px;">
               <tr>

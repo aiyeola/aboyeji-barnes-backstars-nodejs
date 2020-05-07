@@ -109,4 +109,20 @@ export default class userValidator {
     });
     validator(schema, req.body, res, next);
   }
+
+  /**
+   * Schema to validate supplier details that admin wants to add
+   * @param {object} req - request object
+   * @param {object} res - response object
+   * @param {object} next - next middleware
+   * @returns {object} validation schema
+   */
+  static async userByAdmin(req, res, next) {
+    const schema = Joi.object().keys({
+      userEmail: Schema.email,
+      firstName: Schema.name,
+      lastName: Schema.name
+    });
+    validator(schema, req.body, res, next);
+  }
 }
