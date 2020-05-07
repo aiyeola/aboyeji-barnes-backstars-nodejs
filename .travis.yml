@@ -10,4 +10,6 @@ services:
 script:
   - yarn test
 before_script:
-  - psql -c 'create database aboyeji-barnes-backstars-test;' -U postgres
+  - psql -c 'create database aboyeji_barnes_backstars_test;' -U postgres
+after_success:
+  - yarn run coverage
