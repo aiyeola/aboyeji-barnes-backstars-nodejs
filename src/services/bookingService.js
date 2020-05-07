@@ -1,16 +1,12 @@
 /* eslint-disable*/
-
-import database from "../database/models";
+import database from '../database/models';
+import { Op } from 'sequelize/types';
 const Sequelize = require('sequelize');
 const op = Sequelize.Op;
 const operatorsAliases = {
   $and: op.and,
   $or: op.or,
 }
-
-import database from '../database/models';
-import { Op } from 'sequelize/types';
-
 
 const { Bookings } = database;
 
