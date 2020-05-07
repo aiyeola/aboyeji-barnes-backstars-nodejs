@@ -13,7 +13,7 @@ class resetPasswordEmail {
 			style="padding: 0 40px 0 40px; background-color:#f1f2f3;">
 			<tr>
 				<td align="center" style="background-color:#f9fcff; margin: 0 50px 0 50px;">
-					<a><img src="" alt="Barnes Backstars" width="120" height="100" style="display: block;></a>
+					<a><img src="https://res.cloudinary.com/aboyeji-barnes-backstars/image/upload/v1588818157/aboyeji-barnes-backstars/Barnes_2_cpqaef.jpg" alt="Barnes Backstars" width="120" height="100" style="display: block;></a>
 				</td>
 			</tr>
 		   <td align=" center" style="padding: 0 50px 0 50px;">
