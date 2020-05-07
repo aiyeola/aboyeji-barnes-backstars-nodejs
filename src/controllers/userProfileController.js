@@ -1,6 +1,7 @@
 /* eslint-disable class-methods-use-this */
 import UserProfileService from '../services/userProfileService';
 import Response from '../utils/response';
+import { upload } from '../config/cloudinary';
 
 /** Class that handles user profile */
 class UserProfileController {
@@ -42,6 +43,57 @@ class UserProfileController {
       return Response.customResponse(res, 200, 'User Profile Updated', profile);
     } catch (error) {
       next(error);
+    }
+  }
+
+  /**
+   *  Update a users profile picture
+   * @param {object} req - request object
+   * @param {object} res - response object
+   * @param {object} next - next middleware
+   * @returns {object} custom response
+   */
+  async updatePicture(req, res, next) {
+    try {
+      const { image } = req.files;
+      const cloudFile = await upload(image.tempFilePath);
+      req.body.url = cloudFile.url;
+      const user = req.user.id;
+      const response = await UserProfileService.updateOrCreatePicture(
+        user,
+        req.body
+      );
+      return Response.customResponse(
+        res,
+        200,
+        'Profile Picture Updated',
+        response[1][0]
+      );
+    } catch (error) {
+      return next(error);
+    }
+  }
+
+  /**
+   *  Gets a users profile picture
+   * @param {object} req - request object
+   * @param {object} res - response object
+   * @param {object} next - next middleware
+   * @returns {object} custom response
+   */
+  async getPicture(req, res, next) {
+    try {
+      const user = req.user.id;
+      const response = await UserProfileService.getPicture(user);
+
+      return Response.customResponse(
+        res,
+        200,
+        'Profile Picture Retrieved',
+        response
+      );
+    } catch (error) {
+      return next(error);
     }
   }
 }

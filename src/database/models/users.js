@@ -67,6 +67,9 @@ export default (sequelize, DataTypes) => {
       foreignKey: 'userId',
       as: 'userProfile'
     });
+    Users.hasOne(models.ProfilePictures, {
+      foreignKey: 'user'
+    });
   };
   return Users;
 };

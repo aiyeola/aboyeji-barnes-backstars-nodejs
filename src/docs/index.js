@@ -13,6 +13,7 @@ import emailPref from './auth/emailPref.json';
 import supplier from './auth/supplier.json';
 import unsubscribe from './auth/unsubscribe.json';
 import profile from './userProfile/profile.json';
+import picture from './userProfile/picture.json';
 
 swagger.paths['/auth/signup'] = signup;
 swagger.paths['/auth/signin'] = signin;
@@ -28,5 +29,6 @@ swagger.paths['/auth/add-user'] = supplier;
 swagger.paths['/auth/email-preferences'] = emailPref;
 swagger.paths['/auth/unsubscribe'] = unsubscribe;
 swagger.paths['/profile'] = profile;
+swagger.paths['/profile/picture'] = picture;
 
 export default swagger;

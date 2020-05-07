@@ -14,4 +14,8 @@ router
 
 router.route('/').get(UserProfile.userProfile);
 
+router.route('/picture').patch(verify, UserProfile.updatePicture);
+
+router.route('/picture').get(verify, UserProfile.getPicture);
+
 export default router;

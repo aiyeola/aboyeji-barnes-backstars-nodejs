@@ -8,10 +8,9 @@ import bookingRoute from './bookingRoute';
 const router = Router();
 
 router.use('/auth', authRoutes);
-router.use('/booking', bookingRoute);
-router.use('/auth', authRoutes);
 router.use('/accommodation', accommodationRoutes);
 router.use('/locations', locationRoutes);
 router.use('/profile', profileRoutes);
+router.use('/booking', bookingRoute);
 
 export default router;

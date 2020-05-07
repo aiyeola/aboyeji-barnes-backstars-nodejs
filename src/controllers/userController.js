@@ -414,6 +414,9 @@ class Users {
         accountVerified: true
       };
       const data = await UserService.createUser(supplier);
+      delete data.dataValues.accountVerified;
+      delete data.dataValues.createdAt;
+      delete data.dataValues.updatedAt;
       const headers = Email.header({
         to: userEmail,
         subject: 'BareFoot Accommodations'
@@ -432,7 +435,7 @@ class Users {
         res,
         201,
         'Account has been created successfully',
-        data
+        { ...data.dataValues }
       );
     } catch (error) {
       return next(error);
