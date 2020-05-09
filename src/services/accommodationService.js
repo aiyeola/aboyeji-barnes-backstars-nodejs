@@ -107,7 +107,7 @@ class accommodationService {
   /**
    * @param {id} id - room id
    * * @param {object} data - room object
-   * @returns {object} - updated roomrooms object
+   * @returns {object} - updated room object
    */
   static async updateRoom(id, data) {
     try {
