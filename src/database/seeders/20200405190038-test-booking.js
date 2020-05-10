@@ -38,6 +38,14 @@ module.exports = {
           checkOut: new Date(),
           createdAt: new Date(),
           updatedAt: new Date()
+        },
+        {
+          requestId: 4,
+          roomId: 200,
+          checkIn: new Date(),
+          checkOut: new Date(),
+          createdAt: new Date(),
+          updatedAt: new Date()
         }
       ],
       {}

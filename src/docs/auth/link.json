@@ -1,0 +1,49 @@
+{
+  "post": {
+    "tags": ["User"],
+    "summary": "Creating link to reverify account",
+    "description": "End point for creating new link to verify a  user's account",
+    "consumes": [],
+    "produces": ["application/json"],
+    "parameters": [
+      {
+        "name": "User Email",
+        "in": "body",
+        "required": true,
+        "schema": {
+          "type": "object",
+          "properties": {
+            "userEmail": {
+              "type": "string",
+              "example": "barnesjane@gmail.com"
+            }
+          }
+        }
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "email sent with verification link",
+        "examples": {
+          "application/json": {
+            "status": 200,
+            "message": "email sent with verification link",
+            "data": {
+              "userEmail": "barnesjane@gmail.com",
+              "link": "http://localhost:3000/api/v1/auth/verify/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJiYWhhdGkucm9iYmVuQGFuZGVsYTEuY29tIiwiZmlyc3ROYW1lIjoicm9iYmVucyIsImxhc3ROYW1lIjoiZmlqc29pYXMiLCJpYXQiOjE1NjgxMjg4MDJ9.PsoH0R3T6L7sn9MndPKJSLORX6l-y6kf_O-zDs7z4I4"
+            }
+          }
+        }
+      },
+      "404": {
+        "description": "user not found",
+        "examples": {
+          "application/json": {
+            "status": 404,
+            "message": "this email is not registered"
+          }
+        }
+      }
+    }
+  }
+}

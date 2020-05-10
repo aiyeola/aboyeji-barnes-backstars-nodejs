@@ -1,0 +1,82 @@
+{
+  "post": {
+    "tags": ["User"],
+    "summary": "Sign in a user",
+    "description": "Endpoint for signing in a user",
+    "operationId": "loginUser",
+    "consumes": ["application/json"],
+    "produces": ["application/json"],
+    "parameters": [
+      {
+        "name": "Log in",
+        "in": "body",
+        "description": "To sign a user provide the following",
+        "required": true,
+        "schema": {
+          "type": "object",
+          "properties": {
+            "userEmail": {
+              "type": "string",
+              "example": "barnesjane@gmail.com"
+            },
+            "userPassword": {
+              "type": "string",
+              "example": "Pa55w0r#"
+            }
+          }
+        }
+      }
+    ],
+    "responses": {
+      "201": {
+        "description": "User created",
+        "examples": {
+          "application/json": {
+            "status": 200,
+            "message": "User signed in successfully",
+            "data": {
+              "id": 3,
+              "firstName": "Barnes",
+              "lastName": "Jane",
+              "userEmail": "barnesjane@gmail.com",
+              "userRoles": "Requester",
+              "emailAllowed": true,
+              "userToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZmlyc3ROYW1lIjoiSmFuZSIsImxhc3ROYW1lIjoiRG9lIiwidXNlckVtYWlsIjoiamFuZWRvZUBnbWFpbC5jb20iLCJ1c2VyUm9sZXMiOiJNYW5hZ2VyIiwiYWNjb3VudFZlcmlmaWVkIjp0cnVlLCJlbWFpbEFsbG93ZWQiOnRydWUsImlhdCI6MTU4ODQ5OTUyMCwiZXhwIjoxNTg4NTg1OTIwfQ.o-ItlUVKJ9ESJYYUHE_AtkOjgmD7k3G-OBNizJjRYU4"
+            }
+          }
+        }
+      },
+      "422": {
+        "description": "Invalid input",
+        "examples": {
+          "application/json": {
+            "data": [
+              {
+                "status": 422,
+                "message": "\"userEmail\" is required",
+                "error": "Validation Error"
+              }
+            ]
+          }
+        }
+      },
+      "401": {
+        "description": "Unauthorized",
+        "examples": {
+          "application/json": [
+            {
+              "status": 401,
+              "message": "Email not verified",
+              "error": "Authentication Error"
+            },
+            {
+              "status": 401,
+              "message": "Invalid email or password",
+              "error": "Authentication Error"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

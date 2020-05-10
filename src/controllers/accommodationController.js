@@ -19,7 +19,7 @@ class accommodationController {
       console.log('Accommodation has been created successfully');
       return Response.customResponse(
         res,
-        '200',
+        '201',
         'Accommodation has been created successfully',
         data
       );

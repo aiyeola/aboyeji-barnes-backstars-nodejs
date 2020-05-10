@@ -3,12 +3,14 @@
     "tags": ["Accommodation"],
     "summary": "create an accommodation",
     "description": "Endpoint for creating an accommodation",
+    "operationId": "addAccommodation",
     "consumes": ["application/json"],
     "produces": ["application/json"],
     "parameters": {
       "name": "Create Accommodation",
       "in": "body",
       "description": "request payload",
+      "required": true,
       "schema": {
         "type": "object",
         "properties": {
@@ -60,75 +62,76 @@
       }
     },
     "response": {
-      "in": "body",
-      "description": "response",
-      "schema": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "string",
-            "example": "200"
-          },
-          "message": {
-            "type": "string",
-            "example": "Accommodation has been created successfully"
-          },
-          "data": {
-            "id": {
-              "type": "integer",
-              "example": 2
-            },
-            "name": {
-              "type": "string",
-              "example": "Hotel"
-            },
+      "201": {
+        "description": "Accommodation created",
+        "schema": {
+          "type": "object",
+          "properties": {
             "status": {
               "type": "string",
-              "example": "Available"
+              "example": "200"
             },
-            "imageUrl": {
-              "type": "array(string)",
-              "example": [
-                "https://res.cloudinary.com/dkabisw/image/upload/v1574765143/apl2muykitqk5kf6pnjg.jpg",
-                "https://res.cloudinary.com/dkabisw/image/upload/v1574961322/xr4b5emlpudqh1l9yrpa.jpg"
-              ]
-            },
-            "locationId": {
-              "type": "integer",
-              "example": 1
-            },
-            "owner": {
-              "type": "integer",
-              "example": 9
-            },
-            "amenities": {
-              "type": "array(string)",
-              "example": ["Gyn", "Sauna", "Steam bath", "Spa", "Free Wifi"]
-            },
-            "services": {
-              "type": "array(string)",
-              "example": [
-                "Free breakfast",
-                "Room Delivery",
-                "Free parking",
-                "Snart Rooms"
-              ]
-            },
-            "mapLocations": {
-              "type": "jsonb",
-              "example": { "lat": -1.9705786, "lng": 30.10442880000005 }
-            },
-            "description": {
+            "message": {
               "type": "string",
-              "example": "The space will be entirely yours. It is in a compound of similar apartments where people mind their own business. There is a gateman at the place 24 hours and you can go in and out at any point. You do not share facilities with anyone."
+              "example": "Accommodation has been created successfully"
             },
-            "updatedAt": {
-              "type": "date",
-              "example": "2020-04-26T15:24:40.245Z"
-            },
-            "createdAt": {
-              "type": "date",
-              "example": "2020-04-26T15:24:40.245Z"
+            "data": {
+              "id": {
+                "type": "integer",
+                "example": 2
+              },
+              "name": {
+                "type": "string",
+                "example": "Hotel"
+              },
+              "status": {
+                "type": "string",
+                "example": "Available"
+              },
+              "imageUrl": {
+                "type": "array(string)",
+                "example": [
+                  "https://res.cloudinary.com/dkabisw/image/upload/v1574765143/apl2muykitqk5kf6pnjg.jpg",
+                  "https://res.cloudinary.com/dkabisw/image/upload/v1574961322/xr4b5emlpudqh1l9yrpa.jpg"
+                ]
+              },
+              "locationId": {
+                "type": "integer",
+                "example": 1
+              },
+              "owner": {
+                "type": "integer",
+                "example": 9
+              },
+              "amenities": {
+                "type": "array(string)",
+                "example": ["Gyn", "Sauna", "Steam bath", "Spa", "Free Wifi"]
+              },
+              "services": {
+                "type": "array(string)",
+                "example": [
+                  "Free breakfast",
+                  "Room Delivery",
+                  "Free parking",
+                  "Snart Rooms"
+                ]
+              },
+              "mapLocations": {
+                "type": "jsonb",
+                "example": { "lat": -1.9705786, "lng": 30.10442880000005 }
+              },
+              "description": {
+                "type": "string",
+                "example": "The space will be entirely yours. It is in a compound of similar apartments where people mind their own business. There is a gateman at the place 24 hours and you can go in and out at any point. You do not share facilities with anyone."
+              },
+              "updatedAt": {
+                "type": "date",
+                "example": "2020-04-26T15:24:40.245Z"
+              },
+              "createdAt": {
+                "type": "date",
+                "example": "2020-04-26T15:24:40.245Z"
+              }
             }
           }
         }

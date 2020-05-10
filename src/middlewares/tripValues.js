@@ -1,20 +1,27 @@
 import Response from '../utils/response';
 
-// Work in progress
-const isValidAccommodation = async (req, res, next) => {
-  try {
-    const valid = false;
+/** Class representing validation of trip values */
+class TripValues {
+  /**
+   * Checks if accommodation  is valid
+   * @param {object} req - request object
+   * @param {object} res - response object
+   * @param {object} next - next middleware
+   * @returns {object} response
+   */
+  static async isValidAccommodation(req, res, next) {
+    // What is used to determine this?
+    try {
+      const valid = true;
 
-    if (valid === false) {
-      return Response.badRequestError(res, 'invalid Accomodation');
+      if (valid === false) {
+        return Response.badRequestError(res, 'invalid Accomodation');
+      }
+      next();
+    } catch (error) {
+      return next(error);
     }
-
-    next();
-  } catch (error) {
-    return next(error);
   }
-};
+}
 
-module.exports = {
-  isValidAccommodation
-};
+export default TripValues;

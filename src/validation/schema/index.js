@@ -32,5 +32,43 @@ export default {
         'Password should contain a minimum of 8 characters (upper and lowercase letters, numbers and at least one special character)'
       )
     ),
-  date: Joi.date().required()
+  date: Joi.date().required(),
+  link: Joi.string()
+    .required()
+    .error(new Error('token is required and must be a string')),
+  role: Joi.string()
+    .valid('Travel Team Member', 'Travel Administrator', 'Manager', 'Requester')
+    .required(),
+  gender: Joi.string().valid('MALE', 'FEMALE', 'OTHER'),
+  department: Joi.string()
+    .trim()
+    .optional()
+    .valid('Marketing', 'Operations', 'Finance'),
+  phone: Joi.string()
+    .regex(/^[0-9]{11}/)
+    .optional()
+    .error(
+      new Error(
+        'phoneNumber field needs to have a 11 chars and they must all be numbers'
+      )
+    ),
+  birthDate: Joi.date()
+    .optional()
+    .max('01-01-2002')
+    .error(
+      new Error(
+        'Format of birth date needs to be  dd-mm-yyyy and Needs to be before 01-01-2002'
+      )
+    ),
+  passportName: Joi.string()
+    .min(1)
+    .trim()
+    .error(new Error('Passport name must be string and at least 2 chars long')),
+  passportNumber: Joi.string()
+    .min(1)
+    .trim()
+    .error(
+      new Error('Passport Number must be a string and at least 4 chars long')
+    ),
+  stringOptional: Joi.string().trim().min(1).optional()
 };

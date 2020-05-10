@@ -4,12 +4,12 @@ import Rooms from '../../controllers/roomController';
 import Accommodation from '../../controllers/accommodationController';
 import Review from '../../controllers/reviewController';
 import method from '../../utils/method';
-import accommodationValidator from '../../validation/accommodationValidation';
-import likeValidator from '../../validation/likeValidation';
-import feedbackValidator from '../../validation/feedbackValidation';
-import ratingValidator from '../../validation/ratingValidation';
-import BookingValidation from '../../middlewares/validBooking';
-import UserRoles from '../../middlewares/access';
+import accommodationValidation from '../../validation/accommodationValidation';
+import likeValidation from '../../validation/likeValidation';
+import feedbackValidation from '../../validation/feedbackValidation';
+import ratingValidation from '../../validation/ratingValidation';
+import validateBooking from '../../middlewares/validBooking';
+import Access from '../../middlewares/userRoles';
 import verify from '../../middlewares/auth';
 const router = express();
 
@@ -17,8 +17,8 @@ router
   .route('/createroom')
   .post(
     verify,
-    UserRoles.isTravelAdmin,
-    accommodationValidator.validateRoomData,
+    Access.isAllowedUser,
+    accommodationValidation.validateRoomData,
     Accommodation.createRoom
   )
   .all(method);
@@ -29,9 +29,9 @@ router
   .get(Accommodation.getAccommodations)
   .post(
     verify,
-    UserRoles.isTravelAdmin,
-    BookingValidation.isAccommodationInLocation,
-    accommodationValidator.validateAccommodation,
+    Access.isAllowedUser,
+    validateBooking.isAccommodationInLocation,
+    accommodationValidation.validateAccommodation,
     Accommodation.createAccommodation
   )
   .all(method);
@@ -41,8 +41,8 @@ router
   .route('/:id/ratings')
   .post(
     verify,
-    UserRoles.isRequester,
-    ratingValidator.validateRatingData,
+    // Access.isRequester,
+    ratingValidation.validateRatingData,
     Accommodation.rateAccommodation
   )
   .all(method);
@@ -51,8 +51,8 @@ router
   .route('/:id/feedback')
   .post(
     verify,
-    UserRoles.isRequester,
-    feedbackValidator.validateFeedbackData,
+    feedbackValidation.validateFeedbackData,
+    // Access.isRequester,
     Review.addedFeedback
   )
   .get(Accommodation.getFeedback)
@@ -62,8 +62,8 @@ router
   .route('/:id/like')
   .patch(
     verify,
-    UserRoles.isRequester,
-    likeValidator.validateLikeData,
+    likeValidation.validateLikeData,
+    // Access.isRequester,
     Accommodation.likeOrUnlike
   )
   .all(method);
@@ -72,7 +72,7 @@ router
   .route('/rooms/:id')
   .patch(
     verify,
-    accommodationValidator.validateRoomData,
+    accommodationValidation.validateRoomData,
     Accommodation.updateRoom
   )
   .all(method);

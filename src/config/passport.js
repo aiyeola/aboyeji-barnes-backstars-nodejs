@@ -9,7 +9,7 @@ dotenv.config();
 
 let FacebookStrategy;
 let GoogleStrategy;
-if (process.env.NODE_ENV !== 'test') {
+if (process.env.NODE_ENV !== 'test' || process.env.NODE_ENV !== 'localTest') {
   FacebookStrategy = Fs.Strategy;
   GoogleStrategy = Gs.OAuth2Strategy;
 } else {
@@ -40,7 +40,7 @@ passport.serializeUser((user, done) => {
 //       clientID: process.env.FB_CLIENT_ID,
 //       clientSecret: process.env.FB_CLIENT_SECRET,
 //       callbackURL: '/api/v1/auth/facebook/redirect',
-//       profileFields: ['emails', 'name'],
+//       profileFields: ['emails', 'name']
 //     },
 //     getProfile
 //   )

@@ -16,7 +16,9 @@ export default class bookingValidator {
       requestId: Schema.number,
       roomId: Schema.number,
       checkIn: Schema.date,
-      checkOut: Schema.date
+      checkOut: Schema.date,
+      createdAt: Schema.date,
+      updatedAt: Schema.date
     });
     validator(schema, req.body, res, next);
   }

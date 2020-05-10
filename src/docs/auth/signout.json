@@ -1,0 +1,28 @@
+{
+  "post": {
+    "tags": ["User"],
+    "summary": "Log out a user",
+    "description": "End point for logging out a user",
+    "consumes": [],
+    "produces": ["application/json"],
+    "parameters": [],
+    "responses": {
+      "200": {
+        "description": "User logged out successfully"
+      },
+      "401": {
+        "description": "Invalid or Expired token used",
+        "examples": {
+          "application/json": {
+            "status": 401,
+            "message": "Invalid or expired token",
+            "error": "Authentication Error"
+          }
+        }
+      },
+      "500": {
+        "description": "Internal server error"
+      }
+    }
+  }
+}

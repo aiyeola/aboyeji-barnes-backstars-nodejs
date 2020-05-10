@@ -57,7 +57,7 @@ describe('/POST Accommodation', () => {
       .post(accommodationsURL)
       .send(data)
       .end((err, res) => {
-        res.should.have.status(200);
+        res.should.have.status(201);
         res.body.should.have
           .property('message')
           .eql('Accommodation has been created successfully');
