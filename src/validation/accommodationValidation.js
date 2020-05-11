@@ -25,7 +25,7 @@ class accommodationValidator {
       {
         name: Joi.string().required(),
         type: Joi.string().required(),
-        accommodationId: Joi.string().alphanum().required(),
+        accommodationId: Joi.number().required(),
         status: Joi.boolean().required(),
         price: Joi.number().required()
       },

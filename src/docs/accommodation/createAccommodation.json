@@ -1,14 +1,21 @@
 {
   "post": {
+    "security": [
+      {
+        "Bearer": []
+      }
+    ],
     "tags": ["Accommodation"],
     "summary": "create an accommodation",
     "description": "Endpoint for creating an accommodation",
+    "operationId": "addAccommodation",
     "consumes": ["application/json"],
     "produces": ["application/json"],
     "parameters": {
       "name": "Create Accommodation",
       "in": "body",
       "description": "request payload",
+      "required": true,
       "schema": {
         "type": "object",
         "properties": {
@@ -60,76 +67,136 @@
       }
     },
     "response": {
-      "in": "body",
-      "description": "response",
-      "schema": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "string",
-            "example": "200"
-          },
-          "message": {
-            "type": "string",
-            "example": "Accommodation has been created successfully"
-          },
-          "data": {
-            "id": {
-              "type": "integer",
-              "example": 2
-            },
-            "name": {
-              "type": "string",
-              "example": "Hotel"
-            },
-            "status": {
-              "type": "string",
-              "example": "Available"
-            },
-            "imageUrl": {
-              "type": "array(string)",
-              "example": [
+      "201": {
+        "description": "Accommodation created",
+        "examples": {
+          "application/json": {
+            "status": 201,
+            "message": "Accommodation has been created successfully",
+            "data": {
+              "id": 2,
+              "name": "Hotel",
+              "status": "Available",
+              "imageUrl": [
                 "https://res.cloudinary.com/dkabisw/image/upload/v1574765143/apl2muykitqk5kf6pnjg.jpg",
                 "https://res.cloudinary.com/dkabisw/image/upload/v1574961322/xr4b5emlpudqh1l9yrpa.jpg"
-              ]
-            },
-            "locationId": {
-              "type": "integer",
-              "example": 1
-            },
-            "owner": {
-              "type": "integer",
-              "example": 9
-            },
-            "amenities": {
-              "type": "array(string)",
-              "example": ["Gyn", "Sauna", "Steam bath", "Spa", "Free Wifi"]
-            },
-            "services": {
-              "type": "array(string)",
-              "example": [
+              ],
+              "locationId": 1,
+              "owner": 9,
+              "amenities": ["Gyn", "Sauna", "Steam bath", "Spa", "Free Wifi"],
+              "services": [
                 "Free breakfast",
                 "Room Delivery",
                 "Free parking",
                 "Snart Rooms"
-              ]
-            },
-            "mapLocations": {
-              "type": "jsonb",
-              "example": { "lat": -1.9705786, "lng": 30.10442880000005 }
-            },
-            "description": {
-              "type": "string",
-              "example": "The space will be entirely yours. It is in a compound of similar apartments where people mind their own business. There is a gateman at the place 24 hours and you can go in and out at any point. You do not share facilities with anyone."
-            },
-            "updatedAt": {
-              "type": "date",
-              "example": "2020-04-26T15:24:40.245Z"
-            },
-            "createdAt": {
-              "type": "date",
-              "example": "2020-04-26T15:24:40.245Z"
+              ],
+              "mapLocations": { "lat": -1.9705786, "lng": 30.10442880000005 },
+              "description": {
+                "type": "string",
+                "example": "The space will be entirely yours. It is in a compound of similar apartments where people mind their own business. There is a gateman at the place 24 hours and you can go in and out at any point. You do not share facilities with anyone."
+              },
+              "updatedAt": "2020-04-26T15:24:40.245Z",
+              "createdAt": "2020-04-26T15:24:40.245Z"
             }
+          }
+        }
+      },
+      "422": {
+        "description": "Invalid input",
+        "examples": {
+          "application/json": {
+            "data": [
+              {
+                "status": 422,
+                "message": "\"name\" is required",
+                "error": "Validation Error"
+              },
+              {
+                "status": 422,
+                "message": "\"name\" must be a string",
+                "error": "Validation Error"
+              },
+              {
+                "status": 422,
+                "message": "\"status\" is required",
+                "error": "Validation Error"
+              },
+              {
+                "status": 422,
+                "message": "\"status\" must be one of [Available, Unavailable]",
+                "error": "Validation Error"
+              },
+              {
+                "status": 422,
+                "message": "\"imageUrl\" is required",
+                "error": "Validation Error"
+              },
+              {
+                "status": 422,
+                "message": "\"imageUrl\" must be an array",
+                "error": "Validation Error"
+              },
+              {
+                "status": 422,
+                "message": "\"locationId\" is required",
+                "error": "Validation Error"
+              },
+              {
+                "status": 422,
+                "message": "\"owner\" is required",
+                "error": "Validation Error"
+              },
+              {
+                "status": 422,
+                "message": "\"owner\" must be a number",
+                "error": "Validation Error"
+              },
+              {
+                "status": 422,
+                "message": "\"amenities\" is required",
+                "error": "Validation Error"
+              },
+              {
+                "status": 422,
+                "message": "\"amenities\" must be an array",
+                "error": "Validation Error"
+              },
+              {
+                "status": 422,
+                "message": "\"services\" is required",
+                "error": "Validation Error"
+              },
+              {
+                "status": 422,
+                "message": "\"services\" must be an array",
+                "error": "Validation Error"
+              },
+              {
+                "status": 422,
+                "message": "\"mapLocations\" must be of type object",
+                "error": "Validation Error"
+              },
+              {
+                "status": 422,
+                "message": "\"description\" is required",
+                "error": "Validation Error"
+              },
+              {
+                "status": 422,
+                "message": "\"description\" must be a string",
+                "error": "Validation Error"
+              }
+            ]
+          }
+        }
+      },
+      "401": {
+        "description": "Invalid or expired token",
+        "examples": {
+          "application/json": {
+            "status": 401,
+            "message": "Invalid or expired token",
+            "error": "Authentication Error"
           }
         }
       }

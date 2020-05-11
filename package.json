@@ -21,7 +21,9 @@
     "pretest": "cross-env NODE_ENV=test yarn run db-migrate:test && yarn run db-seed:test",
     "preLocalTest": "cross-env NODE_ENV=localTest yarn run db-migrate:localTest && yarn run db-seed:localTest",
     "test": "cross-env NODE_ENV=test mocha --require @babel/register ./src/test/*.js --timeout 60000 --exit",
-    "localTest": "yarn run preLocalTest && cross-env NODE_ENV=localTest mocha --require @babel/register ./src/test/*.js --timeout 60000 --exit"
+    "localTest": "yarn run preLocalTest && cross-env NODE_ENV=localTest mocha --require @babel/register ./src/test/*.js --timeout 60000 --exit",
+    "cover": "nyc --reporter=html --reporter=text yarn localTest",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "license": "MIT",
   "dependencies": {
@@ -31,14 +33,17 @@
     "babel-watch": "^7.0.0",
     "bcrypt": "^4.0.1",
     "body-parser": "^1.19.0",
+    "cloudinary": "^1.21.0",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "cross-env": "^7.0.2",
     "dotenv": "^8.2.0",
     "errorhandler": "^1.5.1",
     "express": "^4.17.1",
+    "express-fileupload": "^1.1.7-alpha.3",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
+    "nodemailer": "^6.4.6",
     "passport": "^0.4.1",
     "passport-facebook": "^3.0.0",
     "passport-google-oauth": "^2.0.0",
@@ -50,7 +55,8 @@
     "sequelize": "^5.21.5",
     "sequelize-cli": "^5.5.1",
     "swagger-node-express": "^2.1.3",
-    "swagger-ui-express": "^4.1.4"
+    "swagger-ui-express": "^4.1.4",
+    "winston": "^3.2.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
@@ -60,12 +66,14 @@
     "@babel/register": "^7.9.0",
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
+    "coveralls": "^3.1.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-plugin-import": "^2.20.1",
     "husky": "^4.2.5",
     "mocha": "^7.1.1",
     "nodemon": "^2.0.2",
+    "nyc": "^15.0.1",
     "prettier": "^2.0.4",
     "pretty-quick": "^2.0.1"
   },

@@ -1,0 +1,50 @@
+{
+  "put": {
+    "security": [
+      {
+        "Bearer": []
+      }
+    ],
+    "tags": ["User"],
+    "summary": "Update role of a User",
+    "description": "Endpoint for updating role of a user",
+    "consumes": ["application/json"],
+    "produces": ["application/json"],
+    "parameters": [
+      {
+        "name": "Update user role",
+        "in": "body",
+        "description": "Object of user email an role to update",
+        "required": true,
+        "schema": {
+          "type": "object",
+          "properties": {
+            "userEmail": {
+              "type": "string",
+              "example": "barnesjane@gmail.com"
+            },
+            "userRole": {
+              "type": "string",
+              "example": "Manager"
+            }
+          }
+        }
+      }
+    ],
+    "responses": {
+      "422": {
+        "description": "Invalid input"
+      },
+      "401": {
+        "description": "Invalid or expired token",
+        "examples": {
+          "application/json": {
+            "status": 401,
+            "message": "Invalid or expired token",
+            "error": "Authentication Error"
+          }
+        }
+      }
+    }
+  }
+}

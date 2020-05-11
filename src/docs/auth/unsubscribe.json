@@ -1,0 +1,42 @@
+{
+  "patch": {
+    "security": [
+      {
+        "Bearer": []
+      }
+    ],
+    "tags": ["User"],
+    "summary": "Unsubscribe from email notifications",
+    "description": "End point for user unsubscribing from email notifications",
+    "consumes": [],
+    "produces": ["application/json"],
+    "parameters": [],
+    "responses": {
+      "200": {
+        "description": "You've opted out of email notifications successfully",
+        "examples": {
+          "application/json": {
+            "status": 200,
+            "message": "You've opted out of email notifications successfully",
+            "data": {
+              "emailAllowed": false
+            }
+          }
+        }
+      },
+      "401": {
+        "description": "Invalid or expired token",
+        "examples": {
+          "application/json": {
+            "status": 401,
+            "message": "Invalid or expired token",
+            "error": "Authentication Error"
+          }
+        }
+      },
+      "500": {
+        "description": "Internal server error"
+      }
+    }
+  }
+}

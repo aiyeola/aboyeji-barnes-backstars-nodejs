@@ -9,17 +9,12 @@ chai.should();
 chai.use(chaiHttp);
 
 describe('Server test', () => {
-  it('should handle the unknown routes', (done) => {
-    chai
+  it('should handle the unknown routes', async () => {
+    const res = await chai
       .request(server)
       .get('/unknownroute')
-      .send({ data: 'nothing' })
-      .end((err, res) => {
-        if (err) {
-          return done(err);
-        }
-        res.status.should.equal(404);
-        return done();
-      });
+      .send({ data: 'nothing' });
+
+    res.status.should.equal(404);
   });
 });

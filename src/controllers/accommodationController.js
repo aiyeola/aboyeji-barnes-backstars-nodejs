@@ -19,7 +19,7 @@ class accommodationController {
       console.log('Accommodation has been created successfully');
       return Response.customResponse(
         res,
-        '200',
+        '201',
         'Accommodation has been created successfully',
         data
       );
@@ -34,7 +34,7 @@ class accommodationController {
       const data = await accommodationService.createRoom(rawData);
       return Response.customResponse(
         res,
-        '200',
+        '201',
         'Room has been created successfully',
         data
       );
@@ -50,7 +50,7 @@ class accommodationController {
       const data = await accommodationService.updateRoom(id, rawData);
       return Response.customResponse(
         res,
-        '200',
+        '201',
         'Room has been updated successfully',
         data
       );
@@ -80,7 +80,7 @@ class accommodationController {
       return Response.customResponse(
         res,
         '200',
-        `Accommodation ${id} details`,
+        `Getting single accommodation details`,
         data
       );
     } catch (error) {
@@ -122,7 +122,7 @@ class accommodationController {
         return Response.customResponse(
           res,
           '200',
-          `Accommodation ${id} liked successfully`,
+          `Accommodation liked successfully`,
           likedOrUnLiked
         );
       } else {
@@ -130,7 +130,7 @@ class accommodationController {
         return Response.customResponse(
           res,
           '200',
-          `Accommodation ${id} unliked successfully`,
+          `Accommodation unliked successfully`,
           likedOrUnLiked
         );
       }

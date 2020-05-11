@@ -6,6 +6,7 @@ import Users from '../../controllers/userController';
 import userValidation from '../../validation/userValidation';
 import method from '../../utils/method';
 import verify from '../../middlewares/auth';
+import Access from '../../middlewares/userRoles';
 
 const router = express.Router();
 
@@ -50,5 +51,47 @@ router
   .all(method);
 
 router.route('/check-user').get(verify, Users.checkToken).all(method);
+
+router
+  .route('/create-link')
+  .post(userValidation.validateSendLink, Users.sendLink)
+  .all(method);
+
+router
+  .route('/verify')
+  .patch(userValidation.validateVerifyLink, Users.verify)
+  .all(method);
+
+router.route('/forgot-password').post(Users.requestPasswordReset).all(method);
+
+router
+  .route('/reset-password/:userId/:token')
+  .put(userValidation.resetPassword, Users.resetPassword)
+  .all(method);
+
+router
+  .route('/update-role')
+  .put(
+    userValidation.validateUserRole,
+    verify,
+    Access.isAdmin,
+    Users.updateUserRole
+  )
+  .all(method);
+
+router
+  .route('/add-user')
+  .post(verify, userValidation.userByAdmin, Access.isAdmin, Users.addSupplier)
+  .all(method);
+
+router
+  .route('/email-preferences')
+  .patch(verify, Users.emailPreferences)
+  .all(method);
+
+router
+  .route('/unsubscribe')
+  .patch(userValidation.validateUnsubscribe, Users.unsubscribe)
+  .all(method);
 
 export default router;

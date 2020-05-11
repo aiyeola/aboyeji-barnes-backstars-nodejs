@@ -1,0 +1,41 @@
+{
+  "patch": {
+    "tags": ["User"],
+    "summary": "Verification link",
+    "description": "Sends a verification link to email",
+    "consumes": [],
+    "produces": ["application/json"],
+    "parameters": [
+      {
+        "name": "userToken",
+        "in": "path",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "Email verified",
+        "examples": {
+          "application/json": {
+            "status": 201,
+            "message": "Email verified successfully",
+            "data": {
+              "userEmail": "barnesjane@gmail.com",
+              "userToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsImZpcnN0TmFtZSI6ImRhZGEiLCJsYXN0TmFtZSI6ImJsYWxzZCIsInVzZXJFbWFpbCI6ImFsaWJhYmFAZ21haWwuY29tIiwidXNlclJvbGVzIjoiUmVxdWVzdGVyIiwiYWNjb3VudFZlcmlmaWVkIjp0cnVlLCJlbWFpbEFsbG93ZWQiOnRydWUsImlhdCI6MTU4ODQ5OTM1MSwiZXhwIjoxNTg4NTg1NzUxfQ.s-qPC6AW1BBdGDfDa6k15aTDADrO6sQgo_bZjZ9WpBI"
+            }
+          }
+        }
+      },
+      "409": {
+        "examples": {
+          "application/json": {
+            "status": 409,
+            "message": "Email already verified",
+            "error": "Conflict Error"
+          }
+        }
+      }
+    }
+  }
+}

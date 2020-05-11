@@ -1,0 +1,71 @@
+{
+  "patch": {
+    "security": [
+      {
+        "Bearer": []
+      }
+    ],
+    "path": "/profile/picture",
+    "tags": ["User Profile"],
+    "summary": "Update user profile picture",
+    "description": "End point for updating a user's profile picture",
+    "operationId": "updateProfile",
+    "consumes": [],
+    "produces": ["application/json"],
+    "parameters": [
+      {
+        "in": "body",
+        "name": "Upload Image",
+        "description": "Profile Picture "
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "Profile Picture Updated"
+      },
+      "401": {
+        "description": "Invalid or Expired token used",
+        "examples": {
+          "application/json": {
+            "status": 401,
+            "message": "Invalid or expired token",
+            "error": "Authentication Error"
+          }
+        }
+      },
+      "422": {
+        "description": "Validation error in one or more fields"
+      },
+      "500": {
+        "description": "Internal server error"
+      }
+    }
+  },
+  "get": {
+    "tags": ["User Profile"],
+    "summary": "Get user profile picture",
+    "description": "End point for getting user's profile picture",
+    "operationId": "getProfile",
+    "consumes": [],
+    "produces": ["application/json"],
+    "parameters": [],
+    "responses": {
+      "200": {
+        "description": "Profile Picture Retrieved"
+      },
+      "401": {
+        "description": "Invalid or Expired token used",
+        "examples": {
+          "application/json": {
+            "status": 401,
+            "message": "Invalid or expired token",
+            "error": "Authentication Error"
+          }
+        }
+      },
+      "500": {
+        "description": "Internal server error"
+      }
+    }
+  }
+}

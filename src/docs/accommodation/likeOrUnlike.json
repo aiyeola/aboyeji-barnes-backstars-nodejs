@@ -1,14 +1,21 @@
 {
   "post": {
+    "security": [
+      {
+        "Bearer": []
+      }
+    ],
     "tags": ["Accommodation"],
     "summary": "like/unlike an accommodation",
-    "description": "Endpoint for rating a room for an accommodation",
+    "description": "Endpoint for rating a liking/unliking for an accommodation",
+    "operationId": "likeOrUnlikeAccommodation",
     "consumes": ["application/json"],
     "produces": ["application/json"],
     "parameters": {
       "name": "Like/Unlike Accommodation",
       "in": "body",
       "description": "request payload",
+      "required": true,
       "schema": {
         "type": "object",
         "properties": {
@@ -17,6 +24,50 @@
             "example": 1
           }
         }
+      }
+    },
+    "response": {
+      "200": {
+        "description": "Accommodation liked/unliked",
+        "examples": {
+          "application/json": {
+            "status": "200",
+            "message": "Accommodation liked successfully",
+            "data": null
+          }
+        }
+      },
+      "422": {
+        "description": "Invalid input",
+        "examples": {
+          "application/json": {
+            "data": [
+              {
+                "status": 422,
+                "message": "\"userId\" is required",
+                "error": "Validation Error"
+              },
+              {
+                "status": 422,
+                "message": "\"userId\" must be a number",
+                "error": "Validation Error"
+              }
+            ]
+          }
+        }
+      },
+      "401": {
+        "description": "Invalid or expired token",
+        "examples": {
+          "application/json": {
+            "status": 401,
+            "message": "Invalid or expired token",
+            "error": "Authentication Error"
+          }
+        }
+      },
+      "500": {
+        "description": "Internal server error"
       }
     }
   }

@@ -48,7 +48,7 @@ class SessionManager {
    * @returns {string} token.
    */
   static async createSession(data, res) {
-    const result = await this.verifyToken(data.userEmail);
+    const result = this.checkToken(data.userEmail);
 
     const token =
       result === 'null'
@@ -66,7 +66,7 @@ class SessionManager {
    * @param {string} userEmail - User email.
    * @returns {string} result.
    */
-  static async verifyToken(userEmail) {
+  static async checkToken(userEmail) {
     const result = await getAsync(userEmail);
     return result;
   }
@@ -92,6 +92,19 @@ class SessionManager {
   static async destroyToken(data) {
     const result = delAsync(data.userEmail);
     return result; // result is either 0 or 1 (deleted)
+  }
+
+  /**
+   * Verifies a token
+   * @param {string} token
+   * @returns {object} User object
+   */
+  static verifyToken(token) {
+    try {
+      return jwt.verify(token, process.env.TOKEN_SECRET);
+    } catch (error) {
+      throw error;
+    }
   }
 }
 

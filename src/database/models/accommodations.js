@@ -29,11 +29,21 @@ export default (sequelize, DataTypes) => {
   );
   Accommodations.associate = (models) => {
     // associations can be defined here
-    // Accommodations.hasMany(models.Rooms, {
-    //   foreignKey: 'accomodationId',
-    //   as: 'rooms',
-    //   onDelete: 'CASCADE',
-    // });
+    Accommodations.hasMany(models.Rooms, {
+      foreignKey: 'accommodationId',
+      as: 'room',
+      onDelete: 'CASCADE'
+    });
+    Accommodations.hasMany(models.Ratings, {
+      foreignKey: 'accommodationId',
+      as: 'rating',
+      onDelete: 'CASCADE'
+    });
+    Accommodations.hasMany(models.Likes, {
+      foreignKey: 'accommodationId',
+      as: 'like',
+      onDelete: 'CASCADE'
+    });
   };
   return Accommodations;
 };

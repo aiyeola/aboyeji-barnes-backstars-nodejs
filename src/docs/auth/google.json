@@ -1,0 +1,15 @@
+{
+  "post": {
+    "tags": ["User"],
+    "summary": "Sign in or Sign up user via user's Google account",
+    "consumes": [],
+    "produces": [],
+    "parameters": [],
+    "responses": {
+      "200": {},
+      "500": {
+        "description": "Internal server error"
+      }
+    }
+  }
+}

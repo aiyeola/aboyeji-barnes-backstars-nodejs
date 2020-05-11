@@ -3,70 +3,57 @@
     "tags": ["Accommodation"],
     "summary": "Get all accommodations",
     "description": "Endpoint for get all accommodations",
-    "consumes": ["application/json"],
+    "consumes": [],
     "produces": ["application/json"],
-    "parameters": {
-      "name": "Get Accommodation",
-      "in": "body",
-      "description": "response",
-      "schema": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "example": 1
-          },
-          "name": {
-            "type": "string",
-            "example": "Hotel"
-          },
-          "status": {
-            "type": "string",
-            "example": "Available"
-          },
-          "imageUrl": {
-            "type": "array(string)",
-            "example": [
-              "https://res.cloudinary.com/dkabisw/image/upload/v1574765143/apl2muykitqk5kf6pnjg.jpg",
-              "https://res.cloudinary.com/dkabisw/image/upload/v1574961322/xr4b5emlpudqh1l9yrpa.jpg"
+    "parameters": [],
+    "responses": {
+      "200": {
+        "description": "Getting all accommodations",
+        "examples": {
+          "application/json": {
+            "status": "200",
+            "message": "Getting all accommodations",
+            "data": [
+              {
+                "id": 1,
+                "name": "HOTEL",
+                "status": "Available",
+                "imageUrl": [
+                  "https://res.cloudinary.com/dkabisw/image/upload/v1574765143/apl2muykitqk5kf6pnjg.jpg",
+                  "https://res.cloudinary.com/dkabisw/image/upload/v1574765136/o7mslrt3aukrgrqrekyz.jpg"
+                ],
+                "amenities": ["Gym", "Sauna", "Steam bath", "Spa", "Free Wifi"],
+                "locationId": 1,
+                "description": "The space will be entirely yours. It is in a compound of similar apartments where people mind their own business. There is a gateman at the place 24 hours and you can go in and out at any point. You do not share facilities with anyone.",
+                "services": ["Free breakfast", "Snart Rooms"],
+                "owner": 9,
+                "mapLocations": {
+                  "lat": -1.9705786,
+                  "lng": 30.10442880000005
+                },
+                "createdAt": "2020-05-11T00:53:14.569Z",
+                "updatedAt": "2020-05-11T00:53:14.569Z"
+              },
+              {
+                "id": 2,
+                "name": "Hotel b",
+                "status": "Available",
+                "imageUrl": [
+                  "https://res.cloudinary.com/dkabisw/image/upload/v1574961322/xr4b5emlpudqh1l9yrpa.jpg"
+                ],
+                "amenities": ["Gyn", "Sauna", "Steam bath", "Spa", "Free Wifi"],
+                "locationId": 1,
+                "description": "This is a description",
+                "services": ["Free parking", "Snart Rooms"],
+                "owner": 9,
+                "mapLocations": {
+                  "lat": -1.9705786,
+                  "lng": 30.10442880000005
+                },
+                "createdAt": "2020-05-11T00:53:18.721Z",
+                "updatedAt": "2020-05-11T00:53:18.721Z"
+              }
             ]
-          },
-          "locationId": {
-            "type": "integer",
-            "example": 1
-          },
-          "owner": {
-            "type": "integer",
-            "example": 9
-          },
-          "amenities": {
-            "type": "array(string)",
-            "example": ["Gyn", "Sauna", "Steam bath", "Spa", "Free Wifi"]
-          },
-          "services": {
-            "type": "array(string)",
-            "example": [
-              "Free breakfast",
-              "Room Delivery",
-              "Free parking",
-              "Snart Rooms"
-            ]
-          },
-          "mapLocations": {
-            "type": "jsonb",
-            "example": { "lat": -1.9705786, "lng": 30.10442880000005 }
-          },
-          "description": {
-            "type": "string",
-            "example": "The space will be entirely yours. It is in a compound of similar apartments where people mind their own business. There is a gateman at the place 24 hours and you can go in and out at any point. You do not share facilities with anyone."
-          },
-          "createdAt": {
-            "type": "date",
-            "example": "2020-04-12T12:07:13.727Z"
-          },
-          "updatedAt": {
-            "type": "date",
-            "example": "2020-04-12T12:07:13.727Z"
           }
         }
       }

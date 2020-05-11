@@ -1,0 +1,61 @@
+{
+  "post": {
+    "security": [
+      {
+        "Bearer": []
+      }
+    ],
+    "tags": ["Accommodation"],
+    "summary": "Get all rooms for an accommodation",
+    "description": "Endpoint for getting all rooms for an accommodation",
+    "consumes": ["application/json"],
+    "produces": ["application/json"],
+    "parameters": [],
+    "responses": {
+      "200": {
+        "description": "Getting all rooms for an accommodation",
+        "examples": {
+          "application/json": {
+            "status": 200,
+            "message": "Rooms for single accommodation",
+            "data": [
+              {
+                "id": 2,
+                "name": "A102",
+                "type": "Single",
+                "accommodationId": 13,
+                "status": false,
+                "price": 10000,
+                "createdAt": "2020-05-11T17:59:11.612Z",
+                "updatedAt": "2020-05-11T17:59:11.612Z"
+              },
+              {
+                "id": 1,
+                "name": "A101",
+                "type": "Single",
+                "accommodationId": 13,
+                "status": false,
+                "price": 10000,
+                "createdAt": "2020-05-11T17:59:06.740Z",
+                "updatedAt": "2020-05-11T17:59:11.664Z"
+              }
+            ]
+          }
+        }
+      },
+      "401": {
+        "description": "Invalid or expired token",
+        "examples": {
+          "application/json": {
+            "status": 401,
+            "message": "Invalid or expired token",
+            "error": "Authentication Error"
+          }
+        }
+      },
+      "500": {
+        "description": "Internal server error"
+      }
+    }
+  }
+}

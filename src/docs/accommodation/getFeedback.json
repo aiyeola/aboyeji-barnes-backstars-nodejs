@@ -5,27 +5,37 @@
     "description": "Endpoint for getting feedback on an accommodation",
     "consumes": ["application/json"],
     "produces": ["application/json"],
-    "parameters": {
-      "name": "Feedbackon an Accommodation",
-      "in": "body",
-      "description": "response",
-      "schema": {
-        "type": "object",
-        "properties": {
-          "userId": {
-            "type": "integer",
-            "example": 1
-          },
-          "feedback": {
-            "type": "string",
-            "example": "This is a feedback"
-          },
-
-          "accommodationId": {
-            "type": "integer",
-            "example": 1
+    "parameters": [],
+    "responses": {
+      "200": {
+        "description": "Getting all feedback on an accommodation",
+        "examples": {
+          "status": "200",
+          "message": "Feedback on accommodation 22",
+          "data": [
+            {
+              "id": 1,
+              "userId": 49,
+              "feedback": "This is a feedback",
+              "accommodationId": 22,
+              "createdAt": "2020-05-11T18:26:09.655Z",
+              "updatedAt": "2020-05-11T18:26:09.655Z"
+            }
+          ]
+        }
+      },
+      "401": {
+        "description": "Invalid or expired token",
+        "examples": {
+          "application/json": {
+            "status": 401,
+            "message": "Invalid or expired token",
+            "error": "Authentication Error"
           }
         }
+      },
+      "500": {
+        "description": "Internal server error"
       }
     }
   }
