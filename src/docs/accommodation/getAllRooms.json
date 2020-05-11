@@ -1,48 +1,55 @@
 {
   "post": {
+    "security": [
+      {
+        "Bearer": []
+      }
+    ],
     "tags": ["Accommodation"],
-    "summary": "Get all rooms for an accommodations",
-    "description": "Endpoint for getting all rooms for an accommodations",
+    "summary": "Get all rooms",
+    "description": "Endpoint for getting all rooms",
     "consumes": ["application/json"],
     "produces": ["application/json"],
-    "parameters": {
-      "name": "Get Room",
-      "in": "body",
-      "description": "response",
-      "schema": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "example": 1
-          },
-          "name": {
-            "type": "string",
-            "example": "Hotel"
-          },
-          "type": {
-            "type": "string",
-            "example": "Available"
-          },
-          "accommodationId": {
-            "type": "integer",
-            "example": 1
-          },
-          "status": {
-            "type": "boolean",
-            "example": false
-          },
-          "price": {
-            "type": "float",
-            "example": 8800.0
-          },
-          "createdAt": {
-            "type": "date",
-            "example": "2020-04-12T12:07:13.727Z"
-          },
-          "updatedAt": {
-            "type": "date",
-            "example": "2020-04-12T12:07:13.727Z"
+    "parameters": [],
+    "responses": {
+      "200": {
+        "description": "Getting all rooms",
+        "examples": {
+          "application/json": {
+            "status": 200,
+            "message": "Rooms for all accommodations",
+            "data": [
+              {
+                "id": 2,
+                "name": "A102",
+                "type": "Single",
+                "accommodationId": 13,
+                "status": false,
+                "price": 10000,
+                "createdAt": "2020-05-11T16:39:59.774Z",
+                "updatedAt": "2020-05-11T16:39:59.774Z"
+              },
+              {
+                "id": 1,
+                "name": "A100",
+                "type": "Single",
+                "accommodationId": 2,
+                "status": true,
+                "price": 2000,
+                "createdAt": "2020-05-11T16:39:55.022Z",
+                "updatedAt": "2020-05-11T16:46:18.631Z"
+              }
+            ]
+          }
+        }
+      },
+      "401": {
+        "description": "Invalid or expired token",
+        "examples": {
+          "application/json": {
+            "status": 401,
+            "message": "Invalid or expired token",
+            "error": "Authentication Error"
           }
         }
       }

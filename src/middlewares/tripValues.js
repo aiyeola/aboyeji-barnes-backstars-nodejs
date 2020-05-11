@@ -15,7 +15,7 @@ class TripValues {
       const valid = true;
 
       if (valid === false) {
-        return Response.badRequestError(res, 'invalid Accomodation');
+        return Response.badRequestError(res, 'invalid Accommodation');
       }
       next();
     } catch (error) {

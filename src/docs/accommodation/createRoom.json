@@ -1,14 +1,21 @@
 {
   "post": {
+    "security": [
+      {
+        "Bearer": []
+      }
+    ],
     "tags": ["Accommodation"],
     "summary": "create a room",
     "description": "Endpoint for creating a room for an accommodation",
+    "operationId": "addRoom",
     "consumes": ["application/json"],
     "produces": ["application/json"],
     "parameters": {
       "name": "Create Room",
       "in": "body",
       "description": "request payload",
+      "required": true,
       "schema": {
         "type": "object",
         "properties": {
@@ -36,52 +43,91 @@
       }
     },
     "response": {
-      "in": "body",
-      "description": "response",
-      "schema": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "string",
-            "example": "200"
-          },
-          "message": {
-            "type": "string",
-            "example": "Room has been created successfully"
-          },
-          "data": {
-            "id": {
-              "type": "integer",
-              "example": 2
-            },
-            "name": {
-              "type": "string",
-              "example": "Hotel"
-            },
-            "type": {
-              "type": "string",
-              "example": "Available"
-            },
-            "accommodationId": {
-              "type": "integer",
-              "example": 1
-            },
-            "status": {
-              "type": "boolean",
-              "example": false
-            },
-            "price": {
-              "type": "float",
-              "example": 8800.0
-            },
-            "updatedAt": {
-              "type": "date",
-              "example": "2020-04-26T15:24:40.245Z"
-            },
-            "createdAt": {
-              "type": "date",
-              "example": "2020-04-26T15:24:40.245Z"
+      "201": {
+        "description": "Room created",
+        "examples": {
+          "application/json": {
+            "status": "201",
+            "message": "Room has been created successfully",
+            "data": {
+              "id": 3,
+              "name": "A102",
+              "type": "Single",
+              "accommodationId": 13,
+              "status": false,
+              "price": 10000,
+              "updatedAt": "2020-05-11T09:43:27.934Z",
+              "createdAt": "2020-05-11T09:43:27.934Z"
             }
+          }
+        }
+      },
+      "422": {
+        "description": "Invalid input",
+        "examples": {
+          "application/json": {
+            "data": [
+              {
+                "status": 422,
+                "message": "\"name\" is required",
+                "error": "Validation Error"
+              },
+              {
+                "status": 422,
+                "message": "\"name\" must be a string",
+                "error": "Validation Error"
+              },
+              {
+                "status": 422,
+                "message": "\"type\" is required",
+                "error": "Validation Error"
+              },
+              {
+                "status": 422,
+                "message": "\"type\" must be a string",
+                "error": "Validation Error"
+              },
+              {
+                "status": 422,
+                "message": "\"accommodationId\" is required",
+                "error": "Validation Error"
+              },
+              {
+                "status": 422,
+                "message": "\"accommodationId\" must be a number",
+                "error": "Validation Error"
+              },
+              {
+                "status": 422,
+                "message": "\"status\" is required",
+                "error": "Validation Error"
+              },
+              {
+                "status": 422,
+                "message": "\"status\" must be a boolean",
+                "error": "Validation Error"
+              },
+              {
+                "status": 422,
+                "message": "\"price\" is required",
+                "error": "Validation Error"
+              },
+              {
+                "status": 422,
+                "message": "\"price\" must be a number",
+                "error": "Validation Error"
+              }
+            ]
+          }
+        }
+      },
+      "401": {
+        "description": "Invalid or expired token",
+        "examples": {
+          "application/json": {
+            "status": 401,
+            "message": "Invalid or expired token",
+            "error": "Authentication Error"
           }
         }
       }

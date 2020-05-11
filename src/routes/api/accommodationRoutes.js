@@ -43,7 +43,7 @@ router
     verify,
     // Access.isRequester,
     ratingValidation.validateRatingData,
-    Accommodation.rateAccommodation
+    Review.rateCenter
   )
   .all(method);
 
@@ -51,8 +51,8 @@ router
   .route('/:id/feedback')
   .post(
     verify,
-    feedbackValidation.validateFeedbackData,
     // Access.isRequester,
+    feedbackValidation.validateFeedbackData,
     Review.addedFeedback
   )
   .get(Accommodation.getFeedback)
@@ -62,8 +62,8 @@ router
   .route('/:id/like')
   .patch(
     verify,
-    likeValidation.validateLikeData,
     // Access.isRequester,
+    likeValidation.validateLikeData,
     Accommodation.likeOrUnlike
   )
   .all(method);

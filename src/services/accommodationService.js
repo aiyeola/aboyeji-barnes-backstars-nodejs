@@ -113,6 +113,7 @@ class accommodationService {
     try {
       await Rooms.update(data, {
         where: { id: id }
+        // returning: true
       });
       const updatedRoom = await Rooms.findOne({
         where: { id: id }

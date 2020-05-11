@@ -1,14 +1,21 @@
 {
   "post": {
+    "security": [
+      {
+        "Bearer": []
+      }
+    ],
     "tags": ["Accommodation"],
-    "summary": "rate an accommodation",
+    "summary": "Rate an accommodation",
     "description": "Endpoint for rating a room for an accommodation",
+    "operationId": "rateAccommodation",
     "consumes": ["application/json"],
     "produces": ["application/json"],
     "parameters": {
       "name": "Rate Accommodation",
       "in": "body",
       "description": "request payload",
+      "required": true,
       "schema": {
         "type": "object",
         "properties": {
@@ -26,6 +33,67 @@
             "example": 10
           }
         }
+      }
+    },
+    "response": {
+      "201": {
+        "description": "Accommodation rated",
+        "examples": {
+          "application/json": {
+            "status": "201",
+            "message": "Accommodation has been rated successfully",
+            "data": {
+              "id": 3,
+              "userId": 3,
+              "rating": 6,
+              "accommodationId": 19,
+              "updatedAt": "2020-05-11T19:13:44.425Z",
+              "createdAt": "2020-05-11T19:13:44.425Z"
+            }
+          }
+        }
+      },
+      "422": {
+        "description": "Invalid input",
+        "examples": {
+          "application/json": {
+            "data": [
+              {
+                "status": 422,
+                "message": "\"userId\" is required",
+                "error": "Validation Error"
+              },
+              {
+                "status": 422,
+                "message": "\"userId\" must be a number",
+                "error": "Validation Error"
+              },
+              {
+                "status": 422,
+                "message": "\"rating\" is required",
+                "error": "Validation Error"
+              },
+              {
+                "status": 422,
+                "message": "\"rating\" must be a number",
+                "error": "Validation Error"
+              }
+            ]
+          }
+        }
+      },
+      "401": {
+        "description": "Invalid or expired token",
+        "examples": {
+          "application/json": {
+            "status": 401,
+            "message": "Invalid or expired token",
+            "error": "Authentication Error"
+          }
+        }
+      },
+      "500": {
+        "description": "Internal server error"
       }
     }
   }

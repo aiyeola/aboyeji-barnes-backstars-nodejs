@@ -1,7 +1,7 @@
 /* eslint-disable*/
 import database from '../database/models';
 
-const { Feedbacks } = database;
+const { Feedbacks, Ratings } = database;
 
 class feedbackService {
   /**
@@ -11,6 +11,22 @@ class feedbackService {
   static async addFeedback(feedback) {
     try {
       const data = await Feedbacks.create(feedback);
+
+      return data;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  /**
+   * @param {object} rating - rating object.
+   * @returns {object} - created rating object
+   */
+  static async updateOrCreateRating(rating) {
+    try {
+      //TODO- Check if rating exists for accommodationId and user
+
+      const data = await Ratings.create(rating);
 
       return data;
     } catch (error) {

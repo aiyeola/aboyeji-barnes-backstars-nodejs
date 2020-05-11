@@ -11,7 +11,7 @@ class Rooms {
       // get accommodation rooms from database
       const data = await accommodationService.getRooms(accommodationId);
 
-      const message = `Rooms for accommodation with the id ${accommodationId}`;
+      const message = `Rooms for single accommodation`;
 
       return Response.customResponse(res, 200, message, data);
     } catch (error) {
