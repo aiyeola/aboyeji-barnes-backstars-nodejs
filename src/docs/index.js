@@ -1,4 +1,5 @@
 import swagger from './swagger.json';
+
 import signup from './auth/signup.json';
 import signin from './auth/signin.json';
 import signout from './auth/signout.json';
