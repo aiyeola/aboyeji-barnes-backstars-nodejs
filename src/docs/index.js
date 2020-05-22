@@ -27,6 +27,8 @@ import rateAccommodation from './accommodation/rateAccommodation.json';
 import addedFeedback from './accommodation/addedFeedback.json';
 import getFeedback from './accommodation/getFeedback.json';
 import likeOrUnlike from './accommodation/likeOrUnlike.json';
+// Locations
+import locations from './location/index.json';
 
 swagger.paths['/auth/signup'] = signup;
 swagger.paths['/auth/signin'] = signin;
@@ -58,5 +60,8 @@ swagger.paths['/accommodation/{id}/ratings'] = rateAccommodation;
 swagger.paths['/accommodation/{id}/feedback'] = addedFeedback;
 swagger.paths['/accommodation/{id}/feedback'] = getFeedback;
 swagger.paths['/accommodation/{id}/like'] = likeOrUnlike;
+
+// Locations
+swagger.paths['/locations'] = locations;
 
 export default swagger;
