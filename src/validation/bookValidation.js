@@ -18,10 +18,11 @@ export default class bookingValidator {
       checkIn: Schema.date,
       checkOut: Schema.date,
       createdAt: Schema.date,
-      updatedAt:Schema.date
+      updatedAt: Schema.date
     });
     validator(schema, req.body, res, next);
   }
+
   /**
    * Schema to validate booking query fields
    * @param {object} req - request object.

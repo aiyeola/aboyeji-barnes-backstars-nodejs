@@ -32,6 +32,10 @@
     {
       "name": "User Profile",
       "description": "User Profile Endpoint"
+    },
+    {
+      "name": "Accommodation",
+      "description": "Accommodation Endpoint"
     }
   ],
   "paths": {}

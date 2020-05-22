@@ -1,7 +1,7 @@
 /* eslint-disable*/
 import database from '../database/models';
 
-const { Room, Accommodations } = database;
+const { Rooms, Accommodations } = database;
 
 class accommodationService {
   /**
@@ -22,8 +22,8 @@ class accommodationService {
    */
   static async getAllAccommodations() {
     try {
-      const allAccommodations = await Accommodations.findAll();
-      return allAccommodations;
+      const data = await Accommodations.findAll();
+      return data;
     } catch (error) {
       throw error;
     }
@@ -51,7 +51,7 @@ class accommodationService {
   static async createRoom(room) {
     try {
       //creates room
-      const createdRoom = await Room.create(room);
+      const createdRoom = await Rooms.create(room);
 
       return createdRoom;
     } catch (error) {
@@ -60,12 +60,27 @@ class accommodationService {
   }
 
   /**
+  //Get all rooms for all accommodations
    * @param {id} room - room id.
    * @returns {object} - rooms data
    */
-  static async getAllRooms(id) {
+  static async getAllRooms() {
     try {
-      const data = await Room.findAll({
+      const data = await Rooms.findAll();
+      return data;
+    } catch (error) {
+      throw error;
+    }
+  }
+  /**
+
+    //Get all rooms for an accommodation
+   * @param {id} room - room id.
+   * @returns {object} - rooms data
+   */
+  static async getRooms(id) {
+    try {
+      const data = await Rooms.findAll({
         where: {
           accommodationId: id
         }
@@ -92,14 +107,15 @@ class accommodationService {
   /**
    * @param {id} id - room id
    * * @param {object} data - room object
-   * @returns {object} - updated roomrooms object
+   * @returns {object} - updated room object
    */
   static async updateRoom(id, data) {
     try {
-      await Room.update(data, {
+      await Rooms.update(data, {
         where: { id: id }
+        // returning: true
       });
-      const updatedRoom = await Room.findOne({
+      const updatedRoom = await Rooms.findOne({
         where: { id: id }
       });
       return updatedRoom;

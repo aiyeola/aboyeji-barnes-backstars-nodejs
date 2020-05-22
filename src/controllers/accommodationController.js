@@ -19,7 +19,7 @@ class accommodationController {
       console.log('Accommodation has been created successfully');
       return Response.customResponse(
         res,
-        '200',
+        '201',
         'Accommodation has been created successfully',
         data
       );
@@ -34,7 +34,7 @@ class accommodationController {
       const data = await accommodationService.createRoom(rawData);
       return Response.customResponse(
         res,
-        201,
+        '201',
         'Room has been created successfully',
         data
       );
@@ -50,7 +50,7 @@ class accommodationController {
       const data = await accommodationService.updateRoom(id, rawData);
       return Response.customResponse(
         res,
-        201,
+        '201',
         'Room has been updated successfully',
         data
       );
@@ -76,11 +76,11 @@ class accommodationController {
     const id = parseInt(req.params.id);
     try {
       const data = await accommodationService.getAccommodation(id);
-      console.log(`Accommodation ${id} details`);
+
       return Response.customResponse(
         res,
         '200',
-        `Accommodation ${id} details`,
+        `Getting single accommodation details`,
         data
       );
     } catch (error) {
@@ -94,9 +94,10 @@ class accommodationController {
 
     try {
       const data = await Ratings.create(rawData);
+
       return Response.customResponse(
         res,
-        201,
+        '200',
         `Accommodation ${id} has been rated successfully`,
         data
       );
@@ -121,7 +122,7 @@ class accommodationController {
         return Response.customResponse(
           res,
           '200',
-          `Accommodation ${id} liked successfully`,
+          `Accommodation liked successfully`,
           likedOrUnLiked
         );
       } else {
@@ -129,7 +130,7 @@ class accommodationController {
         return Response.customResponse(
           res,
           '200',
-          `Accommodation ${id} unliked successfully`,
+          `Accommodation unliked successfully`,
           likedOrUnLiked
         );
       }
@@ -159,7 +160,6 @@ class accommodationController {
         where: { id: id }
       });
 
-      console.log(`Most travelled destination`);
       return Response.customResponse(
         res,
         '200',
@@ -176,11 +176,11 @@ class accommodationController {
 
     try {
       const data = await Feedbacks.findAll({ where: { accommodationId: id } });
-      console.log(`Feedbacks on accommodation ${id}`);
+
       return Response.customResponse(
         res,
         '200',
-        `Feedbacks on accommodation ${id}`,
+        `Feedback on accommodation ${id}`,
         data
       );
     } catch (error) {

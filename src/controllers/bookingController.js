@@ -1,8 +1,8 @@
 /* eslint-disable class-methods-use-this */
 /* eslint-disable require-jsdoc */
 /* eslint-disable valid-jsdoc */
-import Response from "../utils/response";
-import bookingService from "../services/bookingService";
+import Response from '../utils/response';
+import bookingService from '../services/bookingService';
 
 /** Class that handles user */
 class BookingController {
@@ -19,8 +19,8 @@ class BookingController {
       const data = await bookingService.createBooking(rawData);
       return Response.customResponse(
         res,
-        "201",
-        "Booking created successfully",
+        '201',
+        'Booking created successfully',
         data
       );
     } catch (error) {
@@ -31,7 +31,7 @@ class BookingController {
   async getAllBookings(req, res, next) {
     try {
       const data = await bookingService.getAllBookings();
-      return Response.customResponse(res, "200", "Query Successfully", data);
+      return Response.customResponse(res, '200', 'Query Successfully', data);
     } catch (error) {
       return next(error);
     }
@@ -45,13 +45,13 @@ class BookingController {
    */
   async findBooking(req, res, next) {
     const requestId = parseInt(req.params.id);
-    console.log("*************************************", requestId);
+    console.log('*************************************', requestId);
     try {
       const data = await bookingService.findBooking(requestId);
       if (data == null) {
-        return Response.notFoundError(res, "data not found");
+        return Response.notFoundError(res, 'data not found');
       } else {
-        return Response.customResponse(res, "200", "Query Successful", data);
+        return Response.customResponse(res, '200', 'Query Successful', data);
       }
     } catch (error) {
       return next(error);
@@ -69,12 +69,12 @@ class BookingController {
     try {
       const data = await bookingService.updateBooking(id, rawData);
       if (data == null) {
-        return Response.notFoundError(res, "data not found");
+        return Response.notFoundError(res, 'data not found');
       } else {
         return Response.customResponse(
           res,
-          "201",
-          "Booking updated Successfully",
+          '201',
+          'Booking updated Successfully',
           data
         );
       }
@@ -89,12 +89,12 @@ class BookingController {
     try {
       const data = await bookingService.deleteBooking(id, rawData);
       if (data == 0) {
-        return Response.notFoundError(res, "data not found");
+        return Response.notFoundError(res, 'data not found');
       } else {
         return Response.customResponse(
           res,
-          "200",
-          "Booking deleted Successfully",
+          '200',
+          'Booking deleted Successfully',
           data
         );
       }

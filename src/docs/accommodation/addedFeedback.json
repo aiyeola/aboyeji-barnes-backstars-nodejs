@@ -1,0 +1,137 @@
+{
+  "post": {
+    "security": [
+      {
+        "Bearer": []
+      }
+    ],
+    "tags": ["Accommodation"],
+    "summary": "Add feedback on an accommodation",
+    "description": "Endpoint for adding feedback on an  accommodation",
+    "consumes": ["application/json"],
+    "produces": ["application/json"],
+    "parameters": {
+      "name": "Create Room",
+      "in": "body",
+      "description": "request payload",
+      "required": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "integer",
+            "example": 1
+          },
+          "feedback": {
+            "type": "integer",
+            "example": "This is a feedback"
+          }
+        }
+      },
+      "response": {
+        "in": "body",
+        "description": "response",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "example": "200"
+            },
+            "message": {
+              "type": "string",
+              "example": "Feedback for Accommodation 1 has been created successfully"
+            },
+            "data": {
+              "id": {
+                "type": "integer",
+                "example": 2
+              },
+              "userId": {
+                "type": "integer",
+                "example": 5
+              },
+              "feedback": {
+                "type": "string",
+                "example": "This is a feedback"
+              },
+              "accommodationId": {
+                "type": "integer",
+                "example": 1
+              },
+              "updatedAt": {
+                "type": "date",
+                "example": "2020-04-26T15:24:40.245Z"
+              },
+              "createdAt": {
+                "type": "date",
+                "example": "2020-04-26T15:24:40.245Z"
+              }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "201": {
+        "description": "Giving feedback on an accommodation",
+        "examples": {
+          "application/json": {
+            "status": "201",
+            "message": "Accommodation feedback has been created successfully",
+            "data": {
+              "id": 2,
+              "userId": 2,
+              "feedback": "This is a feedback",
+              "accommodationId": 1,
+              "updatedAt": "2020-05-11T20:08:44.832Z",
+              "createdAt": "2020-05-11T20:08:44.832Z"
+            }
+          }
+        }
+      },
+      "401": {
+        "description": "Invalid or expired token",
+        "examples": {
+          "application/json": {
+            "status": 401,
+            "message": "Invalid or expired token",
+            "error": "Authentication Error"
+          }
+        }
+      },
+      "422": {
+        "description": "Invalid input",
+        "examples": {
+          "application/json": {
+            "data": [
+              {
+                "status": 422,
+                "message": "\"userId\" is required",
+                "error": "Validation Error"
+              },
+              {
+                "status": 422,
+                "message": "\"userId\" must be a number",
+                "error": "Validation Error"
+              },
+              {
+                "status": 422,
+                "message": "\"feedback\" is required",
+                "error": "Validation Error"
+              },
+              {
+                "status": 422,
+                "message": "\"feedback\" must be a string",
+                "error": "Validation Error"
+              }
+            ]
+          }
+        }
+      },
+      "500": {
+        "description": "Internal server error"
+      }
+    }
+  }
+}

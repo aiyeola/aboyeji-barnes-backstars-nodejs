@@ -37,6 +37,23 @@ class Access {
     }
     next();
   }
+
+  /**
+   * Checks if user is a requester
+   * @param {object} req - request object
+   * @param {object} res - response object
+   * @param {object} next - next middleware
+   * @returns {object} response
+   */
+  static async isRequester(req, res, next) {
+    if (req.user.userRoles !== 'Requester') {
+      return Response.authorizationError(
+        res,
+        "You don't have rights to complete this operation"
+      );
+    }
+    next();
+  }
 }
 
 export default Access;
