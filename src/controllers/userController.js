@@ -282,7 +282,7 @@ class Users {
         url
       );
     } catch (error) {
-      next(error);
+      return next(error);
     }
   }
 
@@ -463,7 +463,7 @@ class Users {
         { emailAllowed: data[1][0].emailAllowed }
       );
     } catch (error) {
-      next(error);
+      return next(error);
     }
   }
 
@@ -496,7 +496,7 @@ class Users {
         { emailAllowed: data[1][0].emailAllowed }
       );
     } catch (error) {
-      next(error);
+      return next(error);
     }
   }
 }

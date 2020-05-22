@@ -3,7 +3,7 @@ class Response {
   /**
    * Returns a structured response
    * @param {object} res - response object.
-   * @param {string} status - status code.
+   * @param {number} status - status code.
    * @param {string} message - response message.
    * @param {object} data - optional payload.
    * @returns {object} object.
