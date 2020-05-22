@@ -19,11 +19,11 @@ export default (sequelize, DataTypes) => {
       },
       imageUrl: DataTypes.ARRAY(DataTypes.STRING),
       amenities: DataTypes.ARRAY(DataTypes.STRING),
-      locationId: DataTypes.INTEGER,
+      locationId: { type: DataTypes.INTEGER, allowNull: false },
       description: DataTypes.TEXT,
       services: DataTypes.ARRAY(DataTypes.STRING),
       owner: DataTypes.INTEGER,
-      mapLocations: DataTypes.JSON
+      mapLocations: DataTypes.JSONB
     },
     {}
   );
@@ -42,6 +42,10 @@ export default (sequelize, DataTypes) => {
     Accommodations.hasMany(models.Likes, {
       foreignKey: 'accommodationId',
       as: 'like',
+      onDelete: 'CASCADE'
+    });
+    Accommodations.belongsTo(models.Location, {
+      foreignKey: 'locationId',
       onDelete: 'CASCADE'
     });
   };

@@ -6,6 +6,6 @@ const router = express.Router();
 
 router.route('/').get(Location.getLocations).all(method);
 
-router.route('/:locationId').get(Location.getLocationById).all(method);
+// router.route('/:locationId').get(Location.getLocationById).all(method);
 
 export default router;

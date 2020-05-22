@@ -48,7 +48,7 @@ const regDataWithWrongPassword = {
   userPassword: 'Root'
 };
 
-describe('Create an account', () => {
+describe.skip('Create an account', () => {
   it('with valid properties and send an email with verification link', async () => {
     const res = await chai.request(server).post(signUpURL).send(regData);
     token1 = res.body.data.userToken;
@@ -139,7 +139,7 @@ describe('Create an account', () => {
   });
 });
 
-describe('User Login', () => {
+describe.skip('User Login', () => {
   it('with correct credentials', async () => {
     const user = {
       userEmail: 'jonathanaurugai@gmail.com',
@@ -244,7 +244,7 @@ describe.skip('Login and create user via google account', () => {
   });
 });
 
-describe('Request reset password', () => {
+describe.skip('Request reset password', () => {
   it('Sends reset password email', async () => {
     const existUser = { email: regData.userEmail };
     const res = await chai.request(server).post(requestReset).send(existUser);
@@ -262,7 +262,7 @@ describe('Request reset password', () => {
 });
 
 describe.skip('Test Access', () => {
-  describe('Super Administrator', () => {
+  describe.skip('Super Administrator', () => {
     before(async () => {
       const superUser = {
         userEmail: 'johndoe@gmail.com',
@@ -290,7 +290,7 @@ describe.skip('Test Access', () => {
   });
 });
 
-describe('Email Preferences', () => {
+describe.skip('Email Preferences', () => {
   it('can opt out of email notifications from email', async () => {
     const res = await chai.request(server).patch(`${unsubscribe}${token}`);
     expect(res.status).to.equal(200);

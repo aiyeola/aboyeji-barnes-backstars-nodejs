@@ -35,15 +35,18 @@ class LocationService {
   }
 
   /**
-   * Gets either all locations or location(s) based on a query parameter
-   * @param {object} query - query object
+   * Gets all locations
    * @return {object} - an array of Location objects
    */
-  static async getLocations(query) {
+  static async getLocations() {
     try {
-      // const locations = await Location.findAll();
-      // return locations;
-      const result = await Location.find({ where: { query } });
+      const result = await Location.findAll({
+        include: [
+          {
+            model: database.Accommodations
+          }
+        ]
+      });
       return result;
     } catch (error) {
       throw error;

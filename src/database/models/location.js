@@ -24,6 +24,10 @@ export default (sequelize, DataTypes) => {
   // eslint-disable-next-line no-unused-vars
   Location.associate = (models) => {
     // associations can be defined here
+    Location.hasMany(models.Accommodations, {
+      foreignKey: 'locationId',
+      onDelete: 'CASCADE'
+    });
   };
   return Location;
 };

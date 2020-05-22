@@ -31,16 +31,14 @@ class Location {
    * @returns {object} response object
    */
   static async getLocations(req, res, next) {
-    let query = {};
-    if (req.query.city || req.query.state) {
-      query = req.query;
-    }
     try {
-      // Get all locations from database
-      const locations = await locationService.getLocations(query);
-
-      const message = 'Locations found';
-      return Response.customResponse(res, 200, message, locations);
+      const locations = await locationService.getLocations();
+      return Response.customResponse(
+        res,
+        200,
+        'Locations fetched successfully',
+        locations
+      );
     } catch (error) {
       return next(error);
     }

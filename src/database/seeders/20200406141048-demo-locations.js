@@ -47,13 +47,6 @@ export default {
     );
   },
 
-  down: (queryInterface, Sequelize) => {
-    /*
-      Add reverting commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
-      return queryInterface.bulkDelete('People', null, {});
-    */
-  }
+  down: (queryInterface, Sequelize) =>
+    queryInterface.bulkDelete('People', null, {})
 };
