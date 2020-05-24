@@ -215,7 +215,7 @@ describe.skip('Login and create user via facebook account', () => {
 describe.skip('Login and create user via google account', () => {
   it('redirects to google', async () => {
     const res = await chai.request(server).get(loginWithGoogle);
-    console.log(res);
+    // console.log(res);
     res.redirects[0].should.contain(
       'api/v1/auth/google/redirect?__mock_strategy_callback=true'
     );

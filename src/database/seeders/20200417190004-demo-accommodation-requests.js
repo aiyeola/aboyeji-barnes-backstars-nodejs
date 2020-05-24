@@ -5,8 +5,20 @@ module.exports = {
       'AccommodationRequests',
       [
         {
+          requestId: 1,
+          accommodationId: 1,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
           requestId: 2,
-          accommodationId: 13,
+          accommodationId: 3,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          requestId: 2,
+          accommodationId: 2,
           createdAt: new Date(),
           updatedAt: new Date()
         }

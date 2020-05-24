@@ -3,6 +3,24 @@
 /* eslint-disable implicit-arrow-linebreak */
 import Joi from '@hapi/joi';
 
+const details = Joi.object().keys({
+  travelDate: Joi.string()
+    .trim()
+    .regex(/^(20)\d\d[-](0[1-9]|1[012])[-](0[1-9]|[12][0-9]|3[01])$/)
+    .optional()
+    .error(
+      new Error('Enter date of travel in yyyy-mm-dd format at least today')
+    ),
+  accommodation: Joi.string()
+    .trim()
+    .optional()
+    .error(new Error('Enter a Place of accommodation')),
+  location: Joi.number()
+    .integer()
+    .optional()
+    .error(new Error('Enter id of destination'))
+});
+
 export default {
   email: Joi.string()
     .email({
@@ -45,11 +63,11 @@ export default {
     .optional()
     .valid('Marketing', 'Operations', 'Finance'),
   phone: Joi.string()
-    .regex(/^[0-9]{11}/)
+    .regex(/^[0-9]{10}/)
     .optional()
     .error(
       new Error(
-        'phoneNumber field needs to have a 11 chars and they must all be numbers'
+        'phoneNumber field needs to have a 10 chars and they must all be numbers'
       )
     ),
   birthDate: Joi.date()
@@ -70,5 +88,26 @@ export default {
     .error(
       new Error('Passport Number must be a string and at least 4 chars long')
     ),
-  stringOptional: Joi.string().trim().min(1).optional()
+  string: Joi.string().trim().min(1).required(),
+  stringOptional: Joi.string().trim().min(1).optional(),
+  stringLong: Joi.string().trim().required().min(30),
+  stringLongOptional: Joi.string().trim().optional().min(30),
+  id: Joi.number().integer().min(1).required(),
+  idOptional: Joi.number().integer().min(1).optional(),
+  to: Joi.array()
+    .items(details)
+    .error(() => 'Enter correct destination details'),
+  from: Joi.string()
+    .trim()
+    .regex(/^[a-zA-Z]+,\s[a-zA-Z]+$/)
+    .optional()
+    .min(2)
+    .error(() => 'Enter place of departure, "from" in City, Country format'),
+  minDate: Joi.date()
+    .min('now')
+    .error(
+      new Error(
+        'Enter date of return in yyyy-mm-dd format greater than date of travel'
+      )
+    )
 };

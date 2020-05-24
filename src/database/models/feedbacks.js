@@ -1,17 +1,38 @@
 /* eslint-disable func-names */
-/* eslint-disable no-unused-vars */
 module.exports = (sequelize, DataTypes) => {
   const Feedbacks = sequelize.define(
     'Feedbacks',
     {
-      userId: DataTypes.INTEGER,
-      feedback: DataTypes.STRING,
-      accommodationId: DataTypes.INTEGER
+      userId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          isNumeric: true
+        }
+      },
+      feedback: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      accommodationId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          isNumeric: true
+        }
+      }
     },
     {}
   );
   Feedbacks.associate = function (models) {
-    // associations can be defined here
+    Feedbacks.belongsTo(models.Users, {
+      foreignKey: 'userId',
+      onDelete: 'CASCADE'
+    });
+    Feedbacks.belongsTo(models.Accommodations, {
+      foreignKey: 'accommodationId',
+      onDelete: 'CASCADE'
+    });
   };
   return Feedbacks;
 };

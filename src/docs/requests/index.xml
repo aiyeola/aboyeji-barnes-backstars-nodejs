@@ -1,0 +1,15 @@
+GET /api/v1/requests/3 200 96.136 ms - 405
+GET /api/v1/requests/77 404 325.886 ms - 67
+GET /api/v1/requests/11 404 14.875 ms - 67
+GET /api/v1/requests/1 200 14.603 ms - 395
+GET /api/v1/requests/0 422 119.949 ms - 94
+GET /api/v1/requests/5 200 18.672 ms - 416
+PATCH /api/v1/requests/approve/1 401 1.617 ms - 82
+PATCH /api/v1/requests/approve/1 422 241.823 ms - 76
+PATCH /api/v1/requests/approve/1 500 1536.553 ms - 7150
+PATCH /api/v1/requests/approve/1 200 1536.553 ms - 7150
+PATCH /api/v1/requests/reject/4 422 724.341 ms - 76
+PATCH /api/v1/requests/reject/4 200 677.921 ms - 81
+PATCH /api/v1/requests/reject/4 409 228.663 ms - 76
+DELETE /api/v1/requests/4 401 392.192 ms - 82
+DELETE /api/v1/requests/4 200 104.811 ms - 77

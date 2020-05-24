@@ -1,12 +1,12 @@
 /* eslint-disable*/
 import database from '../database/models';
 
-const { Rooms, Accommodations } = database;
+const { Rooms, Accommodations, Location } = database;
 
 class accommodationService {
   /**
-   * @param {object} accommmodation - accommmodation object.
-   * @returns {object} - created accommmodation object
+   * @param {object} accommodation - accommodation object.
+   * @returns {object} - created accommodation object
    */
   static async createAccommodation(accommodation) {
     try {
@@ -18,7 +18,7 @@ class accommodationService {
     }
   }
   /**
-   * @returns {object} - existing accommmodation object
+   * @returns {object} - existing accommodation object
    */
   static async getAllAccommodations() {
     try {
@@ -30,13 +30,18 @@ class accommodationService {
   }
 
   /**
-   * @param {id} params - accommmodation integer.
-   * @returns {object} -  accommmodation object
+   * @param {id} params - accommodation integer.
+   * @returns {object} -  accommodation object
    */
   static async getAccommodation(params) {
     try {
       const singleAccommodation = await Accommodations.findOne({
-        where: { id: params }
+        where: [params],
+        include: [
+          {
+            model: Location
+          }
+        ]
       });
       return singleAccommodation;
     } catch (error) {

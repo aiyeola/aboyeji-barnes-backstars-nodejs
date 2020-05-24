@@ -1,4 +1,5 @@
 import Response from '../utils/response';
+import RequestService from '../services/requestService';
 
 /** Class representing a user role */
 class Access {
@@ -50,6 +51,77 @@ class Access {
       return Response.authorizationError(
         res,
         "You don't have rights to complete this operation"
+      );
+    }
+    next();
+  }
+
+  /**
+   * Checks if user is a manager
+   * @param {object} req - request object
+   * @param {object} res - response object
+   * @param {object} next - next middleware
+   * @returns {object} response
+   */
+  static managerRole(req, res, next) {
+    if (req.user.userRoles !== 'Manager') {
+      return Response.authorizationError(
+        res,
+        'You are not allowed to perform this task'
+      );
+    }
+    next();
+  }
+
+  /**
+   * Checks if user is the request owner or manager
+   * @param {object} req - request object
+   * @param {object} res - response object
+   * @param {object} next - next middleware
+   * @returns {object} response
+   */
+  static async isOwnerOrManager(req, res, next) {
+    const request = await RequestService.findRequests({ id: req.params.id });
+    if (!request) {
+      return Response.notFoundError(res, 'Request not found');
+    }
+    if (req.user.userRoles !== 'Manager' && req.params.id !== request.user) {
+      return Response.authorizationError(
+        res,
+        "You don't have thr rights to complete this operation"
+      );
+    }
+    next();
+  }
+
+  /**
+   * Checks if the user is the owner.
+   *@param {string} req  data.
+   * @param {string} res  data.
+   * @param {string} next data.
+   * @returns {string} object.
+   */
+  static async isOwner(req, res, next) {
+    const { id } = req.params;
+    // eslint-disable-next-line no-restricted-globals
+    if (isNaN(id)) {
+      return Response.badRequestError(res, 'Enter a valid request');
+    }
+    const data = await RequestService.findRequest({ id });
+    if (data === null) {
+      return Response.notFoundError(res, 'Enter a valid request');
+    }
+    const { userId, status } = data.dataValues;
+    if (userId !== req.user.id) {
+      return Response.authorizationError(
+        res,
+        "You don't have rights to edit this request"
+      );
+    }
+    if (status !== 'Pending') {
+      return Response.authorizationError(
+        res,
+        "You can't edit/delete a request that has either been rejected or Approved"
       );
     }
     next();

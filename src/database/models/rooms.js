@@ -1,18 +1,35 @@
-/* eslint-disable no-unused-vars */
 module.exports = (sequelize, DataTypes) => {
   const Rooms = sequelize.define(
     'Rooms',
     {
-      name: DataTypes.STRING,
-      type: DataTypes.STRING,
-      accommodationId: DataTypes.INTEGER,
-      status: DataTypes.BOOLEAN,
-      price: DataTypes.FLOAT
+      name: { type: DataTypes.STRING, allowNull: false },
+      type: { type: DataTypes.STRING, allowNull: false },
+      accommodationId: { type: DataTypes.INTEGER, allowNull: false },
+      status: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: 'Available',
+        validate: {
+          isIn: {
+            args: [['Available', 'Unavailable']],
+            msg: 'Status can only be Available or Unavailable'
+          }
+        }
+      },
+      price: { type: DataTypes.FLOAT, allowNull: false }
     },
     {}
   );
   Rooms.associate = (models) => {
-    // associations can be defined here
+    Rooms.belongsTo(models.Accommodations, {
+      foreignKey: 'accommodationId',
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE'
+    });
+    Rooms.hasMany(models.Bookings, {
+      foreignKey: 'roomId',
+      onDelete: 'CASCADE'
+    });
   };
   return Rooms;
 };

@@ -1,5 +1,5 @@
-'use strict';
-module.exports = (sequelize, DataTypes, Op) => {
+/* eslint-disable func-names */
+module.exports = (sequelize, DataTypes) => {
   const Bookings = sequelize.define(
     'Bookings',
     {
@@ -25,7 +25,14 @@ module.exports = (sequelize, DataTypes, Op) => {
     {}
   );
   Bookings.associate = function (models) {
-    // associations can be defined here
+    Bookings.belongsTo(models.Rooms, {
+      onDelete: 'CASCADE',
+      foreignKey: 'roomId'
+    });
+    Bookings.belongsTo(models.Requests, {
+      onDelete: 'CASCADE',
+      foreignKey: 'requestId'
+    });
   };
   return Bookings;
 };

@@ -5,9 +5,20 @@ module.exports = {
       'Likes',
       [
         {
-          userId: 49,
-          accommodationId: 22,
-          status: true,
+          userId: 2,
+          accommodationId: 1,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          userId: 1,
+          accommodationId: 1,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          userId: 3,
+          accommodationId: 1,
           createdAt: new Date(),
           updatedAt: new Date()
         }

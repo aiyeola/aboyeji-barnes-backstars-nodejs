@@ -14,6 +14,7 @@ export default {
           userRoles: 'Super Administrator',
           accountVerified: true,
           emailAllowed: true,
+          requestAutofill: true,
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -26,6 +27,7 @@ export default {
           userRoles: 'Manager',
           accountVerified: true,
           emailAllowed: true,
+          requestAutofill: false,
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -38,6 +40,7 @@ export default {
           userRoles: 'Travel Administrator',
           accountVerified: 'True',
           emailAllowed: true,
+          requestAutofill: false,
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -50,6 +53,7 @@ export default {
           userRoles: 'Requester',
           accountVerified: 'True',
           emailAllowed: true,
+          requestAutofill: false,
           createdAt: new Date(),
           updatedAt: new Date()
         }
