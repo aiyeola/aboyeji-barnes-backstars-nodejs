@@ -33,7 +33,8 @@ class SessionManager {
         userEmail: data.userEmail,
         userRoles: data.userRoles,
         accountVerified: data.accountVerified,
-        emailAllowed: data.emailAllowed
+        emailAllowed: data.emailAllowed,
+        requestAutofill: data.requestAutofill
       },
       data.secret || process.env.TOKEN_SECRET,
       { expiresIn: '24hr' }

@@ -1,0 +1,33 @@
+{
+  "patch": {
+    "security": [
+      {
+        "Bearer": []
+      }
+    ],
+    "tags": ["User"],
+    "summary": "Change autofill preferences",
+    "description": "End point for user changing autofill preference",
+    "consumes": [],
+    "produces": ["application/json"],
+    "parameters": [],
+    "responses": {
+      "200": {
+        "description": "Your request autofill preference has been successfully updated"
+      },
+      "401": {
+        "description": "Invalid or expired token",
+        "examples": {
+          "application/json": {
+            "status": 401,
+            "message": "Invalid or expired token",
+            "error": "Authentication Error"
+          }
+        }
+      },
+      "500": {
+        "description": "Internal server error"
+      }
+    }
+  }
+}

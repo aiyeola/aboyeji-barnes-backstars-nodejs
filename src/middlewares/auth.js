@@ -7,7 +7,7 @@ const verify = async (req, res, next) => {
     const token = req.headers.authorization.split(' ')[1];
 
     const payload = await SessionManager.decodeToken({ token });
-    const result = await SessionManager.checkToken(payload.userEmail);
+    const result = SessionManager.checkToken(payload.userEmail);
 
     if (result === 'null') {
       return Response.authenticationError(res, 'User not logged in');
@@ -15,11 +15,16 @@ const verify = async (req, res, next) => {
 
     const { userEmail } = payload;
     // check db for updated user roles and emailAllowed status not from token
-    const { userRoles, emailAllowed } = await UserService.findUser({
+    const {
+      userRoles,
+      emailAllowed,
+      requestAutofill
+    } = await UserService.findUser({
       userEmail
     });
     payload.userRoles = userRoles;
     payload.emailAllowed = emailAllowed;
+    payload.requestAutofill = requestAutofill;
 
     req.user = payload;
     next();

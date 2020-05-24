@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 export default (sequelize, DataTypes) => {
   const Users = sequelize.define(
     'Users',
@@ -57,19 +56,39 @@ export default (sequelize, DataTypes) => {
         type: DataTypes.BOOLEAN,
         defaultValue: true,
         allowNull: false
+      },
+      requestAutofill: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+        allowNull: false
       }
     },
     {}
   );
   Users.associate = (models) => {
-    // associations can be defined here
     Users.hasOne(models.UserProfile, {
       foreignKey: 'userId',
       as: 'userProfile'
     });
     Users.hasOne(models.ProfilePictures, {
-      foreignKey: 'user'
+      foreignKey: 'userId'
+    });
+    Users.hasMany(models.Requests, {
+      foreignKey: 'userId'
+    });
+    Users.hasMany(models.Likes, {
+      foreignKey: 'userId'
+    });
+    Users.hasMany(models.Feedbacks, {
+      foreignKey: 'userId'
+    });
+    Users.hasOne(models.ProfilePictures, {
+      foreignKey: 'userId'
     });
   };
   return Users;
 };
+
+// notifications
+// chat
+// comment

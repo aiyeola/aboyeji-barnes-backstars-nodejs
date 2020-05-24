@@ -90,6 +90,11 @@ router
   .all(method);
 
 router
+  .route('/autofill-preference')
+  .patch(verify, Users.switchAutofill)
+  .all(method);
+
+router
   .route('/unsubscribe')
   .patch(userValidation.validateUnsubscribe, Users.unsubscribe)
   .all(method);

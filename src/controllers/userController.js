@@ -3,6 +3,7 @@ import Response from '../utils/response';
 import Password from '../utils/generatePassword';
 import SessionManager from '../utils/sessionManager';
 import UserService from '../services/userService';
+import UserProfileService from '../services/userProfileService';
 import Email from '../utils/mails/email';
 import VerifyEmail from '../utils/mails/verify.email';
 import ResetPasswordEmail from '../utils/mails/resetPassword.email';
@@ -102,6 +103,15 @@ class Users {
       delete user.accountVerified;
       delete user.createdAt;
       delete user.updatedAt;
+
+      const profile = await UserProfileService.getProfile(user.id);
+      if (profile.dataValues.userProfile) {
+        const profileData = profile.dataValues.userProfile.dataValues;
+        res.cookie('passportNumber', profileData.passportNumber);
+        res.cookie('passportName', profileData.passportName);
+        res.cookie('gender', profileData.gender);
+      }
+
       return Response.customResponse(
         res,
         200,
@@ -461,6 +471,31 @@ class Users {
         200,
         'Your email preferences have been successfully updated',
         { emailAllowed: data[1][0].emailAllowed }
+      );
+    } catch (error) {
+      return next(error);
+    }
+  }
+
+  /**
+   * switchAutofill option
+   * @param {object} req request object
+   * @param {object} res response object
+   * @param {object} next next middleware
+   * @returns {object} custom response
+   */
+  async switchAutofill(req, res, next) {
+    try {
+      const { id, requestAutofill } = req.user;
+      const data = await UserService.updateUser(
+        { id },
+        { requestAutofill: !requestAutofill }
+      );
+      return Response.customResponse(
+        res,
+        200,
+        'Your request autofill preference has been successfully updated',
+        { requestAutofill: data[1][0].requestAutofill }
       );
     } catch (error) {
       return next(error);
