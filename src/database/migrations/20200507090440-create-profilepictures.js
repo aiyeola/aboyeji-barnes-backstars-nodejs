@@ -8,7 +8,7 @@ export default {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      user: {
+      userId: {
         type: Sequelize.INTEGER
       },
       url: {

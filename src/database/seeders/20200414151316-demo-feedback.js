@@ -5,9 +5,23 @@ module.exports = {
       'Feedbacks',
       [
         {
-          userId: 49,
-          feedback: 'This is a feedback',
-          accommodationId: 22,
+          userId: 1,
+          feedback: 'I enjoyed my stay, salubrious',
+          accommodationId: 2,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          userId: 3,
+          feedback: 'Fantastic experience',
+          accommodationId: 2,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          userId: 4,
+          feedback: 'I loved the fire view',
+          accommodationId: 1,
           createdAt: new Date(),
           updatedAt: new Date()
         }

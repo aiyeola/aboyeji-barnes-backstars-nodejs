@@ -48,7 +48,7 @@ export default {
           updatedAt: new Date()
         },
         {
-          from: 'MANILLA, PHILIPINES',
+          from: 'MANILLA, PHILIPPINES',
           travelDate: ['2019-07-01'],
           returnDate: '2019-07-12',
           reason: 'Business Travel',
@@ -62,7 +62,7 @@ export default {
           updatedAt: new Date()
         },
         {
-          from: 'NAKURU, KENYA',
+          from: 'NAIROBI, KENYA',
           travelDate: ['2019-04-01', '2019-05-21'],
           returnDate: '2019-07-12',
           reason: 'Still figuring this out',
@@ -76,7 +76,7 @@ export default {
           updatedAt: new Date()
         },
         {
-          from: 'VICTORIA, EAFRICA',
+          from: 'VICTORIA, AFRICA',
           travelDate: ['2019-09-01', '2019-10-01'],
           returnDate: '2019-11-12',
           reason: 'i want to checkout the nile crocodiles',
@@ -90,10 +90,10 @@ export default {
           updatedAt: new Date()
         },
         {
-          from: 'UHEA, RWANDEX',
+          from: 'LAGOS, NIGERIA',
           travelDate: ['2019-06-21'],
           returnDate: '2019-09-12',
-          reason: 'this is confidential you dont wanna know',
+          reason: "this is confidential you don't wanna know",
           status: 'Approved',
           userId: 3,
           passportNumber: '121HU3H3U32',

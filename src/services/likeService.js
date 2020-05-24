@@ -43,8 +43,6 @@ class likeService {
           }
         });
       }
-
-      console.log(`Accommodation liked successfully`);
       return data;
     } catch (error) {
       throw error;
@@ -69,8 +67,6 @@ class likeService {
           accommodationId: id.accommodationId
         }
       });
-
-      console.log(`Accommodation unliked successfully`);
       return data;
     } catch (error) {
       throw error;

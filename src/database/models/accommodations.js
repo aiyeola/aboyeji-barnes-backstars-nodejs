@@ -1,12 +1,11 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable arrow-parens */
-/* eslint-disable no-undef */
-
 export default (sequelize, DataTypes) => {
   const Accommodations = sequelize.define(
     'Accommodations',
     {
-      name: DataTypes.STRING,
+      name: {
+        allowNull: false,
+        type: DataTypes.STRING
+      },
       status: {
         type: DataTypes.STRING,
         defaultValue: 'Available',
@@ -17,7 +16,7 @@ export default (sequelize, DataTypes) => {
           }
         }
       },
-      imageUrl: DataTypes.ARRAY(DataTypes.STRING),
+      imageUrl: { type: DataTypes.ARRAY(DataTypes.STRING), allowNull: true },
       amenities: DataTypes.ARRAY(DataTypes.STRING),
       locationId: { type: DataTypes.INTEGER, allowNull: false },
       description: DataTypes.TEXT,
@@ -28,7 +27,6 @@ export default (sequelize, DataTypes) => {
     {}
   );
   Accommodations.associate = (models) => {
-    // associations can be defined here
     Accommodations.hasMany(models.Rooms, {
       foreignKey: 'accommodationId',
       as: 'room',
@@ -47,6 +45,11 @@ export default (sequelize, DataTypes) => {
     Accommodations.belongsTo(models.Location, {
       foreignKey: 'locationId',
       onDelete: 'CASCADE'
+    });
+    Accommodations.hasMany(models.Feedbacks, {
+      foreignKey: 'accommodationId',
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE'
     });
   };
   return Accommodations;

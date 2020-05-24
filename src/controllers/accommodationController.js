@@ -75,7 +75,7 @@ class accommodationController {
   static async getAccommodationById(req, res, next) {
     const id = parseInt(req.params.id);
     try {
-      const data = await accommodationService.getAccommodation(id);
+      const data = await accommodationService.getAccommodation({ id });
 
       return Response.customResponse(
         res,
