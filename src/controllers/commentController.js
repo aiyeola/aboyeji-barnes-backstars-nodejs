@@ -3,7 +3,7 @@ import Response from '../utils/response';
 import UserService from '../services/userService';
 import CommentService from '../services/commentService';
 
-/** Class that handles requests */
+/** Class that handles comments */
 class CommentController {
   /**
    * Creates a new comment.

@@ -5,7 +5,8 @@ const {
   Accommodations,
   AccommodationRequests,
   Rooms,
-  Location
+  Location,
+  Users
 } = database;
 
 /** Class representing Request services. */
@@ -179,6 +180,40 @@ class RequestService {
   static async markRequestAsBooked(id, booked) {
     try {
       return Requests.update({ booked }, { where: { id } });
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  /**
+   * Get requests by field
+   * @param {object} field to be search with
+   * @return {object} Object of request if found
+   */
+  static async search(field) {
+    try {
+      const result = await Requests.findAll({
+        where: field,
+        include: [
+          {
+            model: Users,
+            as: 'requester',
+            attributes: ['firstName', 'lastName']
+          },
+          {
+            model: Accommodations,
+            as: 'accommodations',
+            attributes: ['id', 'name', 'status', 'imageUrl', 'locationId'],
+            include: [
+              {
+                model: Location
+              }
+            ]
+          }
+        ]
+      });
+
+      return result;
     } catch (error) {
       throw error;
     }

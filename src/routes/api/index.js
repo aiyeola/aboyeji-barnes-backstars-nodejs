@@ -6,6 +6,7 @@ import profileRoutes from './userProfileRoutes';
 import bookingRoute from './bookingRoute';
 import requestRoute from './requestRoute';
 import roomRoute from './roomRoute';
+import searchRouter from './searchRoute';
 
 const router = Router();
 
@@ -16,5 +17,6 @@ router.use('/profile', profileRoutes);
 router.use('/booking', bookingRoute);
 router.use('/requests', requestRoute);
 router.use('/rooms', roomRoute);
+router.use('/search', searchRouter);
 
 export default router;
