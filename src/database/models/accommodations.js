@@ -27,6 +27,11 @@ export default (sequelize, DataTypes) => {
     {}
   );
   Accommodations.associate = (models) => {
+    Accommodations.belongsToMany(models.Requests, {
+      through: 'AccommodationRequests',
+      as: 'requests',
+      foreignKey: 'accommodationId'
+    });
     Accommodations.hasMany(models.Rooms, {
       foreignKey: 'accommodationId',
       as: 'room',

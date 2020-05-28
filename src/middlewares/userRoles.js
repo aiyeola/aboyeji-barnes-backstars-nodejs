@@ -96,10 +96,10 @@ class Access {
 
   /**
    * Checks if the user is the owner.
-   *@param {string} req  data.
-   * @param {string} res  data.
-   * @param {string} next data.
-   * @returns {string} object.
+   *@param {object} req - request object
+   * @param {object} res - response object
+   * @param {object} next - next middleware
+   * @returns {object} response
    */
   static async isOwner(req, res, next) {
     const { id } = req.params;

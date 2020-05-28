@@ -29,7 +29,7 @@ export default {
       new Error('Enter place of departure, "from" in City, Country format')
     ),
   to: Joi.array()
-    .ordered(destination)
+    .items(destination)
     .required()
     .error(new Error('Enter destination details')),
   reason: Joi.string()
