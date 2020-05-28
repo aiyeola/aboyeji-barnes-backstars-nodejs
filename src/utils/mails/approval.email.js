@@ -1,14 +1,11 @@
-/* eslint-disable require-jsdoc */
-/**
- * @class ApprovalEmails
- */
+/** manager approval email template */
 class ApprovalEmail {
   /**
    * Template for rejecting or accepting requests
    * @param {string} reason
    * @param {object} requester
    * @param {string} unsubscribeUrl
-   *  @returns {object} email to be sent
+   * @returns {object} email to be sent
    */
   static rejectAcceptRequestTemplate(reason, requester, unsubscribeUrl) {
     const html = `

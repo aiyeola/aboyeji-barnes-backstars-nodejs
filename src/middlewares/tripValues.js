@@ -1,5 +1,6 @@
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-restricted-syntax */
+import moment from 'moment';
 import Response from '../utils/response';
 import locationService from '../services/locationService';
 import AccommodationService from '../services/accommodationService';
@@ -57,7 +58,7 @@ class TripValues {
         name: name.toUpperCase()
       });
       if (!accommodation) {
-        return Response.notFoundError(res, 'accommodation doesnot exist');
+        return Response.notFoundError(res, "Accommodation doesn't exist");
       }
       if (accommodation.status !== 'Available') {
         return Response.notFoundError(
@@ -88,8 +89,39 @@ class TripValues {
    * @returns {object} the request object
    */
   static async isValidDates(req, res, next) {
-    console.log('req.body', req.body);
-    console.log('req.user', req.user);
+    const { returnDate } = req.body;
+    const travelDates = req.body.to.map((trip) => trip.travelDate);
+    if (moment().isAfter(travelDates[0]) === true) {
+      return Response.badRequestError(
+        res,
+        'Travel Dates have to be greater than today'
+      );
+    }
+
+    if (returnDate !== undefined) {
+      if (
+        moment(travelDates[travelDates.length - 1]).isAfter(returnDate) === true
+      ) {
+        return Response.badRequestError(
+          res,
+          'Return Date has to be greater than travel date'
+        );
+      }
+    }
+
+    if (travelDates.length > 1) {
+      for (let date = 0; date < travelDates.length - 1; date += 1) {
+        if (moment(travelDates[date]).isAfter(travelDates[date + 1]) === true) {
+          return Response.badRequestError(
+            res,
+            'The travel dates have to be greater'
+          );
+        }
+      }
+    }
+
+    req.body.travelDates = travelDates;
+    next();
   }
 }
 export default TripValues;

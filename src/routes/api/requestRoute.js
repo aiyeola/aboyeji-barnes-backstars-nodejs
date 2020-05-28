@@ -1,26 +1,15 @@
 import express from 'express';
 import Requests from '../../controllers/requestController';
+import Comments from '../../controllers/commentController';
 import RequestValidation from '../../validation/requestValidation';
+import CommentValidation from '../../validation/commentValidation';
 import verify from '../../middlewares/auth';
 import Access from '../../middlewares/userRoles';
 import method from '../../utils/method';
 import profileAutofill from '../../middlewares/getProfileInfo';
 import tripValues from '../../middlewares/tripValues';
-// import Emitter from '../../utils/eventEmitter';
 
 const router = express.Router();
-// router.get('/emit', (req, res) => {
-//   const dataValues = {
-//     name: 'victor'
-//   };
-//   // event listener
-//   Emitter.on('connect', (dataValues) => console.log('event fired', dataValues));
-
-//   // Init event
-//   Emitter.emit('connect', dataValues);
-
-//   res.end();
-// });
 
 router.route('/my-requests').get(verify, Requests.getMyRequests).all(method);
 
@@ -115,5 +104,41 @@ router
   .route('/trip-stats')
   .post(verify, RequestValidation.statistics, Requests.statistics)
   .all(method);
+
+router
+  .route('/:id/comments')
+  .post(
+    verify,
+    CommentValidation.addComment,
+    Access.isOwnerOrManager,
+    Comments.addComment
+  );
+
+router
+  .route('/:id/comments')
+  .get(
+    verify,
+    CommentValidation.getComments,
+    Access.isOwnerOrManager,
+    Comments.getCommentsByRequests
+  );
+
+router
+  .route('/comments/:id')
+  .put(
+    verify,
+    CommentValidation.updateComment,
+    Access.isOwnerOrManager,
+    Comments.updateComment
+  );
+
+router
+  .route('/comments/:id')
+  .delete(
+    verify,
+    CommentValidation.deleteComment,
+    Access.isOwnerOrManager,
+    Comments.deleteComment
+  );
 
 export default router;

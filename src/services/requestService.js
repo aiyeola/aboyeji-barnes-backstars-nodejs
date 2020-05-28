@@ -1,6 +1,12 @@
 import database from '../database/models';
 
-const { Requests, Accommodations, AccommodationRequests, Rooms } = database;
+const {
+  Requests,
+  Accommodations,
+  AccommodationRequests,
+  Rooms,
+  Location
+} = database;
 
 /** Class representing Request services. */
 class RequestService {
@@ -64,6 +70,85 @@ class RequestService {
         { where: { id: requestId } }
       );
       return request;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  /**
+   * Get requests by user
+   * @param {string} request to be created
+   * @param {Array} accommodation to array of accommodations
+   * @return {object} Object of request if found
+   */
+  static async addRequest(request, accommodation) {
+    try {
+      const newRequest = await Requests.create(request);
+      await newRequest.addAccommodation(accommodation);
+
+      return await Requests.findByPk(newRequest.id, {
+        include: [
+          {
+            model: Accommodations,
+            as: 'accommodations',
+            attributes: ['id', 'name', 'status', 'imageUrl', 'locationId'],
+            include: [
+              {
+                model: Location
+              }
+            ]
+          }
+        ]
+      });
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  /**
+   * Update a user's request
+   * @param {string} data - request object.
+   * @param {number} id - id of the request.
+   * @returns {object} object of updated request
+   */
+  static async updateRequest(data, id) {
+    try {
+      const result = await Requests.update(
+        { ...data },
+        {
+          where: { id },
+          returning: true
+        }
+      );
+
+      if ('accommodations' in data || 'to' in data) {
+        await AccommodationRequests.destroy({
+          where: [{ requestId: id }]
+        });
+        const accommodations = [];
+        data.accommodations.map(async (elem) => {
+          const accommodation = {
+            requestId: result[1][0].dataValues.id,
+            accommodationId: elem
+          };
+          accommodations.push(accommodation);
+        });
+        await AccommodationRequests.bulkCreate(accommodations);
+        return await Requests.findByPk(result[1][0].dataValues.id, {
+          include: [
+            {
+              model: Accommodations,
+              as: 'accommodations',
+              attributes: ['id', 'name', 'status', 'imageUrl', 'locationId'],
+              include: [
+                {
+                  model: Location
+                }
+              ]
+            }
+          ]
+        });
+      }
     } catch (error) {
       throw error;
     }

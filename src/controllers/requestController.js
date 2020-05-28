@@ -1,13 +1,13 @@
 /* eslint-disable operator-linebreak */
+import moment from 'moment';
+import { Op } from 'sequelize';
 import RequestService from '../services/requestService';
 import Response from '../utils/response';
 import UserService from '../services/userService';
 import Email from '../utils/mails/email';
 import ApprovalEmail from '../utils/mails/approval.email';
-// import UpdateEmail from '../utils/mails/update.email';
+import UpdateEmail from '../utils/mails/update.email';
 // import Emitter from '../utils/eventEmitters/emitter';
-// import moment from 'moment';
-// import { Op } from 'sequelize';
 
 /** Class that handles requests */
 class RequestController {
@@ -172,7 +172,7 @@ class RequestController {
    * @param {object} req request
    * @param {object} res response
    * @param {object} next response
-   * @return {function} requests
+   * @return {object} custom response
    */
   static async deleteRequest(req, res, next) {
     try {
@@ -194,7 +194,7 @@ class RequestController {
    * @param {object} req request
    * @param {object} res response
    * @param {object} next next middleware
-   * @return {object} response object
+   * @return {object} custom response
    */
   static async getPendingApprovals(req, res, next) {
     try {
@@ -209,21 +209,144 @@ class RequestController {
     }
   }
 
-  // eslint-disable-next-line require-jsdoc
+  /** Edit a user request
+   * @param {object} req request
+   * @param {object} res response
+   * @param {object} next next middleware
+   * @return {object} custom response
+   */
   static async EditRequest(req, res, next) {
-    console.log('req.body', req.body);
-    console.log('req.user', req.user);
+    // user can update travel date and reason for their trip request
+    const {
+      body: { travelDates, reason },
+      params: { id }
+    } = req;
+    try {
+      const formattedData = {
+        ...req.body,
+        travelDate: travelDates,
+        reason: reason.trim()
+      };
+
+      const data = await RequestService.updateRequest(formattedData, id);
+      const roleDetails = await UserService.findUser({ userRoles: 'Manager' });
+      const request = data.dataValues;
+      request.manager = roleDetails.dataValues.userEmail;
+      request.user = req.user.firstName;
+      if (roleDetails.emailAllowed) {
+        const unsubscribeUrl = Email.unsubscribeUrl({
+          userEmail: roleDetails.userEmail
+        });
+        const header = Email.header({
+          to: roleDetails.dataValues.userEmail,
+          subject: 'Barnes Update Notification'
+        });
+        const msg = UpdateEmail.updateTemplate({ ...data, unsubscribeUrl });
+        await Email.sendMail(res, header, msg);
+      }
+      return Response.customResponse(
+        res,
+        200,
+        'Update has been completed successfully',
+        data
+      );
+    } catch (error) {
+      next(error);
+    }
   }
 
-  // eslint-disable-next-line require-jsdoc
+  /** Manages trips: one way, return & multi trips
+   * @param {object} req request object
+   * @param {object} res response object
+   * @param {object} next next middleware
+   * @return {object} custom response
+   */
   static async trip(req, res, next) {
-    console.log('req.body', req.body);
-    console.log('req.user', req.user);
+    const {
+      body: {
+        from,
+        travelDates,
+        gender,
+        passportNumber,
+        passportName,
+        role,
+        reason,
+        returnDate,
+        accommodations
+      },
+      user: { id }
+    } = req;
+    try {
+      const request = await RequestService.findRequest({
+        from: from.toUpperCase(),
+        travelDate: travelDates,
+        userId: id
+      });
+      if (request) {
+        return Response.conflictError(res, 'Request already exists');
+      }
+
+      const oneWay = {
+        from: from.toUpperCase(),
+        travelDate: travelDates,
+        reason: reason.trim(),
+        userId: id,
+        gender,
+        passportNumber,
+        passportName,
+        role
+      };
+
+      const bothRequests = { ...oneWay, returnDate };
+
+      const response = await RequestService.addRequest(
+        bothRequests,
+        accommodations
+      );
+      return Response.customResponse(
+        res,
+        200,
+        'Your request has been forwarded successfully',
+        response
+      );
+    } catch (error) {
+      next(error);
+    }
   }
 
-  // eslint-disable-next-line require-jsdoc
+  /** Get statistics of approved requests
+   * @param {object} req request object
+   * @param {object} res response object
+   * @param {object} next next middleware
+   * @return {object} custom response
+   */
   static async statistics(req, res, next) {
-    return Response.customResponse(res, 200);
+    const {
+      body: { parameter, value },
+      user: { id }
+    } = req;
+    try {
+      const params = {
+        travelDate: {
+          [Op.gte]: [moment().subtract(value, parameter).format('YYYY-MM-DD')],
+          [Op.lt]: [moment().format('YYYY-MM-DD')]
+        },
+        status: 'Approved',
+        userId: id
+      };
+      const data = await RequestService.findRequests(params);
+      return Response.customResponse(
+        res,
+        200,
+        'Trip statistics successfully retrieved',
+        {
+          total: data.length,
+          trips: data
+        }
+      );
+    } catch (error) {
+      next(error);
+    }
   }
 }
 
