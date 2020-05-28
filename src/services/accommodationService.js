@@ -65,7 +65,7 @@ class accommodationService {
   }
 
   /**
-  //Get all rooms for all accommodations
+   * Get all rooms
    * @param {id} room - room id.
    * @returns {object} - rooms data
    */

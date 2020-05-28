@@ -5,6 +5,7 @@ import locationRoutes from './locationRoutes';
 import profileRoutes from './userProfileRoutes';
 import bookingRoute from './bookingRoute';
 import requestRoute from './requestRoute';
+import roomRoute from './roomRoute';
 
 const router = Router();
 
@@ -14,5 +15,6 @@ router.use('/locations', locationRoutes);
 router.use('/profile', profileRoutes);
 router.use('/booking', bookingRoute);
 router.use('/requests', requestRoute);
+router.use('/rooms', roomRoute);
 
 export default router;
