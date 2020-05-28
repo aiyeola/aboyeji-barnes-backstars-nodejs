@@ -1,5 +1,6 @@
 import Joi from '@hapi/joi';
 import Schema from './schema';
+import BookingSchema from './schema/booking';
 import validator from '../utils/validator';
 
 /** Validates Booking Input  */
@@ -11,16 +12,12 @@ export default class bookingValidator {
    * @param {object} next - next middleware
    * @returns {object} validation schema
    */
-  static async bookingVal(req, res, next) {
+  static async booking(req, res, next) {
     const schema = Joi.object().keys({
-      requestId: Schema.number,
-      roomId: Schema.number,
-      checkIn: Schema.date,
-      checkOut: Schema.date,
-      createdAt: Schema.date,
-      updatedAt: Schema.date
+      ...BookingSchema,
+      id: Schema.id
     });
-    validator(schema, req.body, res, next);
+    validator(schema, { ...req.body, ...req.params }, res, next);
   }
 
   /**
@@ -30,11 +27,10 @@ export default class bookingValidator {
    * @param {object} next - next middleware
    * @returns {object} validation schema
    */
-  static async bookingQuery(req, res, next) {
+  static async cancel(req, res, next) {
     const schema = Joi.object().keys({
-      requestId: Schema.number,
-      roomId: Schema.number
+      id: Schema.id
     });
-    validator(schema, req.body, res, next);
+    validator(schema, req.params, res, next);
   }
 }

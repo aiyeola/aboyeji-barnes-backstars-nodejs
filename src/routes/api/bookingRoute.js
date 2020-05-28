@@ -1,18 +1,29 @@
 import express from 'express';
 import BookingController from '../../controllers/bookingController';
-import bookingValidator from '../../validation/bookValidation';
+import BookingValidator from '../../validation/bookingValidation';
+import verify from '../../middlewares/auth';
+import Valid from '../../middlewares/validBooking';
 import method from '../../utils/method';
 
 const router = express.Router();
-router.route('/').get(BookingController.getAllBookings).all(method);
 
 router
-  .route('/createbooking')
-  .post(bookingValidator.bookingVal, BookingController.createBooking)
+  .route('/:id')
+  .post(
+    verify,
+    BookingValidator.booking,
+    Valid.isRequestValid,
+    Valid.isAccommodationInLocation,
+    Valid.isValidRoom,
+    Valid.validCheckInOut,
+    Valid.isRoomFree,
+    BookingController.bookRooms
+  )
   .all(method);
 
-router.route('/:id').get(BookingController.findBooking).all(method);
+router
+  .route('/cancel/:id')
+  .post(verify, BookingValidator.cancel, BookingController.cancelBooking)
+  .all(method);
 
-router.route('/update/:id').patch(BookingController.updateBooking).all(method);
-router.route('/delete/:id').delete(BookingController.deleteBooking).all(method);
 export default router;

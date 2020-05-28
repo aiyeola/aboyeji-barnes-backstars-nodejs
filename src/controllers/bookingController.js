@@ -1,113 +1,78 @@
-/* eslint-disable class-methods-use-this */
-/* eslint-disable require-jsdoc */
-/* eslint-disable valid-jsdoc */
 import Response from '../utils/response';
-import bookingService from '../services/bookingService';
+import BookingService from '../services/bookingService';
+import RequestService from '../services/requestService';
 
-/** Class that handles user */
+/** Class that handles booking */
 class BookingController {
   /**
-   
-   * @param {object} req - request object
-   * @param {object} res - response object
-   * @param {function} next - next middleware function
-   * @returns {object} response object
+   * user can book rooms
+   * @param {object} req request object
+   * @param {object} res response object
+   * @param {object} next next middleware
+   * @returns {object} custom response
    */
-  async createBooking(req, res, next) {
-    const rawData = req.body;
+  static async bookRooms(req, res, next) {
+    const {
+      body: { rooms, checkIn, checkOut },
+      params: { id }
+    } = req;
     try {
-      const data = await bookingService.createBooking(rawData);
+      const books = [];
+      for (let count = 0; count < rooms.length; count += 1) {
+        books.push({
+          requestId: id,
+          roomId: rooms[count],
+          checkIn: checkIn[count],
+          checkOut: checkOut[count]
+        });
+      }
+      // set the request to booked
+      await RequestService.markRequestAsBooked(id, true);
+
+      const data = await BookingService.createBooking(books);
       return Response.customResponse(
         res,
-        '201',
-        'Booking created successfully',
+        200,
+        'You have booked successfully',
         data
       );
     } catch (error) {
-      return next(error);
-    }
-  }
-
-  async getAllBookings(req, res, next) {
-    try {
-      const data = await bookingService.getAllBookings();
-      return Response.customResponse(res, '200', 'Query Successfully', data);
-    } catch (error) {
-      return next(error);
+      next(error);
     }
   }
 
   /**
-   * @param {object} req - request object
-   * @param {object} res - response object
-   * @param {function} next - next middleware function
-   * @returns {object} response object
+   * user can cancel room bookings
+   * @param {object} req request object
+   * @param {object} res response object
+   * @param {object} next next middleware
+   * @returns {object} custom response
    */
-  async findBooking(req, res, next) {
-    const requestId = parseInt(req.params.id);
-    console.log('*************************************', requestId);
+  static async cancelBooking(req, res, next) {
+    const {
+      params: { id },
+      user: { id: userId }
+    } = req;
     try {
-      const data = await bookingService.findBooking(requestId);
-      if (data == null) {
-        return Response.notFoundError(res, 'data not found');
-      } else {
-        return Response.customResponse(res, '200', 'Query Successful', data);
+      const reqId = parseInt(id, 10);
+      const request = await RequestService.findRequest({ id: reqId });
+      if (!request) {
+        return Response.notFoundError(res, 'Request does not exist');
       }
+      if (request.userId !== userId) {
+        return Response.authorizationError(res, "You don't own this request");
+      }
+      await RequestService.updateRequest({ booked: false }, reqId);
+      await BookingService.cancelBooking({ requestId: reqId });
+      return Response.customResponse(
+        res,
+        200,
+        'Booking cancelled successfully'
+      );
     } catch (error) {
-      return next(error);
+      next(error);
     }
   }
-  /**
-   * @param {object} req - request object
-   * @param {object} res - response object
-   * @param {function} next - next middleware function
-   * @returns {object} response object
-   */
-  async updateBooking(req, res, next) {
-    const id = parseInt(req.params.id);
-    const rawData = req.body;
-    try {
-      const data = await bookingService.updateBooking(id, rawData);
-      if (data == null) {
-        return Response.notFoundError(res, 'data not found');
-      } else {
-        return Response.customResponse(
-          res,
-          '201',
-          'Booking updated Successfully',
-          data
-        );
-      }
-    } catch (error) {
-      return next(error);
-    }
-  }
-
-  async deleteBooking(req, res, next) {
-    const id = parseInt(req.params.id);
-    const rawData = req.body;
-    try {
-      const data = await bookingService.deleteBooking(id, rawData);
-      if (data == 0) {
-        return Response.notFoundError(res, 'data not found');
-      } else {
-        return Response.customResponse(
-          res,
-          '200',
-          'Booking deleted Successfully',
-          data
-        );
-      }
-    } catch (error) {
-      return next(error);
-    }
-  }
-  /**
-   * @param {object} req - request object
-   * @param {object} res - response object
-   * @param {function} next - next middleware function
-   * @returns {object} response object
-   */
 }
 
-export default new BookingController();
+export default BookingController;

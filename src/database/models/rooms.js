@@ -1,4 +1,4 @@
-module.exports = (sequelize, DataTypes) => {
+export default (sequelize, DataTypes) => {
   const Rooms = sequelize.define(
     'Rooms',
     {
@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
       type: { type: DataTypes.STRING, allowNull: false },
       accommodationId: { type: DataTypes.INTEGER, allowNull: false },
       status: {
-        type: DataTypes.BOOLEAN,
+        type: DataTypes.STRING,
         allowNull: false,
         defaultValue: 'Available',
         validate: {

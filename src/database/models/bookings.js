@@ -5,11 +5,19 @@ module.exports = (sequelize, DataTypes) => {
     {
       requestId: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+          model: 'Requests',
+          key: 'id'
+        }
       },
       roomId: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+          model: 'Rooms',
+          key: 'id'
+        }
       },
 
       checkIn: {

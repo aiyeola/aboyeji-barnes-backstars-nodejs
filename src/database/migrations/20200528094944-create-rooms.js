@@ -1,5 +1,4 @@
-/* eslint-disable */
-module.exports = {
+export default {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('Rooms', {
       id: {
@@ -18,7 +17,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       status: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.STRING
       },
       price: {
         type: Sequelize.FLOAT

@@ -101,7 +101,7 @@ class accommodationService {
    */
   static async getRoom(params) {
     try {
-      const room = await Room.findOne({
+      const room = await Rooms.findOne({
         where: params
       });
       return room;

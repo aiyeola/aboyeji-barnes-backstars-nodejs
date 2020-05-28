@@ -42,13 +42,13 @@ class RequestService {
   static async findRequest(params) {
     try {
       const requests = await Requests.findOne({
-        where: params
-        // include: [
-        //   {
-        //     model: Accommodations,
-        //     as: 'accommodations'
-        //   }
-        // ]
+        where: params,
+        include: [
+          {
+            model: Accommodations,
+            as: 'accommodations'
+          }
+        ]
       });
 
       return requests;
@@ -165,6 +165,20 @@ class RequestService {
         where: [{ id }]
       });
       return deleted;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  /**
+   * marks a request as booked
+   * @param {number} id id of the request
+   * @param {string} booked is the status
+   * @returns {object} object or updated request
+   */
+  static async markRequestAsBooked(id, booked) {
+    try {
+      return Requests.update({ booked }, { where: { id } });
     } catch (error) {
       throw error;
     }
