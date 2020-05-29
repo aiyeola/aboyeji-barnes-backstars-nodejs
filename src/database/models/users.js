@@ -85,10 +85,14 @@ export default (sequelize, DataTypes) => {
     Users.hasOne(models.ProfilePictures, {
       foreignKey: 'userId'
     });
+    Users.hasMany(models.Comments, {
+      foreignKey: 'userId'
+    });
+    Users.hasMany(models.Notifications, {
+      foreignKey: 'userId',
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE'
+    });
   };
   return Users;
 };
-
-// notifications
-// chat
-// comment

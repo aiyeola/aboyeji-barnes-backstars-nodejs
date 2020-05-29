@@ -17,7 +17,10 @@ export default (sequelize, DataTypes) => {
     {}
   );
   UserProfile.associate = (models) => {
-    // associations can be defined here
+    UserProfile.belongsTo(models.Users, {
+      foreignKey: 'userId',
+      onDelete: 'CASCADE'
+    });
   };
   return UserProfile;
 };

@@ -19,6 +19,7 @@ const getProfileInfo = (req, res, next) => {
     };
   }
   req.body.role = userRoles;
+
   next();
 };
 

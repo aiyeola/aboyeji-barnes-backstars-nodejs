@@ -1,5 +1,6 @@
 import Response from '../utils/response';
 import RequestService from '../services/requestService';
+import NotificationService from '../services/notificationService';
 
 /** Class representing a user role */
 class Access {
@@ -14,7 +15,7 @@ class Access {
     if (req.user.userRoles !== 'Super Administrator') {
       return Response.authorizationError(
         res,
-        "You don't have rights to complete this operation"
+        "You don't have access rights to complete this operation"
       );
     }
     next();
@@ -50,7 +51,7 @@ class Access {
     if (req.user.userRoles !== 'Requester') {
       return Response.authorizationError(
         res,
-        "You don't have rights to complete this operation"
+        "You don't have access rights to complete this operation"
       );
     }
     next();
@@ -88,7 +89,7 @@ class Access {
     if (req.user.userRoles !== 'Manager' && req.params.id !== request.user) {
       return Response.authorizationError(
         res,
-        "You don't have thr rights to complete this operation"
+        "You don't have the rights to complete this operation"
       );
     }
     next();
@@ -96,7 +97,7 @@ class Access {
 
   /**
    * Checks if the user is the owner.
-   *@param {object} req - request object
+   * @param {object} req - request object
    * @param {object} res - response object
    * @param {object} next - next middleware
    * @returns {object} response
@@ -123,6 +124,38 @@ class Access {
         res,
         "You can't edit/delete a request that has either been rejected or Approved"
       );
+    }
+    next();
+  }
+
+  /**
+   * Checks if the user is the notification owner or manager.
+   * @param {object} req - request object
+   * @param {object} res - response object
+   * @param {object} next - next middleware
+   * @returns {object} response
+   */
+  static async isNotificationOwner(req, res, next) {
+    const {
+      query: { id },
+      user: { id: userId }
+    } = req;
+    if (id) {
+      const data = await NotificationService.getNotifications({
+        id
+      });
+      if (data.notifications.length === 0) {
+        return Response.notFoundError(
+          res,
+          'Please use a valid notification ID'
+        );
+      }
+      if (userId !== data.notifications[0].dataValues.userId) {
+        return Response.authorizationError(
+          res,
+          "You can't mark this notification as read"
+        );
+      }
     }
     next();
   }

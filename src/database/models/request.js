@@ -96,6 +96,13 @@ export default (sequelize, DataTypes) => {
       foreignKey: 'requestId',
       onDelete: 'CASCADE'
     });
+    Requests.hasMany(models.Comments, {
+      foreignKey: 'requestId'
+    });
+    Requests.hasMany(models.Notifications, {
+      foreignKey: 'requestId',
+      onDelete: 'CASCADE'
+    });
   };
   return Requests;
 };
