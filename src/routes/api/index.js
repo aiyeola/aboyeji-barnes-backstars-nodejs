@@ -8,6 +8,7 @@ import requestRoute from './requestRoute';
 import roomRoute from './roomRoute';
 import searchRouter from './searchRoute';
 import notificationRouter from './notificationRouter';
+import chatRouter from './chatRouter';
 
 const router = Router();
 
@@ -20,5 +21,6 @@ router.use('/requests', requestRoute);
 router.use('/rooms', roomRoute);
 router.use('/search', searchRouter);
 router.use('/notifications', notificationRouter);
+router.use('/chat', chatRouter);
 
 export default router;

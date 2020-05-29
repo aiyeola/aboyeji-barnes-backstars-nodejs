@@ -93,6 +93,9 @@ export default (sequelize, DataTypes) => {
       onDelete: 'CASCADE',
       onUpdate: 'CASCADE'
     });
+    Users.hasMany(models.Chats, {
+      foreignKey: 'userId'
+    });
   };
   return Users;
 };
