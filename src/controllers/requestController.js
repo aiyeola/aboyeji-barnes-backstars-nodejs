@@ -7,7 +7,7 @@ import UserService from '../services/userService';
 import Email from '../utils/mails/email';
 import ApprovalEmail from '../utils/mails/approval.email';
 import UpdateEmail from '../utils/mails/update.email';
-// import Emitter from '../utils/eventEmitters/emitter';
+import Emitter from '../utils/eventEmitter';
 
 /** Class that handles requests */
 class RequestController {
@@ -231,6 +231,7 @@ class RequestController {
       const data = await RequestService.updateRequest(formattedData, id);
       const roleDetails = await UserService.findUser({ userRoles: 'Manager' });
       const request = data.dataValues;
+      await Emitter.emit('request edited', request);
       request.manager = roleDetails.dataValues.userEmail;
       request.user = req.user.firstName;
       if (roleDetails.emailAllowed) {

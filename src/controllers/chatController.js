@@ -24,7 +24,7 @@ class ChatController {
         message
       };
       const newMessage = await ChatService.saveMessage(data);
-      //   await Emitter.emit('new chat', newMessage.dataValues);
+      await Emitter.emit('new chat', newMessage.dataValues);
       return Response.customResponse(
         res,
         201,

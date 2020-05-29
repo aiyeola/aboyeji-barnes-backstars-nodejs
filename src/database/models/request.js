@@ -1,3 +1,5 @@
+import Emitter from '../../utils/eventEmitter';
+
 export default (sequelize, DataTypes) => {
   const Requests = sequelize.define(
     'Requests',
@@ -104,5 +106,20 @@ export default (sequelize, DataTypes) => {
       onDelete: 'CASCADE'
     });
   };
+
+  Requests.afterCreate(({ dataValues }) => {
+    Emitter.emit('request created', dataValues);
+  });
+
+  Requests.afterBulkUpdate((data) => {
+    data.individualHooks = true;
+    sequelize
+      .query(`SELECT * FROM "Requests" WHERE id = ${data.where.id}`, {
+        type: sequelize.QueryTypes.SELECT
+      })
+      .then((request) => {
+        Emitter.emit('request update', request[0]);
+      });
+  });
   return Requests;
 };

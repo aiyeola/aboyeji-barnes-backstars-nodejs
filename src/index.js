@@ -10,6 +10,8 @@ import errorhandler from 'errorhandler';
 import morgan from 'morgan';
 import routes from './routes';
 import logger from './utils/logger';
+import socket from './utils/chat/socket';
+import notifications from './utils/notifications';
 
 dotenv.config();
 const isProduction = process.env.NODE_ENV === 'production';
@@ -26,6 +28,9 @@ app.use(bodyParser.json());
 if (!isProduction) {
   app.use(errorhandler());
 }
+
+// Running all event listeners
+notifications();
 
 app.use(routes);
 const PORT = process.env.PORT || 4000;
@@ -56,6 +61,10 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
+const server = app.listen(PORT, () => {
+  console.log(`Server listening on port ${server.address().port}`);
+});
+
+socket.socketFunction.socketStartUp(server);
 
 export default { app };

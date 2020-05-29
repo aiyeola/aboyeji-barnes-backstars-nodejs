@@ -9,6 +9,7 @@ import VerifyEmail from '../utils/mails/verify.email';
 import ResetPasswordEmail from '../utils/mails/resetPassword.email';
 import SupplierEmail from '../utils/mails/supplier.email';
 import { FRONTEND_URL } from '../config';
+import Emitter from '../utils/eventEmitter';
 
 /** Class that handles user */
 class Users {
@@ -111,7 +112,7 @@ class Users {
         res.cookie('passportName', profileData.passportName);
         res.cookie('gender', profileData.gender);
       }
-
+      await Emitter.emit('new-user', user);
       return Response.customResponse(
         res,
         200,
@@ -165,6 +166,7 @@ class Users {
       message: 'Successfully logged in',
       data: token
     };
+    await Emitter.emit('new-user', data);
     const responseBuffer = Buffer.from(JSON.stringify(apiResponse));
     return res.redirect(
       `${FRONTEND_URL}/login?code=${responseBuffer.toString('base64')}`
