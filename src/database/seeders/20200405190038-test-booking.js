@@ -1,7 +1,8 @@
+/* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable no-unused-vars */
 export default {
-  up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert(
+  up: (queryInterface, Sequelize) =>
+    queryInterface.bulkInsert(
       'Bookings',
       [
         {
@@ -38,10 +39,8 @@ export default {
         }
       ],
       {}
-    );
-  },
+    ),
 
-  down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('Bookings', null, {});
-  }
+  down: (queryInterface, Sequelize) =>
+    queryInterface.bulkDelete('Bookings', null, {})
 };

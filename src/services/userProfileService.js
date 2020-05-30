@@ -12,13 +12,10 @@ class UserProfileService {
    */
   static async updateOrCreate(userId, profileData = null) {
     try {
-      // Find a profile by userId
       const profileFound = await UserProfile.findOne({ where: { userId } });
 
-      // Create one if not found
       if (!profileFound) await UserProfile.create({ userId });
 
-      // Update profile by userId
       const updatedProfile = await UserProfile.update(profileData, {
         where: { userId }
       });
@@ -49,16 +46,16 @@ class UserProfileService {
 
   /**
    * creates or updates user profile picture
-   * @param {number} user - user id
+   * @param {number} userId - user id
    * @param {object} data - profile picture data
    * @returns {object} updated profile picture
    */
-  static async updateOrCreatePicture(user, data) {
+  static async updateOrCreatePicture(userId, data) {
     try {
-      const profileFound = await ProfilePictures.findOne({ where: { user } });
-      if (!profileFound) await ProfilePictures.create({ user });
+      const profileFound = await ProfilePictures.findOne({ where: { userId } });
+      if (!profileFound) await ProfilePictures.create({ userId });
       const updatedProfile = await ProfilePictures.update(data, {
-        where: { user },
+        where: { userId },
         returning: true
       });
       return updatedProfile;
@@ -69,13 +66,13 @@ class UserProfileService {
 
   /**
    * gets user profile picture
-   * @param {number} user - user id
+   * @param {number} userId - user id
    * @returns {object} profile picture
    */
-  static async getPicture(user) {
+  static async getPicture(userId) {
     try {
       return await ProfilePictures.findOne({
-        where: { user }
+        where: { userId }
       });
     } catch (error) {
       throw error;

@@ -37,7 +37,7 @@ class ChatController {
   }
 
   /**
-   * gets all comments by request
+   * gets all chat messages
    * @param {object} req request object
    * @param {object} res response object
    * @param {object} next next middleware

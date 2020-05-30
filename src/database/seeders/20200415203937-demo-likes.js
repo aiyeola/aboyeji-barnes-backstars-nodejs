@@ -1,7 +1,8 @@
-/* eslint-disable*/
-module.exports = {
-  up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert(
+/* eslint-disable implicit-arrow-linebreak */
+/* eslint-disable no-unused-vars */
+export default {
+  up: (queryInterface, Sequelize) =>
+    queryInterface.bulkInsert(
       'Likes',
       [
         {
@@ -12,22 +13,32 @@ module.exports = {
         },
         {
           userId: 1,
-          accommodationId: 1,
+          accommodationId: 2,
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           userId: 3,
-          accommodationId: 1,
+          accommodationId: 4,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          userId: 4,
+          accommodationId: 4,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          userId: 3,
+          accommodationId: 3,
           createdAt: new Date(),
           updatedAt: new Date()
         }
       ],
       {}
-    );
-  },
+    ),
 
-  down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('Likes', null, {});
-  }
+  down: (queryInterface, Sequelize) =>
+    queryInterface.bulkDelete('Likes', null, {})
 };

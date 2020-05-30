@@ -1,10 +1,8 @@
 /* eslint-disable class-methods-use-this */
-import { Sequelize } from 'sequelize';
+import { Op } from 'sequelize';
 import Response from '../utils/response';
 import RequestService from '../services/requestService';
 import Search from '../utils/search';
-
-const { Op } = Sequelize;
 
 /** Class that handles searching requests */
 class SearchController {

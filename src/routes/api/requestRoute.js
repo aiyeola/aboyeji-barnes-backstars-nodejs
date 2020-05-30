@@ -3,11 +3,11 @@ import Requests from '../../controllers/requestController';
 import Comments from '../../controllers/commentController';
 import RequestValidation from '../../validation/requestValidation';
 import CommentValidation from '../../validation/commentValidation';
-import verify from '../../middlewares/auth';
-import Access from '../../middlewares/userRoles';
-import method from '../../utils/method';
 import profileAutofill from '../../middlewares/getProfileInfo';
 import tripValues from '../../middlewares/tripValues';
+import Access from '../../middlewares/userRoles';
+import verify from '../../middlewares/auth';
+import method from '../../utils/method';
 
 const router = express.Router();
 

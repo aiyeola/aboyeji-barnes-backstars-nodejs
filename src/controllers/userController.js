@@ -18,7 +18,7 @@ class Users {
    * @param {object} req -request object
    * @param {object} res - response object
    * @param {object} next - next middleware
-   * @returns {object} response
+   * @returns {object} custom response
    */
   async createUser(req, res, next) {
     const rawData = req.body;
@@ -73,7 +73,7 @@ class Users {
    * @param {object} req - request object
    * @param {object} res -response object
    * @param {object} next - next middleware
-   * @return {object} response
+   * @returns {object} custom response
    */
   async login(req, res, next) {
     try {

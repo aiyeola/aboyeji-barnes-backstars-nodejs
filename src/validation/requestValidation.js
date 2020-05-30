@@ -129,15 +129,16 @@ export default class requestValidator {
    * @returns {object} validation schema
    */
   static async multiCity(req, res, next) {
-    const schema = Joi.object().keys({
-      ...TripSchema,
-      returnDate: Schema.minDate.required(),
-      passportName: Schema.passportName.required(),
-      passportNumber: Schema.passportNumber.required(),
-      gender: Schema.gender,
-      role: Schema.string
-    });
-    // .options({ allowUnknown: false });
+    const schema = Joi.object()
+      .keys({
+        ...TripSchema,
+        returnDate: Schema.minDate.required(),
+        passportName: Schema.passportName.required(),
+        passportNumber: Schema.passportNumber.required(),
+        gender: Schema.gender,
+        role: Schema.string
+      })
+      .options({ allowUnknown: false });
     validator(schema, req.body, res, next);
   }
 }

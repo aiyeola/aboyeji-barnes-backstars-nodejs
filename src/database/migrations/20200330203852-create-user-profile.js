@@ -1,7 +1,8 @@
+/* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable no-unused-vars */
 export default {
-  up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('UserProfiles', {
+  up: (queryInterface, Sequelize) =>
+    queryInterface.createTable('UserProfiles', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -47,9 +48,6 @@ export default {
         allowNull: false,
         type: Sequelize.DATE
       }
-    });
-  },
-  down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('UserProfiles');
-  }
+    }),
+  down: (queryInterface, Sequelize) => queryInterface.dropTable('UserProfiles')
 };

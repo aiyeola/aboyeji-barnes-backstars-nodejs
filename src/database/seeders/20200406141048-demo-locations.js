@@ -1,11 +1,11 @@
+/* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable no-unused-vars */
-/* eslint-disable arrow-body-style */
 const createdAt = new Date();
 const updatedAt = new Date();
 
 export default {
-  up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert(
+  up: (queryInterface, Sequelize) =>
+    queryInterface.bulkInsert(
       'Locations',
       [
         {
@@ -34,8 +34,7 @@ export default {
         }
       ],
       {}
-    );
-  },
+    ),
 
   down: (queryInterface, Sequelize) =>
     queryInterface.bulkDelete('Locations', null, {})

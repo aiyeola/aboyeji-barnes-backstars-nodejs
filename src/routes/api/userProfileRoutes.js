@@ -12,7 +12,7 @@ router
   .route('/')
   .patch(verify, UserProfileValidation.checkUpdate, UserProfile.updateProfile);
 
-router.route('/').get(UserProfile.userProfile);
+router.route('/').get(verify, UserProfile.userProfile);
 
 router.route('/picture').patch(verify, UserProfile.updatePicture);
 

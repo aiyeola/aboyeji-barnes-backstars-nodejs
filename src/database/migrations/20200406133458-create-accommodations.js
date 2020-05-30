@@ -1,8 +1,8 @@
-/* eslint-disable arrow-body-style */
+/* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable no-unused-vars */
-module.exports = {
-  up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Accommodations', {
+export default {
+  up: (queryInterface, Sequelize) =>
+    queryInterface.createTable('Accommodations', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -44,9 +44,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
-    });
-  },
-  down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Accommodations');
-  }
+    }),
+  down: (queryInterface, Sequelize) =>
+    queryInterface.dropTable('Accommodations')
 };

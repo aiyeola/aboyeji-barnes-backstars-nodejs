@@ -1,3 +1,5 @@
+/* eslint-disable implicit-arrow-linebreak */
+/* eslint-disable no-unused-vars */
 export default {
   up: (queryInterface, Sequelize) =>
     queryInterface.createTable('Requests', {

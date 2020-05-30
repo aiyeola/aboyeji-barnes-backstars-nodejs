@@ -1,123 +1,122 @@
-/* eslint-disable*/
-module.exports = {
-  up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert(
+/* eslint-disable implicit-arrow-linebreak */
+/* eslint-disable no-unused-vars */
+export default {
+  up: (queryInterface, Sequelize) =>
+    queryInterface.bulkInsert(
       'Rooms',
       [
         {
-          name: 'VIRGINIA',
+          name: 'Virginia',
           type: '2bedroom',
           status: 'Available',
           accommodationId: 3,
-          price: 200,
+          price: 2000,
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
-          name: 'LEKKI',
+          name: 'Lekki',
           type: '2bedroom',
           status: 'Available',
           accommodationId: 1,
-          price: 200,
+          price: 2000,
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
-          name: 'MAITAMA',
+          name: 'Maitama',
           type: '1bedroom',
           status: 'Unavailable',
           accommodationId: 3,
-          price: 200,
+          price: 2000,
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
-          name: 'REST',
+          name: 'Rest',
           type: '2bedroom',
           status: 'Available',
           accommodationId: 3,
-          price: 200,
+          price: 2000,
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
-          name: 'SUNDOWN',
+          name: 'Sundown',
           type: '2bedroom',
           status: 'Available',
           accommodationId: 3,
-          price: 200,
+          price: 2000,
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
-          name: 'AIR',
+          name: 'Air',
           type: '2bedroom',
           status: 'Available',
           accommodationId: 1,
-          price: 200,
+          price: 2000,
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
-          name: 'CRUST',
+          name: 'Crust',
           type: '2bedroom',
           status: 'Available',
           accommodationId: 1,
-          price: 200,
+          price: 2000,
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
-          name: 'BRET',
+          name: 'Bret',
           type: '2bedroom',
           status: 'Available',
           accommodationId: 1,
-          price: 200,
+          price: 2000,
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
-          name: 'SPACE',
+          name: 'Space',
           type: '2bedroom',
           status: 'Available',
           accommodationId: 2,
-          price: 200,
+          price: 2000,
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
-          name: 'REDID',
+          name: 'Redid',
           type: '2bedroom',
           status: 'Available',
           accommodationId: 2,
-          price: 200,
+          price: 2000,
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
-          name: 'CROCS',
+          name: 'Crocs',
           type: '2bedroom',
           status: 'Available',
           accommodationId: 2,
-          price: 200,
+          price: 2000,
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
-          name: 'SPAN',
+          name: 'Span',
           type: '2bedroom',
           status: 'Available',
           accommodationId: 2,
-          price: 200,
+          price: 2000,
           createdAt: new Date(),
           updatedAt: new Date()
         }
       ],
       {}
-    );
-  },
+    ),
 
-  down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('Rooms', null, {});
-  }
+  down: (queryInterface, Sequelize) =>
+    queryInterface.bulkDelete('Rooms', null, {})
 };

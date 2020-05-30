@@ -21,6 +21,12 @@ const details = Joi.object().keys({
     .error(new Error('Enter id of destination'))
 });
 
+const room = Joi.object().keys({
+  name: Joi.string().alphanum().min(3).max(30).required(),
+  type: Joi.string().min(3).max(30).required(),
+  price: Joi.number().min(1).required()
+});
+
 export default {
   email: Joi.string()
     .email({
@@ -96,18 +102,38 @@ export default {
   idOptional: Joi.number().integer().min(1).optional(),
   to: Joi.array()
     .items(details)
-    .error(() => 'Enter correct destination details'),
+    .error(new Error('Enter correct destination details')),
   from: Joi.string()
     .trim()
     .regex(/^[a-zA-Z]+,\s[a-zA-Z]+$/)
     .optional()
     .min(2)
-    .error(() => 'Enter place of departure, "from" in City, Country format'),
+    .error(
+      new Error('Enter place of departure, "from" in City, Country format')
+    ),
   minDate: Joi.date()
     .min('now')
     .error(
       new Error(
         'Enter date of return in yyyy-mm-dd format greater than date of travel'
       )
-    )
+    ),
+  listArray: Joi.array()
+    .items(Joi.string().trim())
+    .single()
+    .error(new Error('pass in an array of amenities, must be strings')),
+  listArray2: Joi.array()
+    .items(Joi.string().trim())
+    .single()
+    .error(new Error('pass in an array of services, must be strings')),
+  rooms: Joi.array()
+    .items(room)
+    .required()
+    .error(new Error('Enter correct room details')),
+  rating: Joi.number()
+    .integer()
+    .required()
+    .min(1)
+    .max(5)
+    .error(new Error('rating must be number between 1 and 5'))
 };

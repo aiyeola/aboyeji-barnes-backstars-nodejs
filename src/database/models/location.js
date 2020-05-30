@@ -20,7 +20,6 @@ export default (sequelize, DataTypes) => {
     {}
   );
   Location.associate = (models) => {
-    // associations can be defined here
     Location.hasMany(models.Accommodations, {
       foreignKey: 'locationId',
       onDelete: 'CASCADE'

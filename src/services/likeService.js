@@ -5,69 +5,43 @@ const { Likes } = database;
 
 class likeService {
   /**
-   * Count the number of likes for a particular accommodation.
-   * @param {id} id - accommodation id to count.
-   * @returns {BigInt} - count of likes
+   * Gets comment by id.
+   * @param {object} like The id would be easier..
+   * @returns {object} The comment object.
    */
-  static async count(id) {
+  static async countLikes(like) {
     try {
-      const data = await Likes.count({ where: { accommodationId: id } });
-
-      return data;
+      return await Likes.count({
+        where: [like]
+      });
     } catch (error) {
       throw error;
     }
   }
+
   /**
    * Like an accommodation.
    * @param {object} id - accommodation object.
    * @returns {object} - accommodation liked
    */
-  static async like(id) {
-    id.status = true;
-    let data;
+  static async like(like) {
     try {
-      if (id.status == null) {
-        data = await Likes.create(id);
-      } else {
-        await Likes.update(
-          { status: id.status },
-          {
-            where: { userId: id.userId, accommodationId: id.accommodationId }
-          }
-        );
-        data = await Likes.findOne({
-          where: {
-            userId: id.userId,
-            accommodationId: id.accommodationId
-          }
-        });
-      }
-      return data;
+      return await Likes.create(like);
     } catch (error) {
       throw error;
     }
   }
+
   /**
    * Unlike an accommodation.
    * @param {object} id - accommodation object.
    * @returns {object} - accommodation unliked
    */
-  static async unlike(id) {
+  static async unlike(like) {
     try {
-      await Likes.update(
-        { status: false },
-        {
-          where: { userId: id.userId, accommodationId: id.accommodationId }
-        }
-      );
-      const data = await Likes.findOne({
-        where: {
-          userId: id.userId,
-          accommodationId: id.accommodationId
-        }
+      return await Likes.destroy({
+        where: [like]
       });
-      return data;
     } catch (error) {
       throw error;
     }

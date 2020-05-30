@@ -1,7 +1,8 @@
-/* eslint-disable */
-module.exports = {
-  up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Feedbacks', {
+/* eslint-disable implicit-arrow-linebreak */
+/* eslint-disable no-unused-vars */
+export default {
+  up: (queryInterface, Sequelize) =>
+    queryInterface.createTable('Feedbacks', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -25,9 +26,6 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
-    });
-  },
-  down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Feedbacks');
-  }
+    }),
+  down: (queryInterface, Sequelize) => queryInterface.dropTable('Feedbacks')
 };

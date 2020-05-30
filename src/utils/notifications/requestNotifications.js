@@ -1,5 +1,4 @@
 /* eslint-disable class-methods-use-this */
-/* eslint-disable require-jsdoc */
 import Emitter from '../eventEmitter';
 import UserService from '../../services/userService';
 import RequestService from '../../services/requestService';
@@ -10,7 +9,13 @@ import app from '../chat/socket';
 
 const { BASE_URL } = process.env;
 
+/** event listeners that trigger notifications */
 class Notifications {
+  /**
+   * function makes a notification object
+   * @param {object} request - request object
+   * @returns {object} notification object
+   */
   async makeNotification(request) {
     const { userId } = request;
     const manager = await UserService.findUser({ userRoles: 'Manager' });
@@ -48,6 +53,7 @@ class Notifications {
   }
 
   /**
+   * notification on request create event
    * @return {function} create notifications
    */
   async requestCreatedNotification() {
@@ -84,7 +90,7 @@ class Notifications {
   }
 
   /**
-   * works for both approve and reject
+   * notification on request update event
    * @return {function} create notifications
    */
   async requestUpdated() {
@@ -99,6 +105,7 @@ class Notifications {
   }
 
   /**
+   * notification on request edit event
    * @return {function} notifications
    */
   async requestEdited() {
@@ -113,7 +120,7 @@ class Notifications {
   }
 
   /**
-   * works for both approve and reject
+   * notification on new comment event
    * @return {function} create notifications
    */
   async newComment() {
@@ -158,6 +165,7 @@ class Notifications {
   }
 
   /**
+   * notification on new chat message event
    * @returns {object} chat
    */
   async newMessage() {

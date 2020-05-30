@@ -4,7 +4,6 @@ const {
   Requests,
   Accommodations,
   AccommodationRequests,
-  Rooms,
   Location,
   Users
 } = database;
@@ -19,14 +18,13 @@ class RequestService {
   static async findRequests(params) {
     try {
       const requests = await Requests.findAll({
-        where: params
-        // figure why this one is not working
-        // include: [
-        //   {
-        //     model: Accommodations,
-        //     as: 'accommodations'
-        //   }
-        // ]
+        where: params,
+        include: [
+          {
+            model: Accommodations,
+            as: 'accommodations'
+          }
+        ]
       });
 
       return requests;

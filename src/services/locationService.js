@@ -1,24 +1,9 @@
 import database from '../database/models';
 
-// console.log(database)
-const { Location } = database;
+const { Location, Accommodations } = database;
 
 /** Class representing LocationService */
 class LocationService {
-  /**
-   * Creates a new Location.
-   * @param {object} loc - location object.
-   * @returns {object} - created location object
-   */
-  static async createLocation(loc) {
-    try {
-      const newLocation = await Location.create(loc);
-      return newLocation;
-    } catch (error) {
-      throw error;
-    }
-  }
-
   /**
    * Gets location based on its id
    * @param {number} locationId location id should be an integer.
@@ -26,7 +11,6 @@ class LocationService {
    */
   static async getLocationById(locationId) {
     try {
-      // Find location based on primary key (id)
       const location = await Location.findByPk(locationId);
       return location;
     } catch (error) {
@@ -43,7 +27,7 @@ class LocationService {
       const result = await Location.findAll({
         include: [
           {
-            model: database.Accommodations
+            model: Accommodations
           }
         ]
       });
@@ -52,20 +36,6 @@ class LocationService {
       throw error;
     }
   }
-
-  // /**
-  //  * Search for location based on query parameters
-  //  * @param {object} query - query object
-  //  * @return {object} - location
-  //  */
-  // static async searchRequest(query) {
-  //   try {
-  //     const result = await Location.find({ where: { query } });
-  //     return result;
-  //   } catch (error) {
-  //     throw error;
-  //   }
-  // }
 }
 
 export default LocationService;

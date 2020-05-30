@@ -34,7 +34,7 @@ export default (sequelize, DataTypes) => {
     });
     Accommodations.hasMany(models.Rooms, {
       foreignKey: 'accommodationId',
-      as: 'room',
+      as: 'rooms',
       onDelete: 'CASCADE'
     });
     Accommodations.hasMany(models.Ratings, {

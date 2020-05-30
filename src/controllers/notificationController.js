@@ -3,11 +3,12 @@ import Response from '../utils/response';
 
 /** Class handling notifications */
 class Notifications {
-  /** user can get all notifications
+  /**
+   * user can get all notifications
    * @param {object} req -request object
    * @param {object} res - response object
    * @param {object} next - next middleware
-   * @returns {object} response
+   * @returns {object} custom response
    */
   static async getNotifications(req, res, next) {
     const { id: userId } = req.user;
@@ -27,10 +28,11 @@ class Notifications {
   }
 
   /**
+   * user can mark notification as read
    * @param {object} req -request object
    * @param {object} res - response object
    * @param {object} next - next middleware
-   * @returns {object} response
+   * @returns {object} custom response
    */
   static async markAsRead(req, res, next) {
     const {

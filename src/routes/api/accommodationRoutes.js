@@ -1,20 +1,28 @@
-/* eslint-disable */
 import express from 'express';
-import Rooms from '../../controllers/roomController';
 import Accommodation from '../../controllers/accommodationController';
 import Review from '../../controllers/reviewController';
 import method from '../../utils/method';
 import accommodationValidation from '../../validation/accommodationValidation';
-import likeValidation from '../../validation/likeValidation';
 import feedbackValidation from '../../validation/feedbackValidation';
 import ratingValidation from '../../validation/ratingValidation';
-import validateBooking from '../../middlewares/validBooking';
 import Access from '../../middlewares/userRoles';
 import verify from '../../middlewares/auth';
+
 const router = express();
 
 router
-  .route('/createroom')
+  .route('/')
+  .get(verify, Accommodation.getAccommodations)
+  .post(
+    verify,
+    Access.isAllowedUser,
+    accommodationValidation.validateAccommodation,
+    Accommodation.createAccommodation
+  )
+  .all(method);
+
+router
+  .route('/rooms')
   .post(
     verify,
     Access.isAllowedUser,
@@ -22,59 +30,37 @@ router
     Accommodation.createRoom
   )
   .all(method);
-router.route('/getrooms').get(verify, Rooms.getRooms).all(method);
-router.route('/getallrooms').get(verify, Rooms.getAllRooms).all(method);
-router
-  .route('/')
-  .get(Accommodation.getAccommodations)
-  .post(
-    verify,
-    Access.isAllowedUser,
-    validateBooking.isAccommodationInLocation,
-    accommodationValidation.validateAccommodation,
-    Accommodation.createAccommodation
-  )
-  .all(method);
-router.route('/:id').get(Accommodation.getAccommodationById).all(method);
 
 router
-  .route('/:id/ratings')
-  .post(
-    verify,
-    // Access.isRequester,
-    ratingValidation.validateRatingData,
-    Review.rateCenter
-  )
-  .all(method);
+  .route('/most-travelled-destination')
+  .get(verify, Accommodation.getMostTravelledDestination);
 
 router
-  .route('/:id/feedback')
-  .post(
+  .route('/:id')
+  .get(
     verify,
-    // Access.isRequester,
-    feedbackValidation.validateFeedbackData,
-    Review.addedFeedback
+    accommodationValidation.validateGetOneAccommodation,
+    Accommodation.getAccommodationById
   )
-  .get(Accommodation.getFeedback)
   .all(method);
 
 router
   .route('/:id/like')
   .patch(
     verify,
-    // Access.isRequester,
-    likeValidation.validateLikeData,
+    accommodationValidation.validateGetOneAccommodation,
     Accommodation.likeOrUnlike
   )
   .all(method);
 
 router
-  .route('/rooms/:id')
-  .patch(
-    verify,
-    accommodationValidation.validateRoomData,
-    Accommodation.updateRoom
-  )
+  .route('/:id/feedback')
+  .post(verify, feedbackValidation.validateFeedbackData, Review.addedFeedback)
+  .all(method);
+
+router
+  .route('/:id/ratings')
+  .post(verify, ratingValidation.validateRatingData, Review.rateCenter)
   .all(method);
 
 export default router;

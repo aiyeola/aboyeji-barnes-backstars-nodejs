@@ -1,4 +1,4 @@
-/* eslint-disable*/
+/* eslint-disable require-jsdoc */
 import database from '../database/models';
 
 const { Feedbacks, Ratings } = database;
@@ -19,16 +19,40 @@ class feedbackService {
   }
 
   /**
-   * @param {object} rating - rating object.
+   * @param {object} data - rating object.
    * @returns {object} - created rating object
    */
-  static async updateOrCreateRating(rating) {
+  static async updateOrCreateRating(data) {
     try {
-      //TODO- Check if rating exists for accommodationId and user
+      let rating = await this.getUserAccommodationRating(
+        data.userId,
+        data.accommodationId
+      );
 
-      const data = await Ratings.create(rating);
+      if (rating === null) return await Ratings.create(data);
 
-      return data;
+      rating = await Ratings.update(
+        { rating: data.rating },
+        { where: { id: rating.id } }
+      );
+      return rating;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  /**
+   * Get accommodation Rating by user.
+   * @param {id} userId user id.
+   * @param {id} accommodationId accommodation id.
+   * @returns {object} The rating object.
+   */
+  static async getUserAccommodationRating(userId, accommodationId) {
+    try {
+      const rating = await Ratings.findOne({
+        where: { userId, accommodationId }
+      });
+      return rating;
     } catch (error) {
       throw error;
     }

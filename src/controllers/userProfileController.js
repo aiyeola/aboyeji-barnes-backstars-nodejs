@@ -58,9 +58,9 @@ class UserProfileController {
       const { image } = req.files;
       const cloudFile = await upload(image.tempFilePath);
       req.body.url = cloudFile.url;
-      const user = req.user.id;
+      const { id: userId } = req.user;
       const response = await UserProfileService.updateOrCreatePicture(
-        user,
+        userId,
         req.body
       );
       return Response.customResponse(
@@ -83,8 +83,8 @@ class UserProfileController {
    */
   async getPicture(req, res, next) {
     try {
-      const user = req.user.id;
-      const response = await UserProfileService.getPicture(user);
+      const { id: userId } = req.user;
+      const response = await UserProfileService.getPicture(userId);
 
       return Response.customResponse(
         res,

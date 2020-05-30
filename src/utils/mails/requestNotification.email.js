@@ -1,6 +1,4 @@
-/**
- * @class Emails
- */
+/** request notification email template */
 class RequestNotification {
   /**
    * Generates request notification mail

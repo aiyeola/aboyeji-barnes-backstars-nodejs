@@ -1,5 +1,4 @@
-/* eslint-disable func-names */
-module.exports = (sequelize, DataTypes) => {
+export default (sequelize, DataTypes) => {
   const Likes = sequelize.define(
     'Likes',
     {
@@ -20,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     {}
   );
-  Likes.associate = function (models) {
+  Likes.associate = (models) => {
     Likes.belongsTo(models.Accommodations, {
       foreignKey: 'accommodationId',
       onDelete: 'CASCADE',

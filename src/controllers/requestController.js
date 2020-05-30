@@ -216,7 +216,6 @@ class RequestController {
    * @return {object} custom response
    */
   static async EditRequest(req, res, next) {
-    // user can update travel date and reason for their trip request
     const {
       body: { travelDates, reason },
       params: { id }

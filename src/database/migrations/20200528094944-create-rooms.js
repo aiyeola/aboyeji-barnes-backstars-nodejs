@@ -1,6 +1,8 @@
+/* eslint-disable implicit-arrow-linebreak */
+/* eslint-disable no-unused-vars */
 export default {
-  up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Rooms', {
+  up: (queryInterface, Sequelize) =>
+    queryInterface.createTable('Rooms', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -30,9 +32,6 @@ export default {
         allowNull: false,
         type: Sequelize.DATE
       }
-    });
-  },
-  down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Rooms');
-  }
+    }),
+  down: (queryInterface, Sequelize) => queryInterface.dropTable('Rooms')
 };

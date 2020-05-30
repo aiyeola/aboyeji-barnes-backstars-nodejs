@@ -82,7 +82,7 @@ class TripValues {
   }
 
   /**
-   * checks if Dates make sense
+   * checks if dates make sense
    * @param {object} req - request object
    * @param {object} res - response object
    * @param {object} next - next middleware
