@@ -4,7 +4,7 @@
   "main": "index.js",
   "author": "Aboyeji Clan",
   "engines": {
-    "node": "12.16.x",
+    "node": "12.17.x",
     "yarn": ">=1.15.2 || 1.22.x"
   },
   "scripts": {
