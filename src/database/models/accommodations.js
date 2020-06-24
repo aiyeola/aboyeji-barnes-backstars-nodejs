@@ -44,7 +44,7 @@ export default (sequelize, DataTypes) => {
     });
     Accommodations.hasMany(models.Likes, {
       foreignKey: 'accommodationId',
-      as: 'like',
+      as: 'likes',
       onDelete: 'CASCADE'
     });
     Accommodations.belongsTo(models.Location, {

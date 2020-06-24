@@ -82,9 +82,6 @@ export default (sequelize, DataTypes) => {
     Users.hasMany(models.Feedbacks, {
       foreignKey: 'userId'
     });
-    Users.hasOne(models.ProfilePictures, {
-      foreignKey: 'userId'
-    });
     Users.hasMany(models.Comments, {
       foreignKey: 'userId'
     });

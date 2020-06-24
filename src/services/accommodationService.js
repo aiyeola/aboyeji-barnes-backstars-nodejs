@@ -1,3 +1,4 @@
+import sequelize from 'sequelize';
 import database from '../database/models';
 
 const {
@@ -34,7 +35,65 @@ class accommodationService {
    */
   static async getAllAccommodations() {
     try {
-      const data = await Accommodations.findAll();
+      const data = await Accommodations.findAll({
+        subQuery: false,
+        group: [
+          'Accommodations.id',
+          'Location.id',
+          'likes.id',
+          'rating.id',
+          'rooms.id'
+        ],
+        attributes: [
+          'id',
+          'name',
+          'status',
+          'imageUrl',
+          'owner',
+          'locationId',
+          'description',
+          'mapLocations',
+          [
+            sequelize.fn('AVG', sequelize.col('rating.rating')),
+            'averageRating'
+          ],
+          [
+            sequelize.fn(
+              'CONCAT',
+              sequelize.col('Location.city'),
+              ', ',
+              sequelize.col('Location.country')
+            ),
+            'location'
+          ]
+        ],
+        include: [
+          {
+            model: Rooms,
+            as: 'rooms',
+            attributes: ['accommodationId']
+          },
+          {
+            model: Ratings,
+            as: 'rating',
+            attributes: [],
+            duplicating: false
+          },
+          {
+            model: Location,
+            as: 'Location',
+            attributes: [],
+            duplicating: false
+          },
+
+          {
+            model: Likes,
+            as: 'likes',
+            attributes: ['id']
+          }
+        ],
+        raw: false
+      });
       return data;
     } catch (error) {
       throw error;
@@ -53,20 +112,37 @@ class accommodationService {
         include: [
           {
             model: Rooms,
-            as: 'rooms'
+            as: 'rooms',
+            attributes: [
+              'id',
+              'name',
+              'type',
+              'accommodationId',
+              'status',
+              'price'
+            ]
           },
           {
-            model: Location
+            model: Location,
+            attributes: ['id', 'city', 'country']
           },
           {
             model: Likes,
-            as: 'like'
+            as: 'likes',
+            attributes: ['accommodationId']
           },
           {
             model: Feedbacks,
             include: [
               {
                 model: Users,
+                attributes: [
+                  'id',
+                  'firstName',
+                  'lastName',
+                  'userEmail',
+                  'userRoles'
+                ],
                 include: [
                   {
                     model: ProfilePictures

@@ -30,7 +30,15 @@ import getFeedback from './accommodation/getFeedback.json';
 import likeOrUnlike from './accommodation/likeOrUnlike.json';
 // Locations
 import locations from './location/index.json';
+// Booking
+import booking from './booking/index.json';
+import cancelBooking from './booking/cancelBooking.json';
+// Requests
+import myRequests from './requests/getMyRequest.json';
+import pendingRequests from './requests/pendingRequest.json';
+import getRequests from './requests/getRequests.json';
 
+// User
 swagger.paths['/auth/signup'] = signup;
 swagger.paths['/auth/signin'] = signin;
 swagger.paths['/auth/signout'] = signout;
@@ -45,6 +53,8 @@ swagger.paths['/auth/add-user'] = supplier;
 swagger.paths['/auth/autofill-preference'] = autofill;
 swagger.paths['/auth/email-preferences'] = emailPref;
 swagger.paths['/auth/unsubscribe'] = unsubscribe;
+
+// User Profile
 swagger.paths['/profile'] = profile;
 swagger.paths['/profile/picture'] = picture;
 
@@ -65,5 +75,14 @@ swagger.paths['/accommodation/{id}/like'] = likeOrUnlike;
 
 // Locations
 swagger.paths['/locations'] = locations;
+
+// Booking
+swagger.paths['/booking/:id'] = booking;
+swagger.paths['/booking/cancel/:id'] = cancelBooking;
+
+// Requests
+swagger.paths['/requests/my-requests'] = myRequests;
+swagger.paths['/requests/pending'] = pendingRequests;
+swagger.paths['/requests/:id'] = getRequests;
 
 export default swagger;

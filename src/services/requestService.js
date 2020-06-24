@@ -22,7 +22,12 @@ class RequestService {
         include: [
           {
             model: Accommodations,
-            as: 'accommodations'
+            as: 'accommodations',
+            include: [
+              {
+                model: Location
+              }
+            ]
           }
         ]
       });

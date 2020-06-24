@@ -14,7 +14,7 @@ class UserProfileController {
    */
   async userProfile(req, res, next) {
     try {
-      const { id: userId } = req.body;
+      const { id: userId } = req.user;
       const profile = await UserProfileService.getProfile(userId);
 
       return Response.customResponse(res, 200, 'User Profile', profile);
