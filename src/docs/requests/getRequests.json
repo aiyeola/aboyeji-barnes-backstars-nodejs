@@ -1,0 +1,41 @@
+{
+  "get": {
+    "security": [
+      {
+        "Bearer": []
+      }
+    ],
+    "path": "/requests/:id",
+    "tags": ["Requests"],
+    "summary": "get all requests",
+    "description": "End point for getting all requests",
+    "operationId": "get requests",
+    "consumes": [],
+    "produces": ["application/json"],
+    "parameters": [],
+    "responses": {
+      "200": {
+        "description": "Request found successfully"
+      },
+      "401": {
+        "description": "Invalid or Expired token used",
+        "examples": {
+          "application/json": {
+            "status": 401,
+            "message": "Invalid or expired token",
+            "error": "Authentication Error"
+          }
+        }
+      },
+      "403": {
+        "description": "You don't have the rights to complete this operation"
+      },
+      "404": {
+        "description": "Request not found"
+      },
+      "500": {
+        "description": "Internal server error"
+      }
+    }
+  }
+}

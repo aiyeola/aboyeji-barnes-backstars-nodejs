@@ -1,0 +1,38 @@
+{
+  "get": {
+    "security": [
+      {
+        "Bearer": []
+      }
+    ],
+    "path": "/requests/pending",
+    "tags": ["Requests"],
+    "summary": "get all pending requests",
+    "description": "End point for getting all pending requests",
+    "operationId": "get requests",
+    "consumes": [],
+    "produces": ["application/json"],
+    "parameters": [],
+    "responses": {
+      "200": {
+        "description": "Requests retrieved"
+      },
+      "401": {
+        "description": "Invalid or Expired token used",
+        "examples": {
+          "application/json": {
+            "status": 401,
+            "message": "Invalid or expired token",
+            "error": "Authentication Error"
+          }
+        }
+      },
+      "403": {
+        "description": "You are not allowed to perform this task"
+      },
+      "500": {
+        "description": "Internal server error"
+      }
+    }
+  }
+}

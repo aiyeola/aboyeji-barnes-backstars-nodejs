@@ -31,15 +31,23 @@
     },
     {
       "name": "User Profile",
-      "description": "User Profile Endpoint"
+      "description": "User Profile Endpoints"
     },
     {
       "name": "Accommodation",
-      "description": "Accommodation Endpoint"
+      "description": "Accommodation Endpoints"
     },
     {
       "name": "Location",
-      "description": "Location Endpoint"
+      "description": "Location Endpoints"
+    },
+    {
+      "name": "Booking",
+      "description": "Booking Endpoints"
+    },
+    {
+      "name": "Requests",
+      "description": "Request Endpoints"
     }
   ],
   "paths": {}
