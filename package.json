@@ -31,7 +31,7 @@
     "@hapi/joi": "^17.1.1",
     "@passport-next/passport-mocked": "passport-next/passport-mocked",
     "babel-watch": "^7.0.0",
-    "bcrypt": "^4.0.1",
+    "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
     "cloudinary": "^1.21.0",
     "compression": "^1.7.4",
