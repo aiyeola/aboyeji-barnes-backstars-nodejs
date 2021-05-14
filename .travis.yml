@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - 12
+  - 14
 cache: yarn
 notifications:
   email: false
@@ -8,7 +8,7 @@ install:
   - yarn install
 services:
   - postgresql
-  - redis-server
+  - redis
 script:
   - yarn test2
 before_script:
