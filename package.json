@@ -5,7 +5,7 @@
   "author": "Aboyeji Clan",
   "scripts": {
     "build": "rm -rf ./src/build && babel ./src/. --out-dir ./src/build --copy-files",
-    "start": "node ./src/build/index.js",
+    "start": "NODE_ENV=production node ./src/build/index.js",
     "start:dev": "nodemon --exec babel-node src/index.js",
     "docker:start": "yarn run db-migrate:dev && yarn run start:dev",
     "db-seed:test": "sequelize db:seed:all --env test",
@@ -47,7 +47,7 @@
     "passport": "^0.4.1",
     "passport-facebook": "^3.0.0",
     "passport-google-oauth": "^2.0.0",
-    "pg": "^7.18.2",
+    "pg": "^8.6.0",
     "pg-hstore": "^2.3.3",
     "redis": "^3.0.2",
     "request": "^2.88.2",
