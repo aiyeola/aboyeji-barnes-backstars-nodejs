@@ -5,12 +5,8 @@ import Response from '../response';
 import SessionManager from '../sessionManager';
 
 dotenv.config();
-const {
-  GMAIL_EMAIL_ADDRESS,
-  GMAIL_EMAIL_PASSWORD,
-  FROM_EMAIL,
-  BASE_URL
-} = process.env;
+const { GMAIL_EMAIL_ADDRESS, GMAIL_EMAIL_PASSWORD, FROM_EMAIL, BASE_URL } =
+  process.env;
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
