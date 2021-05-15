@@ -58,7 +58,7 @@ class SessionManager {
 
     const { userEmail } = data;
 
-    redisClient.set(userEmail, token);
+    redisClient.set(userEmail, token, 'EX', 60 * 60 * 24);
     return token;
   }
 
