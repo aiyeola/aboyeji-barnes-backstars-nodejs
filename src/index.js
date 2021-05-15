@@ -59,7 +59,6 @@ if (!isProduction) {
 // production error handler
 // no stack traces leaked to user
 app.use((err, req, res, next) => {
-  logger.error(err.stack);
   res.status(err.status || 500);
   res.json({
     errors: {

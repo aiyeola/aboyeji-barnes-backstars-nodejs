@@ -5,13 +5,12 @@ import Response from '../response';
 import SessionManager from '../sessionManager';
 
 dotenv.config();
-const { GMAIL_EMAIL_ADDRESS, GMAIL_EMAIL_PASSWORD, FROM_EMAIL, BASE_URL } =
-  process.env;
+
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: GMAIL_EMAIL_ADDRESS,
-    pass: GMAIL_EMAIL_PASSWORD
+    user: process.env.GMAIL_EMAIL_ADDRESS,
+    pass: process.env.GMAIL_EMAIL_PASSWORD
   },
   tls: {
     rejectUnauthorized: false
@@ -19,7 +18,9 @@ const transporter = nodemailer.createTransport({
 });
 
 const URL =
-  process.env.NODE_ENV === 'production' ? BASE_URL : 'http://localhost:4000';
+  process.env.NODE_ENV === 'production'
+    ? process.env.BASE_URL
+    : 'http://localhost:4000';
 
 /** Class that handles emails */
 class Emails {
@@ -29,7 +30,7 @@ class Emails {
    * @returns {object} email header
    */
   static header(data) {
-    const from = data.from || FROM_EMAIL;
+    const from = data.from || process.env.FROM_EMAIL;
     const { to } = data;
     const { subject } = data;
     return {

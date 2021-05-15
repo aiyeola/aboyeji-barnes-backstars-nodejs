@@ -12,7 +12,7 @@ let sequelize;
 try {
   if (config.use_env_variable) {
     sequelize = new Sequelize(process.env[config.use_env_variable], config);
-    console.log('connected');
+    console.log('DB connected');
   } else {
     sequelize = new Sequelize(
       config.database,
@@ -20,7 +20,7 @@ try {
       config.password,
       config
     );
-    console.log('connected');
+    console.log('DB connected');
   }
 } catch (error) {
   console.log(error);
