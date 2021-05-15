@@ -169,7 +169,7 @@ class Users {
     await Emitter.emit('new-user', data);
     const responseBuffer = Buffer.from(JSON.stringify(apiResponse));
     return res.redirect(
-      `${FRONTEND_URL}/login?code=${responseBuffer.toString('base64')}`
+      `${FRONTEND_URL}/log-in?code=${responseBuffer.toString('base64')}`
     );
   }
 
