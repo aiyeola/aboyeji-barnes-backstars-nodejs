@@ -23,6 +23,13 @@ class Users {
   async createUser(req, res, next) {
     const rawData = req.body;
     try {
+      const userExists = await UserService.findUser({
+        userEmail: rawData.userEmail
+      });
+
+      if (userExists) {
+        return Response.conflictError(res, 'Email has been used to register');
+      }
       const obj = new Password(rawData);
       const newPassword = await obj.encryptPassword();
 
