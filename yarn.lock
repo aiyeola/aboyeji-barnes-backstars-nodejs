@@ -4339,11 +4339,6 @@ lodash.once@^4.0.0:
   resolved "https://registry.yarnpkg.com/lodash.once/-/lodash.once-4.1.1.tgz#0dd3971213c7c56df880977d504c88fb471a97ac"
   integrity sha1-DdOXEhPHxW34gJd9UEyI+0cal6w=
 
-lodash@1.3.1:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-1.3.1.tgz#a4663b53686b895ff074e2ba504dfb76a8e2b770"
-  integrity sha1-pGY7U2hriV/wdOK6UE37dqjit3A=
-
 lodash@^4.17.11, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.19, lodash@^4.17.5:
   version "4.17.21"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
@@ -6542,13 +6537,6 @@ supports-color@^7.1.0:
   integrity sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw==
   dependencies:
     has-flag "^4.0.0"
-
-swagger-node-express@^2.1.3:
-  version "2.1.3"
-  resolved "https://registry.yarnpkg.com/swagger-node-express/-/swagger-node-express-2.1.3.tgz#4b1fee976e11284d276575911980b2258e379dab"
-  integrity sha1-Sx/ul24RKE0nZXWRGYCyJY43nas=
-  dependencies:
-    lodash "1.3.1"
 
 swagger-ui-dist@^3.18.1:
   version "3.48.0"
